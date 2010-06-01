@@ -4,6 +4,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>testando essa bagaca!</display-name>
     <description> Template JSF 2.0 application configured to run on the GAE on Java. </description>
+    
     <!-- ***** GAE 1.3.0 appears to handle server-side state saving. ***** -->
     <context-param>
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
