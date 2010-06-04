@@ -1,5 +1,9 @@
 package com.appspot.safecash.repositorio;
 
-public interface RepositorioTransacao {
+import com.appspot.safecash.dados.Transacao;
 
+public interface RepositorioTransacao extends Iterable<Transacao> {
+	
+	public void inserir(Transacao transacao);
+	
 }
