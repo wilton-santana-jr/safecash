@@ -1,4 +1,4 @@
-package com.appspot.safecach.dados;
+package com.appspot.safecash.dados;
 
 import com.appspot.safecash.enuns.EnumPermissao;
 
