@@ -1,6 +1,6 @@
 package com.appspot.safecash.repositorio;
 
-import com.appspot.safecach.dados.Conta;
+import com.appspot.safecash.dados.Conta;
 
 public interface RepositorioConta {
 	
