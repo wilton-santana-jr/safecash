@@ -1,5 +1,12 @@
 package com.appspot.safecash.repositorio;
 
-public interface RepositorioModelo {
+import com.appspot.safecash.dados.Modelo;
 
+public interface RepositorioModelo extends Iterable<Modelo>{
+
+	public void inserir(Modelo modelo);
+	public Modelo procurar(String nome);
+	public void remover(Modelo modelo);
+	public void atualizar(Modelo modelo);
+	public boolean existe(Modelo modelo);
 }
