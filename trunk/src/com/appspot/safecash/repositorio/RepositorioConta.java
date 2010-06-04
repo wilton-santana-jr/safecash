@@ -1,4 +1,4 @@
-package com.appspot.safecach.repositorio;
+package com.appspot.safecash.repositorio;
 
 import com.appspot.safecach.dados.Conta;
 

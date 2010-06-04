@@ -1,4 +1,4 @@
-package com.appspot.safecach.dados;
+package com.appspot.safecash.dados;
 
 public class Funcionario {
 	

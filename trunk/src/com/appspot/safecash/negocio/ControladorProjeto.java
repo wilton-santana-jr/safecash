@@ -1,4 +1,4 @@
-package com.appspot.safecach.negocio;
+package com.appspot.safecash.negocio;
 
 public class ControladorProjeto {
 
