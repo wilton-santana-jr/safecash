@@ -7,7 +7,7 @@ import com.appspot.safecash.repositorio.RepositorioConta;
 
 public class ControladorConta {
 
-	RepositorioConta repositorio;
+	private RepositorioConta repositorio;
 	
 	public ControladorConta(){}
 	
