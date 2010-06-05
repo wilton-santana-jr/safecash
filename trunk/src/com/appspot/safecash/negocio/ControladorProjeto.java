@@ -1,6 +1,9 @@
 package com.appspot.safecash.negocio;
 
+import java.util.Iterator;
+
 import com.appspot.safecash.dados.Projeto;
+import com.appspot.safecash.dados.Usuario;
 import com.appspot.safecash.negocio.exception.ProjetoJaExisteException;
 import com.appspot.safecash.negocio.exception.ProjetoNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioProjeto;
@@ -32,6 +35,29 @@ public class ControladorProjeto {
 		{
 			throw new ProjetoNaoExisteException();
 		}
+	}
+	
+	
+	public Iterator<Projeto> procurarProjeto(String nome) throws ProjetoNaoExisteException
+	{
+		
+		Iterator<Projeto> projeto = this.repositorio.procurar(nome); 
+		if(projeto ==null)
+		{
+			throw new ProjetoNaoExisteException();
+		}
+		return projeto;
+	}
+	
+	public Iterator<Projeto> procurarProjeto(Usuario usuario) throws ProjetoNaoExisteException
+	{
+		
+		Iterator<Projeto> projeto = this.repositorio.procurar(usuario); 
+		if(projeto ==null)
+		{
+			throw new ProjetoNaoExisteException();
+		}
+		return projeto;
 	}
 	
 	public void removerProjeto(Projeto projeto)throws ProjetoNaoExisteException
