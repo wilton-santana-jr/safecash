@@ -12,6 +12,14 @@ public class Conta {
 	private EnumStatusConta status;
 	private Projeto projeto;
 	
+	public Conta(Date data, String descricao, double valor, EnumStatusConta status, Projeto projeto) {
+		this.data = data;
+		this.descricao = descricao;
+		this.valor = valor;
+		this.status = status;
+		this.projeto = projeto;
+	}
+
 	public Date getData() {
 		return data;
 	}
