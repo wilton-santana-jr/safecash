@@ -1,50 +1,50 @@
 package com.appspot.safecash.negocio;
 
-import com.appspot.safecash.dados.Requisicao;
-import com.appspot.safecash.negocio.exception.RequisicaoJaExisteException;
-import com.appspot.safecash.negocio.exception.RequisicaoNaoExisteException;
-import com.appspot.safecash.repositorio.RepositorioRequisicao;
+import com.appspot.safecash.dados.Transacao;
+import com.appspot.safecash.negocio.exception.TransacaoJaExisteException;
+import com.appspot.safecash.negocio.exception.TransacaoNaoExisteException;
+import com.appspot.safecash.repositorio.RepositorioTransacao;
 
 public class ControladorTransacao {
 	
-	private RepositorioRequisicao repositorio;
+	private RepositorioTransacao repositorio;
 	
-	public void inserirTransacao(Requisicao requisicao)throws RequisicaoJaExisteException
+	public void inserirTransacao(Transacao transacao)throws TransacaoJaExisteException
 	{
-		if(!this.existe(requisicao))
+		if(!this.existe(transacao))
 		{
-			this.repositorio.remover(requisicao);
+			this.repositorio.inserir(transacao);
 		}
 		else
 		{
-			throw new RequisicaoJaExisteException();
+			throw new TransacaoJaExisteException();
 		}
 	}
-	public void removerTransacao(Requisicao requisicao)throws RequisicaoNaoExisteException
+	public void removerTransacao(Transacao transacao)throws TransacaoNaoExisteException
 	{
-		if(this.existe(requisicao))
+		if(this.existe(transacao))
 		{
-			this.repositorio.remover(requisicao);
+			this.repositorio.remover(transacao);
 		}
 		else
 		{
-			throw new RequisicaoNaoExisteException();
+			throw new TransacaoNaoExisteException();
 		}
 	}
-	public void atualizarTransacao(Requisicao requisicao) throws RequisicaoNaoExisteException
+	public void atualizarTransacao(Transacao transacao) throws TransacaoNaoExisteException
 	{
-		if(this.existe(requisicao))
+		if(this.existe(transacao))
 		{
-			this.repositorio.remover(requisicao);
+			this.repositorio.atualizar(transacao);
 		}
 		else
 		{
-			throw new RequisicaoNaoExisteException();
+			throw new TransacaoNaoExisteException();
 		}
 	}
-	private boolean existe(Requisicao requisicao)
+	private boolean existe(Transacao transacao)
 	{
-		return this.repositorio.existe(requisicao);
+		return this.repositorio.existe(transacao);
 	}
 	
 }
