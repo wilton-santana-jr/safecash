@@ -13,7 +13,7 @@ public class ControladorUsuario {
 	{
 		if(!this.existe(usuario))
 		{
-			//this.repositorio.inserir(usuario);
+			this.repositorio.inserir(usuario);
 		}
 		else
 		{
@@ -25,7 +25,7 @@ public class ControladorUsuario {
 	{
 		if(this.existe(usuario))
 		{
-			//this.repositorio.atualizar(usuario);
+			this.repositorio.atualizar(usuario);
 		}
 		else
 		{
@@ -37,7 +37,7 @@ public class ControladorUsuario {
 	{
 		if(this.existe(usuario))
 		{
-			//this.repositorio.remover(usuario);
+			this.repositorio.remover(usuario);
 		}
 		else
 		{
@@ -47,7 +47,7 @@ public class ControladorUsuario {
 	
 	private boolean existe(Usuario usuario)
 	{
-		return false;//this.repositorio.existe(usuario);
+		return this.repositorio.existe(usuario);
 	}
 
 
