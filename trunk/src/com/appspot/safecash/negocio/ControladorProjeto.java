@@ -42,7 +42,7 @@ public class ControladorProjeto {
 	{
 		
 		Iterator<Projeto> projeto = this.repositorio.procurar(nome); 
-		if(projeto ==null)
+		if(projeto == null)
 		{
 			throw new ProjetoNaoExisteException();
 		}
@@ -53,7 +53,7 @@ public class ControladorProjeto {
 	{
 		
 		Iterator<Projeto> projeto = this.repositorio.procurar(usuario); 
-		if(projeto ==null)
+		if(projeto == null)
 		{
 			throw new ProjetoNaoExisteException();
 		}
