@@ -2,7 +2,7 @@ package com.appspot.safecash.negocio;
 
 import com.appspot.safecash.dados.Projeto;
 import com.appspot.safecash.negocio.exception.ProjetoJaExisteException;
-import com.appspot.safecash.negocio.exception.ProjetoNaoExisteExeception;
+import com.appspot.safecash.negocio.exception.ProjetoNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioProjeto;
 
 public class ControladorProjeto {
@@ -22,7 +22,7 @@ public class ControladorProjeto {
 		}
 	}
 	
-	public void atualizarProjeto(Projeto projeto) throws ProjetoNaoExisteExeception
+	public void atualizarProjeto(Projeto projeto) throws ProjetoNaoExisteException
 	{
 		if(this.existe(projeto))
 		{
@@ -30,11 +30,11 @@ public class ControladorProjeto {
 		}
 		else
 		{
-			throw new ProjetoNaoExisteExeception();
+			throw new ProjetoNaoExisteException();
 		}
 	}
 	
-	public void removerProjeto(Projeto projeto)throws ProjetoNaoExisteExeception
+	public void removerProjeto(Projeto projeto)throws ProjetoNaoExisteException
 	{
 		if(this.existe(projeto))
 		{
@@ -42,7 +42,7 @@ public class ControladorProjeto {
 		}
 		else
 		{
-			throw new ProjetoNaoExisteExeception();
+			throw new ProjetoNaoExisteException();
 		}
 	}
 	
