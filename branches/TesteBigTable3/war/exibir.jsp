@@ -25,8 +25,7 @@
 				Pessoa current = null;
 				while(it.hasNext()){
 					current = it.next();
-					out.println("Pessoa [dataNascimento=" + current.getDataNascimento() + ", id=" + current.getId()
-							+ ", nacionalidade=" + current.getNacionalidade() + ", nome=" + current.getNome() + "]" + "<br />");
+					out.println(current + "<br />");
 				}
 			}
 			else
