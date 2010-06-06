@@ -27,18 +27,14 @@ public class RepositorioPessoa implements Iterable<Pessoa>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Iterator<Pessoa> procurar(String nome) throws NenhumaPessoaEncontradaException{
+	public Iterator<Pessoa> procurar(String nome) {
 		pm = PMF.get().getPersistenceManager();
 		
-		Query query = pm.newQuery("select from Pessoa " +
-                				  "where nome == nomeParam " +
-                				  "order by dataNascimento desc " +
+		Query query = pm.newQuery("select from " + Pessoa.class.getName() + " " +
+                				  "where nome.startWith(nomeParam) " +
                 				  "parameters String nomeParam");
 		
 		List<Pessoa> resultado = (List<Pessoa>) query.execute(nome);
-		
-		if(resultado.isEmpty())
-			throw new NenhumaPessoaEncontradaException();
 		
 		pm.close();
 		
@@ -57,4 +53,12 @@ public class RepositorioPessoa implements Iterable<Pessoa>{
 		pm.close();
 		return p.iterator();
 	}
+	
+	public void remover(Long id){
+		pm = PMF.get().getPersistenceManager();
+		Pessoa cur = pm.getObjectById(Pessoa.class, id);
+		pm.deletePersistent(cur);
+		pm.close();
+	}
+	
 }
