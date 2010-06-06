@@ -9,7 +9,9 @@ public class ControladorTransacao {
 	
 	private RepositorioTransacao repositorio;
 	
-	public void inserirTransacao(Transacao transacao)throws TransacaoJaExisteException
+	public ControladorTransacao(){}
+	
+	public void inserir(Transacao transacao)throws TransacaoJaExisteException
 	{
 		if(!this.existe(transacao))
 		{
@@ -20,7 +22,8 @@ public class ControladorTransacao {
 			throw new TransacaoJaExisteException();
 		}
 	}
-	public void removerTransacao(Transacao transacao)throws TransacaoNaoExisteException
+	
+	public void remover(Transacao transacao)throws TransacaoNaoExisteException
 	{
 		if(this.existe(transacao))
 		{
@@ -31,7 +34,8 @@ public class ControladorTransacao {
 			throw new TransacaoNaoExisteException();
 		}
 	}
-	public void atualizarTransacao(Transacao transacao) throws TransacaoNaoExisteException
+	
+	public void atualizar(Transacao transacao) throws TransacaoNaoExisteException
 	{
 		if(this.existe(transacao))
 		{
@@ -42,6 +46,7 @@ public class ControladorTransacao {
 			throw new TransacaoNaoExisteException();
 		}
 	}
+	
 	private boolean existe(Transacao transacao)
 	{
 		return this.repositorio.existe(transacao);

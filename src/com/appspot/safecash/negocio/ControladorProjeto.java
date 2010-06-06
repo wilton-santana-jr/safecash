@@ -10,10 +10,11 @@ import com.appspot.safecash.repositorio.RepositorioProjeto;
 
 public class ControladorProjeto {
 	
-	RepositorioProjeto repositorio;
+	private RepositorioProjeto repositorio;
 	
-		//fatal o construtor!!!!!!!!!!!!!
-	public void inserirProjeto(Projeto projeto)throws ProjetoJaExisteException
+	public ControladorProjeto(){}
+	
+	public void inserir(Projeto projeto)throws ProjetoJaExisteException
 	{
 		if(!this.existe(projeto))
 		{
@@ -25,7 +26,7 @@ public class ControladorProjeto {
 		}
 	}
 	
-	public void atualizarProjeto(Projeto projeto) throws ProjetoNaoExisteException
+	public void atualizar(Projeto projeto) throws ProjetoNaoExisteException
 	{
 		if(this.existe(projeto))
 		{
@@ -38,7 +39,7 @@ public class ControladorProjeto {
 	}
 	
 	
-	public Iterator<Projeto> procurarProjeto(String nome) throws ProjetoNaoExisteException
+	public Iterator<Projeto> procurarPorNome(String nome) throws ProjetoNaoExisteException
 	{
 		
 		Iterator<Projeto> projeto = this.repositorio.procurar(nome); 
@@ -49,7 +50,7 @@ public class ControladorProjeto {
 		return projeto;
 	}
 	
-	public Iterator<Projeto> procurarProjeto(Usuario usuario) throws ProjetoNaoExisteException
+	public Iterator<Projeto> procurarPorUsuario(Usuario usuario) throws ProjetoNaoExisteException
 	{
 		
 		Iterator<Projeto> projeto = this.repositorio.procurar(usuario); 
@@ -60,7 +61,7 @@ public class ControladorProjeto {
 		return projeto;
 	}
 	
-	public void removerProjeto(Projeto projeto)throws ProjetoNaoExisteException
+	public void remover(Projeto projeto)throws ProjetoNaoExisteException
 	{
 		if(this.existe(projeto))
 		{
