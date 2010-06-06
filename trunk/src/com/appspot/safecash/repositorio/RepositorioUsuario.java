@@ -5,8 +5,8 @@ import com.appspot.safecash.dados.Usuario;
 
 public interface RepositorioUsuario {
 	public void inserir(Usuario usuario);
-	public void remover(Usuario projeto);
-	public void atualizar(Usuario projeto);
-	public boolean existe(Usuario projeto);
+	public void remover(Usuario usuario);
+	public void atualizar(Usuario usuario);
+	public boolean existe(Usuario usuario);
 
 }

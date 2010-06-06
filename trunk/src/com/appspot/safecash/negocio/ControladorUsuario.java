@@ -7,9 +7,11 @@ import com.appspot.safecash.repositorio.RepositorioUsuario;
 
 public class ControladorUsuario {
 	
-	RepositorioUsuario repositorio;
+	private RepositorioUsuario repositorio;
 	
-	public void inserirUsuario(Usuario usuario)throws UsuarioJaExisteException
+	public ControladorUsuario(){}
+	
+	public void inserir(Usuario usuario)throws UsuarioJaExisteException
 	{
 		if(!this.existe(usuario))
 		{
@@ -21,19 +23,7 @@ public class ControladorUsuario {
 		}
 	}
 	
-	public void atualizarUsuario(Usuario usuario) throws UsuarioNaoExisteException
-	{
-		if(this.existe(usuario))
-		{
-			this.repositorio.atualizar(usuario);
-		}
-		else
-		{
-			throw new UsuarioNaoExisteException();
-		}
-	}
-	
-	public void removerUsuario(Usuario usuario)throws UsuarioNaoExisteException
+	public void remover(Usuario usuario)throws UsuarioNaoExisteException
 	{
 		if(this.existe(usuario))
 		{
@@ -45,10 +35,20 @@ public class ControladorUsuario {
 		}
 	}
 	
+	public void atualizar(Usuario usuario) throws UsuarioNaoExisteException
+	{
+		if(this.existe(usuario))
+		{
+			this.repositorio.atualizar(usuario);
+		}
+		else
+		{
+			throw new UsuarioNaoExisteException();
+		}
+	}
+	
 	private boolean existe(Usuario usuario)
 	{
 		return this.repositorio.existe(usuario);
 	}
-
-
 }

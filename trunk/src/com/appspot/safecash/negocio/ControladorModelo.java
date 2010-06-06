@@ -14,7 +14,7 @@ public class ControladorModelo {
 		this.repositorio.inserir(modelo);
 	}
 
-	public void deletar(Modelo modelo) throws ModeloNaoExisteException{
+	public void remover(Modelo modelo) throws ModeloNaoExisteException{
 		if(this.existe(modelo)){
 			this.repositorio.remover(modelo);
 		}
