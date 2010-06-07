@@ -1,4 +1,4 @@
-package com.appspot.testebigtable;
+package com.appspot.testebigtable.teste1;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManagerFactory;
