@@ -31,14 +31,18 @@ public class RepositorioPessoa implements Iterable<Pessoa>{
 		pm = PMF.get().getPersistenceManager();
 		
 		Query query = pm.newQuery("select from " + Pessoa.class.getName() + " " +
-                				  "where nome.startWith(nomeParam) " +
+                				  "where nome == nomeParam " +
                 				  "parameters String nomeParam");
 		
 		List<Pessoa> resultado = (List<Pessoa>) query.execute(nome);
+		List<Pessoa> p = new ArrayList<Pessoa>();
+		for(Pessoa atual : resultado){
+			p.add(atual);
+		}
 		
 		pm.close();
 		
-		return resultado.iterator();
+		return p.iterator();
 	}
 
 	@Override
