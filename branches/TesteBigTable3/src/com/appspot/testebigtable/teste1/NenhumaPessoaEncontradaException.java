@@ -1,4 +1,4 @@
-package com.appspot.testebigtable;
+package com.appspot.testebigtable.teste1;
 
 public class NenhumaPessoaEncontradaException extends Exception {
 
