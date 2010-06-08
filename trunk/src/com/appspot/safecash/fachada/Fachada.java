@@ -2,6 +2,10 @@ package com.appspot.safecash.fachada;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.appspot.safecash.dados.Conta;
 import com.appspot.safecash.dados.Funcionario;
 import com.appspot.safecash.dados.Modelo;
@@ -43,6 +47,11 @@ public class Fachada {
 	private ControladorTransacao controladorTransacao;
 	private ControladorUsuario controladorUsuario;
 
+	private HttpSession session;
+
+	public HttpServletRequest request;
+	public HttpServletResponse response;
+
 	private Fachada() {
 		this.controladorConta = new ControladorConta();
 		this.controladorFuncionario = new ControladorFuncionario();
@@ -51,6 +60,8 @@ public class Fachada {
 		this.controladorRequisicao = new ControladorRequisicao();
 		this.controladorTransacao = new ControladorTransacao();
 		this.controladorUsuario = new ControladorUsuario();
+		
+	//	this.gerenciaSession();
 	}
 
 	/**
@@ -64,17 +75,24 @@ public class Fachada {
 		}
 		return Fachada.singleton;
 	}
-	
+
 	/**
 	 * Método que irá gerenciar cada sessão aberta pelo programa.
 	 * 
 	 * @param login
 	 * @param senha
+	 * @throws UsuarioNaoExisteException 
 	 */
-	public void abrirSessao(String login, String senha){
-
+	public void gerenciaSession(Usuario usuario) throws UsuarioNaoExisteException{
+		this.session = this.request.getSession(true);
+		//http://www.guj.com.br/posts/list/127559.java
+		//http://www.stardeveloper.com/articles/display.html?article=2001062001&page=2
+		
+		Usuario temp = this.controladorUsuario.buscar(usuario);
+		
+		this.session.setAttribute("user", temp.getNome());
 	}
-	
+
 	/**
 	 * Método para inserir uma conta.
 	 * 
@@ -84,7 +102,7 @@ public class Fachada {
 	public void inserirConta(Conta conta) throws ContaJaExisteException {
 		this.controladorConta.inserirConta(conta);
 	}
-	
+
 	/**
 	 * Método para procurar contas por projeto.
 	 * 
@@ -94,7 +112,7 @@ public class Fachada {
 	public void procurarContaPorProjeto(Projeto projeto) throws ContaNaoExisteException{
 		this.controladorConta.procurar(projeto);
 	}
-	
+
 	/**
 	 * Método para procurar contas por datas.
 	 * 
@@ -105,7 +123,7 @@ public class Fachada {
 	public void procurarContaPorData(Date dataInicial, Date dataFinal) throws ContaNaoExisteException{
 		this.controladorConta.procurar(dataInicial, dataFinal);
 	}
-	
+
 	/**
 	 * Método para procurar contas por status.
 	 * 
@@ -115,7 +133,7 @@ public class Fachada {
 	public void procurarContaPorStatus(EnumStatusConta status) throws ContaNaoExisteException{
 		this.controladorConta.procurar(status);
 	}
-	
+
 	/**
 	 * Método para remover uma conta.
 	 * 
@@ -125,7 +143,7 @@ public class Fachada {
 	public void removerConta(Conta conta) throws ContaNaoExisteException{
 		this.controladorConta.remover(conta);
 	}
-	
+
 	/**
 	 * Método para atualizar uma conta.
 	 * 
@@ -135,9 +153,9 @@ public class Fachada {
 	public void atualizarConta(Conta conta) throws ContaNaoExisteException{
 		this.controladorConta.atualizar(conta);
 	}
-	
+
 	//#############################################
-	
+
 	/**
 	 * Método para inserir um funcionário.
 	 * 
@@ -147,7 +165,7 @@ public class Fachada {
 	public void inserirFuncionario(Funcionario funcionario) throws FuncionarioJaExisteException{
 		this.controladorFuncionario.inserir(funcionario);
 	}
-	
+
 	/**
 	 * Método para procurar um funcionário por nome.
 	 * 
@@ -157,7 +175,7 @@ public class Fachada {
 	public void procurarFuncionarioPorNome(String nome) throws FuncionarioNaoExisteException{
 		this.controladorFuncionario.procurarPorNome(nome);
 	}
-	
+
 	/**
 	 * Método para procurar um funcionário por cargo.
 	 * 
@@ -167,7 +185,7 @@ public class Fachada {
 	public void procurarFuncionarioPorCargo(String cargo) throws FuncionarioNaoExisteException{
 		this.controladorFuncionario.procurarPorCargo(cargo);
 	}
-	
+
 	/**
 	 * Método para procurar um funcionário por CPF.
 	 * 
@@ -177,7 +195,7 @@ public class Fachada {
 	public void procurarFuncionarioPorCPF(String cpf) throws FuncionarioNaoExisteException{
 		this.controladorFuncionario.procurarPorCPF(cpf);
 	}
-	
+
 	/**
 	 * Método para remover um funcionário.
 	 * 
@@ -187,13 +205,13 @@ public class Fachada {
 	public void removerFuncionario(Funcionario funcionario) throws FuncionarioNaoExisteException{
 		this.controladorFuncionario.remover(funcionario);
 	}
-	
+
 	public void atualizarFuncionario(Funcionario funcionario) throws FuncionarioNaoExisteException{
 		this.controladorFuncionario.atualizar(funcionario);
 	}
-	
+
 	//#############################################
-	
+
 	/**
 	 * Método que insere um modelo de documento.
 	 * 
@@ -202,7 +220,7 @@ public class Fachada {
 	public void inserirModelo(Modelo modelo){
 		this.controladorModelo.inserir(modelo);
 	}
-	
+
 	/**
 	 * Método que remove um modelo;
 	 * 
@@ -212,7 +230,7 @@ public class Fachada {
 	public void removerModelo(Modelo modelo) throws ModeloNaoExisteException{
 		this.controladorModelo.remover(modelo);
 	}
-	
+
 	/**
 	 * Método que atualiza um modelo.
 	 * 
@@ -222,7 +240,7 @@ public class Fachada {
 	public void atualizarModelo(Modelo modelo) throws ModeloNaoExisteException{
 		this.controladorModelo.atualizar(modelo);
 	}
-	
+
 	/**
 	 * Método que procura um modelo.
 	 * 
@@ -232,9 +250,9 @@ public class Fachada {
 	public void procurarModelo(Modelo modelo) throws ModeloNaoExisteException{
 		this.controladorModelo.procurar(modelo);
 	}
-	
+
 	//#############################################
-	
+
 	/**
 	 * Método para inserir um projeto.
 	 * 
@@ -244,7 +262,7 @@ public class Fachada {
 	public void inserirProjeto(Projeto projeto) throws ProjetoJaExisteException{
 		this.controladorProjeto.inserir(projeto);
 	}
-	
+
 	/**
 	 * Método para atualizar um projeto.
 	 * 
@@ -254,7 +272,7 @@ public class Fachada {
 	public void atualizarProjeto(Projeto projeto) throws ProjetoNaoExisteException{
 		this.controladorProjeto.atualizar(projeto);
 	}
-	
+
 	/**
 	 * Método para procurar um projeto por nome.
 	 * 
@@ -264,7 +282,7 @@ public class Fachada {
 	public void procurarProjetoPorNome(String nome) throws ProjetoNaoExisteException{
 		this.controladorProjeto.procurarPorNome(nome);
 	}
-	
+
 	/**
 	 * Método para procurar um projeto por usuario.
 	 * 
@@ -274,7 +292,7 @@ public class Fachada {
 	public void procurarProjetoPorUsuario(Usuario usuario) throws ProjetoNaoExisteException{
 		this.controladorProjeto.procurarPorUsuario(usuario);
 	}
-	
+
 	/**
 	 * Método para remover um projeto.
 	 * 
@@ -284,9 +302,9 @@ public class Fachada {
 	public void removerProjeto(Projeto projeto) throws ProjetoNaoExisteException{
 		this.controladorProjeto.remover(projeto);
 	}
-	
+
 	//#############################################
-	
+
 	/**
 	 * Método para inserir uma requisição.
 	 * 
@@ -295,7 +313,7 @@ public class Fachada {
 	public void inserirRequisicao(Requisicao requisicao){
 		this.controladorRequisicao.inserir(requisicao);
 	}
-	
+
 	/**
 	 * Método para procurar requisição por usuário.
 	 * 
@@ -305,7 +323,7 @@ public class Fachada {
 	public void procurarRequisicaoPorUsuario(Usuario usuario) throws RequisicaoNaoExisteException{
 		this.controladorRequisicao.procurarPorUsuario(usuario);
 	}
-	
+
 	/**
 	 * Método para procurar requisição por status.
 	 * 
@@ -315,7 +333,7 @@ public class Fachada {
 	public void procurarRequisicaoPorStatus(EnumStatusRequisicao status) throws RequisicaoNaoExisteException{
 		this.controladorRequisicao.procurarPorStatus(status);
 	}
-	
+
 	/**
 	 * Método para remover requisiçao.
 	 * 
@@ -325,7 +343,7 @@ public class Fachada {
 	public void removerRequisicao(Requisicao requisicao) throws RequisicaoNaoExisteException{
 		this.controladorRequisicao.remover(requisicao);
 	}
-	
+
 	/**
 	 * Método para atualizar uma requisição.
 	 * 
@@ -335,9 +353,9 @@ public class Fachada {
 	public void atualizarRequisicao(Requisicao requisicao) throws RequisicaoNaoExisteException{
 		this.controladorRequisicao.atualizar(requisicao);
 	}
-	
+
 	//#############################################
-	
+
 	/**
 	 * Método para inserir uma transação.
 	 * 
@@ -347,7 +365,7 @@ public class Fachada {
 	public void inserirTransacao(Transacao transacao) throws TransacaoJaExisteException{
 		this.controladorTransacao.inserir(transacao);
 	}
-	
+
 	/**
 	 * Método para remover uma transação.
 	 * 
@@ -357,7 +375,7 @@ public class Fachada {
 	public void removerTransacao(Transacao transacao) throws TransacaoNaoExisteException{
 		this.controladorTransacao.remover(transacao);
 	}
-	
+
 	/**
 	 * Método para atualizar uma transação.
 	 * 
@@ -367,9 +385,9 @@ public class Fachada {
 	public void atualizarTransacao(Transacao transacao) throws TransacaoNaoExisteException{
 		this.controladorTransacao.atualizar(transacao);
 	}
-	
+
 	//#############################################
-	
+
 	/**
 	 * Método para inserir um usuário.
 	 * 
@@ -379,7 +397,7 @@ public class Fachada {
 	public void inserirUsuario(Usuario usuario) throws UsuarioJaExisteException{
 		this.controladorUsuario.inserir(usuario);
 	}
-	
+
 	/**
 	 * Método para remover usuário.
 	 * 
@@ -389,7 +407,7 @@ public class Fachada {
 	public void removerUsuario(Usuario usuario) throws UsuarioNaoExisteException{
 		this.controladorUsuario.remover(usuario);
 	}
-	
+
 	/**
 	 * Método para atualizar usuário.
 	 * 
