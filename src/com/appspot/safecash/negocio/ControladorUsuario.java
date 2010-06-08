@@ -11,44 +11,47 @@ public class ControladorUsuario {
 	
 	public ControladorUsuario(){}
 	
-	public void inserir(Usuario usuario)throws UsuarioJaExisteException
-	{
-		if(!this.existe(usuario))
-		{
+	public void inserir(Usuario usuario)throws UsuarioJaExisteException{
+		if(!this.existe(usuario)){
 			this.repositorio.inserir(usuario);
 		}
-		else
-		{
+		else{
 			throw new UsuarioJaExisteException();
 		}
 	}
 	
-	public void remover(Usuario usuario)throws UsuarioNaoExisteException
-	{
-		if(this.existe(usuario))
-		{
+	public void remover(Usuario usuario)throws UsuarioNaoExisteException{
+		if(this.existe(usuario)){
 			this.repositorio.remover(usuario);
 		}
-		else
-		{
+		else{
 			throw new UsuarioNaoExisteException();
 		}
 	}
 	
-	public void atualizar(Usuario usuario) throws UsuarioNaoExisteException
-	{
-		if(this.existe(usuario))
-		{
+	public void atualizar(Usuario usuario) throws UsuarioNaoExisteException{
+		if(this.existe(usuario)){
 			this.repositorio.atualizar(usuario);
 		}
-		else
-		{
+		else{
 			throw new UsuarioNaoExisteException();
 		}
 	}
 	
-	private boolean existe(Usuario usuario)
-	{
+	public Usuario buscar(Usuario usuario) throws UsuarioNaoExisteException{
+		
+		Usuario retorno = null;
+		
+		if(this.existe(usuario)){
+			retorno = usuario;
+		}
+		else{
+			throw new UsuarioNaoExisteException();
+		}
+		return retorno;
+	}
+	
+	private boolean existe(Usuario usuario){
 		return this.repositorio.existe(usuario);
 	}
 }
