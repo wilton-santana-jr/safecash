@@ -16,7 +16,7 @@ import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
 
 // FALTA MAPEAR PARA O WEB.XML
 
-public class TelaCadastrarUsuario extends HttpServlet{
+public class CadastroServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
