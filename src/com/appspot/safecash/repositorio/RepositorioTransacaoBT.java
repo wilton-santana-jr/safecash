@@ -1,4 +1,5 @@
 package com.appspot.safecash.repositorio;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -77,6 +78,7 @@ public class RepositorioTransacaoBT implements RepositorioTransacao {
 		List<Transacao> ret = new ArrayList<Transacao>();
 		pm = PMF.get().getPersistenceManager();
 		Query query = pm.newQuery(PROCURAR_T1);
+		query.declareImports("import com.appspot.safecash.enuns.EnumTipoTransacao;");
 		List<Transacao> result = (List<Transacao>) query.execute(tipo);
 		for(Transacao r : result){
 			ret.add(r);
@@ -96,6 +98,7 @@ public class RepositorioTransacaoBT implements RepositorioTransacao {
 		List<Transacao> ret = new ArrayList<Transacao>();
 		pm = PMF.get().getPersistenceManager();
 		Query query = pm.newQuery(PROCURAR_T2);
+		query.declareImports("import com.appspot.safecash.enuns.EnumOrigemTransacao;");
 		List<Transacao> result = (List<Transacao>) query.execute(origem);
 		for(Transacao r : result){
 			ret.add(r);
@@ -115,6 +118,7 @@ public class RepositorioTransacaoBT implements RepositorioTransacao {
 		List<Transacao> ret = new ArrayList<Transacao>();
 		pm = PMF.get().getPersistenceManager();
 		Query query = pm.newQuery(PROCURAR_T3);
+		query.declareImports("import java.util.Date");
 		List<Transacao> result = (List<Transacao>) query.execute(data);
 		for(Transacao r : result){
 			ret.add(r);

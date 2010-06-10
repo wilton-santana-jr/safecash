@@ -100,7 +100,7 @@ public class TesteRepoFuncionario {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		RepositorioFuncionario repo = new RepositorioFuncionarioBT(); 
 		assertEquals(0, ds.prepare(new Query(Funcionario.class.getSimpleName())).countEntities());
-	
+			
 		Funcionario f1 = new Funcionario("nome1", 10.33, "cargo1", "01", "end1", "tel1", "e1");
 		Funcionario f2 = new Funcionario("nome2", 11.33, "cargo2", "02", "end2", "tel1", "e1");
 		repo.inserir(f1);

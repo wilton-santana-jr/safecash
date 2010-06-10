@@ -53,6 +53,7 @@ public class RepositorioRequisicaoBT implements RepositorioRequisicao {
 		List<Requisicao> ret = new ArrayList<Requisicao>();
 		pm = PMF.get().getPersistenceManager();
 		Query query = pm.newQuery(PROCURAR_R);
+		query.declareImports("import com.appspot.safecash.enuns.EnumStatusRequisicao;");
 		List<Requisicao> result = (List<Requisicao>) query.execute(status);
 		for(Requisicao r : result){
 			ret.add(r);
