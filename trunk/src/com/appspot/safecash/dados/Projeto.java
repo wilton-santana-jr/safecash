@@ -3,69 +3,121 @@ package com.appspot.safecash.dados;
 import java.util.Date;
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Projeto {
 	
-	private String nome;
-	private Usuario responsavel;
-	private List<Funcionario> equipe;
-	private double valor;
-	private Date dataInicio;
-	private Date dataFim;
+	@PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Long id;
 	
-	public Projeto(String nome, Usuario responsavel, List<Funcionario> equipe,
-			double valor, Date dataInicio, Date dataFim) {
+	@Persistent
+	private List<Key> chavesEquipe;
+	
+	@Persistent
+	private List<Key> chavesContas;
+	
+	@Persistent
+	private Key chaveResponsavel;
+	
+	@Persistent
+	private String nome;
+	
+	@Persistent
+	private double valor;
+	
+	@Persistent
+	private Date dataInicio;
+	
+	@Persistent
+	private Date dataFim;
+
+	public Projeto(List<Key> chavesEquipe, List<Key> chavesContas,
+			Key chaveResponsavel, String nome, double valor, Date dataInicio,
+			Date dataFim) {
+		this.chavesEquipe = chavesEquipe;
+		this.chavesContas = chavesContas;
+		this.chaveResponsavel = chaveResponsavel;
 		this.nome = nome;
-		this.responsavel = responsavel;
-		this.equipe = equipe;
 		this.valor = valor;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 	}
-	
+
+	public Projeto(String nome, double valor, Date dataInicio, Date dataFim) {
+		this.nome = nome;
+		this.valor = valor;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Key> getChavesEquipe() {
+		return chavesEquipe;
+	}
+
+	public void setChavesEquipe(List<Key> chavesEquipe) {
+		this.chavesEquipe = chavesEquipe;
+	}
+
+	public List<Key> getChavesContas() {
+		return chavesContas;
+	}
+
+	public void setChavesContas(List<Key> chavesContas) {
+		this.chavesContas = chavesContas;
+	}
+
+	public Key getChaveResponsavel() {
+		return chaveResponsavel;
+	}
+
+	public void setChaveResponsavel(Key chaveResponsavel) {
+		this.chaveResponsavel = chaveResponsavel;
+	}
+
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public Usuario getResponsavel() {
-		return responsavel;
-	}
-	
-	public void setResponsavel(Usuario responsavel) {
-		this.responsavel = responsavel;
-	}
-	
-	public List<Funcionario> getEquipe() {
-		return equipe;
-	}
-	
-	public void setEquipe(List<Funcionario> equipe) {
-		this.equipe = equipe;
-	}
-	
+
 	public double getValor() {
 		return valor;
 	}
-	
+
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	
+
 	public Date getDataInicio() {
 		return dataInicio;
 	}
-	
+
 	public void setDataInicio(Date dataInicio) {
 		this.dataInicio = dataInicio;
 	}
-	
+
 	public Date getDataFim() {
 		return dataFim;
 	}
-	
+
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
 	}

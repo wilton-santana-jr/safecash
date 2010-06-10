@@ -18,7 +18,7 @@ public class ControladorRequisicao {
 		this.repositorio.inserir(requisicao);
 	}
 	
-	public Iterator<Requisicao> procurarPorUsuario(Usuario usuario) throws RequisicaoNaoExisteException{
+	/*public Iterator<Requisicao> procurarPorUsuario(Usuario usuario) throws RequisicaoNaoExisteException{
 		
 		Iterator<Requisicao> retorno = this.repositorio.procurar(usuario);
 		
@@ -28,7 +28,7 @@ public class ControladorRequisicao {
 		else{
 			return retorno;
 		}
-	}
+	}*/
 	
 	public Iterator<Requisicao> procurarPorStatus(EnumStatusRequisicao status) throws RequisicaoNaoExisteException{
 		

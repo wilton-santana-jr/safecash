@@ -17,7 +17,7 @@ public class RequisicaoContrato extends Requisicao {
 			EnumStatusRequisicao status, String responsavel, String cNPJCPF,
 			String nomeProjeto, String endereco, double valor,
 			String propostaNome, byte[] propostaDados, String observacao) {
-		super(descricao, usuario, status);
+		super(descricao, status);
 		this.responsavel = responsavel;
 		CNPJ_CPF = cNPJCPF;
 		this.nomeProjeto = nomeProjeto;

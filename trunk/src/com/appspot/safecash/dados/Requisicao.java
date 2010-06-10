@@ -1,41 +1,56 @@
 package com.appspot.safecash.dados;
 
-import com.appspot.safecash.enuns.EnumStatusRequisicao;
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.appspot.safecash.enuns.EnumStatusRequisicao;
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+@Inheritance(strategy=InheritanceStrategy.SUBCLASS_TABLE)
 public class Requisicao {
 	
-	private String descricao;
-	private Usuario usuario;
-	private EnumStatusRequisicao status;
+	@PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
 	
-	public Requisicao(String descricao, Usuario usuario,
-			EnumStatusRequisicao status) {
+	@Persistent
+	private String descricao;
+	
+	@Persistent
+	private EnumStatusRequisicao status;
+
+	public Requisicao(String descricao, EnumStatusRequisicao status) {
 		this.descricao = descricao;
-		this.usuario = usuario;
 		this.status = status;
 	}
-	
+
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}
-	
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
+
 	public EnumStatusRequisicao getStatus() {
 		return status;
 	}
-	
+
 	public void setStatus(EnumStatusRequisicao status) {
 		this.status = status;
-	}	
+	}
 }
