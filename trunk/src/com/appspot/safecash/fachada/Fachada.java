@@ -93,6 +93,9 @@ public class Fachada {
 		this.session.setAttribute("user", temp.getNome());
 	}
 
+	
+	//##################### CONTA #####################//
+	
 	/**
 	 * Método para inserir uma conta.
 	 * 
@@ -154,7 +157,7 @@ public class Fachada {
 		this.controladorConta.atualizar(conta);
 	}
 
-	//#############################################
+	//##################### FUNCIONÁRIO #####################//
 
 	/**
 	 * Método para inserir um funcionário.
@@ -210,7 +213,7 @@ public class Fachada {
 		this.controladorFuncionario.atualizar(funcionario);
 	}
 
-	//#############################################
+	//##################### MODELO #####################//
 
 	/**
 	 * Método que insere um modelo de documento.
@@ -251,7 +254,7 @@ public class Fachada {
 		this.controladorModelo.procurar(modelo);
 	}
 
-	//#############################################
+	//##################### PROJETO #####################//##
 
 	/**
 	 * Método para inserir um projeto.
@@ -303,7 +306,7 @@ public class Fachada {
 		this.controladorProjeto.remover(projeto);
 	}
 
-	//#############################################
+	//##################### REQUISIÇÂO #####################//
 
 	/**
 	 * Método para inserir uma requisição.
@@ -354,7 +357,7 @@ public class Fachada {
 		this.controladorRequisicao.atualizar(requisicao);
 	}
 
-	//#############################################
+	//##################### TRANSAÇÂO #####################//
 
 	/**
 	 * Método para inserir uma transação.
@@ -386,7 +389,7 @@ public class Fachada {
 		this.controladorTransacao.atualizar(transacao);
 	}
 
-	//#############################################
+	//##################### USUÁRIO #####################//
 
 	/**
 	 * Método para inserir um usuário.
@@ -416,5 +419,25 @@ public class Fachada {
 	 */
 	public void atualizarUsuario(Usuario usuario) throws UsuarioNaoExisteException{
 		this.controladorUsuario.atualizar(usuario);
+	}
+	
+	/**
+	 * Método que retorna um boolean para informar se usuário existe.
+	 * Comumente usado no Servlet pra logar.
+	 * 
+	 * @param usuario
+	 * @throws UsuarioNaoExisteException
+	 */
+	public boolean existeUsuario(Usuario usuario) throws UsuarioNaoExisteException{
+		
+		Boolean retorno = true;
+		Usuario temp = this.controladorUsuario.buscar(usuario);
+		
+		if(temp != null){
+			return retorno;
+		}
+		else{
+			throw new UsuarioNaoExisteException();
+		}
 	}
 }
