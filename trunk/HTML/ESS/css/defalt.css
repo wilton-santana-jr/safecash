@@ -1,0 +1,160 @@
+body
+{
+margin: 0 0 0 0;
+padding: 0 0 0 0;
+text-align:center;
+
+}
+body, div,span
+{
+margin: 0 0 0 0;
+padding: 0 0 0 0;
+}
+#tudo
+{
+	margin: 0 auto;
+	font-family:corbel,Arial,verdana;
+	width:805px;
+	/*color:#AFAFAF;*/
+}
+#dados
+{
+text-align:right;
+}
+#logo
+{
+	height:60px;
+	background-image:url(../imagens/PageAdminImages/logo.jpg);
+	background-repeat:no-repeat;
+}
+
+#menu ul
+{
+	display:block;
+	height:31px;
+	width:100%;
+ 	list-style:none;
+    display:table-cell;
+	vertical-align:middle;
+	padding: 0 0 0 8px;
+	margin: 0 0 0 0;
+}
+#menu ul span
+{
+display:block;
+background-repeat:no-repeat;
+width:100px;
+height:31px;
+
+}
+
+#menu ul li
+{
+
+	display: table-cell;
+}
+#menu ul span#inicio
+{
+	background-image:url(../imagens/inicio_n_clicado.png);
+}
+#menu ul a:hover span#inicio
+{
+	background-image:url(../imagens/inicio_sobre.png);/*background-image:url(../imagens/PageAdminImages/menu_inicio.jpg);/*mudar a imagem aki!!!*/
+}
+
+#menu ul span#livro
+{
+	background-image:url(../imagens/livro_n_clicado.png);
+	/*width:102px;*/
+}
+#menu ul a:hover span#livro
+{
+	background-image:url(../imagens/livro_sobre.png);/*mudar a imagem aki!!!*/
+}
+#menu ul span#contas
+{
+	background-image:url(../imagens/contas_n_clicado.png);
+	
+}
+#menu ul a:hover span#contas
+{
+	background-image:url(../imagens/contas_sobre.png);/*mudar a imagem aki!!!*/
+}
+
+#menu ul span#projetos
+{
+	background-image:url(../imagens/projetos_n_clicado.png);
+	/*width:100px;*/
+}
+#menu ul a:hover span#projetos
+{
+	background-image:url(../imagens/projetos_sobre.png);/*mudar a imagem aki!!!*/
+}
+
+
+#menu ul span#capacitacao
+{
+	background-image:url(../imagens/capacitacao_n_clicado.png);
+	/*width:101px;*/
+}
+
+#menu ul a:hover span#capacitacao
+{
+	background-image:url(../imagens/capacitacao_sobre.png);/*mudar a imagem aki!!!*/
+}
+#menu ul span#relatorios
+{
+	background-image:url(../imagens/relatorios_n_clicado.png);
+}
+
+#menu ul a:hover span#relatorios
+{
+	background-image:url(../imagens/relatorios_sobre.png);/*mudar a imagem aki!!!*/
+}
+#menu ul span#modelos
+{
+	background-image:url(../imagens/modelos_n_clicado.png);
+	/*width:100px;*/
+}
+
+#menu ul a:hover span#modelos
+{
+	background-image:url(../imagens/modelos_sobre.png);/*mudar a imagem aki!!!*/
+}
+#menu ul span#linha
+{
+	background-image:url(../imagens/PageAdminImages/menu_linha.jpg);
+	background-position:bottom;
+	background-repeat:repeat-x;
+	width:91px;
+	
+}
+
+
+
+
+
+
+a
+{
+text-decoration:none;
+}
+
+.cor
+{
+color:#3994DA;
+font-family:Calibri;
+}
+.data
+{
+	padding-left:10px;
+	width:85px;
+}
+.descricao
+{
+	width:255px;
+}
+.valor
+{
+	width:95px;
+}

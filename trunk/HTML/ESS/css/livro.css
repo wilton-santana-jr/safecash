@@ -1,0 +1,111 @@
+/* CSS Document */
+
+
+
+#menu ul span#livro
+{
+	background-image:url(../imagens/livro_clicado.png);
+	/*width:102px;*/
+}
+#menu ul a:hover span#livro
+{
+	background-image:url(../imagens/livro_clicado.png);
+}
+#conteudo
+{
+	background-image:url(../imagens/PageLivroImages/fundo.jpg);
+	background-repeat:no-repeat;
+	height:740px;
+	text-align:left;
+	position:relative;
+	left:3px;
+}
+#conteudo form
+{
+	position:relative;
+	top:10px;
+	left:155px;
+}
+.destaque
+{
+	font-size:24px;
+	font-weight:bold;
+	display:block;
+	width:464px;
+	height:40px;
+	background-image:url(../imagens/reta.png);
+	background-repeat:repeat-x;
+	background-position:left bottom;
+	float:left;
+	padding-left:30px
+	/*text-align:left;
+	padding-bottom:10px;
+	padding-left:30px;*/
+}
+#receberCaixa
+{
+position:relative;
+left:2px;
+}
+#livroConta
+{
+	position:relative;
+	top:15px;
+	left:8px
+}
+#livroCaixa
+{
+	position:relative;
+	top:5px;
+	left:-20px
+}
+
+#titulo,#tituloCaixa
+{
+	clear:both;
+	width:750px;
+	background-color:#3994DA;
+	padding:5px 0 5px 5px;
+	color:#FFFFFF;
+	font-weight:bolder;
+	position:relative;
+	top:20px;
+	left:27px;
+}
+
+#tituloCaixa
+{
+left:0px;
+top:10px;
+}
+#informacoes,#informacoesCaixa
+{
+	background-color:#CCCCCC;
+	width:754px;
+	height:272px;
+	position:relative;
+	top: 24px;
+	left: 26px;
+}
+#informacoesCaixa
+{
+left:0px;
+top:14px;
+
+}
+
+.corpo
+{
+height:270px;
+}
+
+#pagar,#receber
+{
+height:270px;
+}
+#esq
+{
+	width:50%;
+	display:block;
+	float:left;
+}
