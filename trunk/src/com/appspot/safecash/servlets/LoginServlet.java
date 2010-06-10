@@ -8,29 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.appspot.safecash.dados.Usuario;
-import com.appspot.safecash.fachada.Fachada;
-import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
-
-public class TelaLogar extends HttpServlet{
+public class LoginServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 
-	private Fachada fachada = Fachada.getInstance();
+	//private Fachada fachada = Fachada.getInstance();
 	
 	protected void service(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		
-		PrintWriter out = res.getWriter();
-		
-		String login = req.getParameter("login");
+		String login = req.getParameter("nome");
 		String senha = req.getParameter("senha");
 		
-		Usuario usuario = new Usuario(login, senha, null, null);
+		PrintWriter out = res.getWriter();
 		
-		out.print("Login: " + login);
-		out.print("Senha: " + senha);
-		
+		/*
 		try {
 			Boolean existeUsuario = this.fachada.existeUsuario(usuario);
 			if(existeUsuario){
@@ -38,6 +30,6 @@ public class TelaLogar extends HttpServlet{
 			}
 		} catch (UsuarioNaoExisteException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
