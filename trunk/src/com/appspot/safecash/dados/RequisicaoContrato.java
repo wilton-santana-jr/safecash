@@ -1,7 +1,11 @@
 package com.appspot.safecash.dados;
 
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
 
+@PersistenceCapable
 public class RequisicaoContrato extends Requisicao {
 
 	private String responsavel;
@@ -13,8 +17,8 @@ public class RequisicaoContrato extends Requisicao {
 	private byte[] propostaDados;
 	private String observacao;
 	
-	public RequisicaoContrato(String descricao, Usuario usuario,
-			EnumStatusRequisicao status, String responsavel, String cNPJCPF,
+	public RequisicaoContrato(String descricao, EnumStatusRequisicao status, 
+			String responsavel, String cNPJCPF,
 			String nomeProjeto, String endereco, double valor,
 			String propostaNome, byte[] propostaDados, String observacao) {
 		super(descricao, status);

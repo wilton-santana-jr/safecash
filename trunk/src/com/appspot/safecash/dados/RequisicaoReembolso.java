@@ -6,14 +6,13 @@ import javax.jdo.annotations.Persistent;
 
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
 
-@PersistenceCapable(identityType = IdentityType.APPLICATION)
+@PersistenceCapable
 public class RequisicaoReembolso extends Requisicao {
 
 	@Persistent
 	private double valor;
 	
-	public RequisicaoReembolso(String descricao, Usuario usuario,
-			EnumStatusRequisicao status, double valor) {
+	public RequisicaoReembolso(String descricao, EnumStatusRequisicao status, double valor) {
 		super(descricao, status);
 		this.valor = valor;
 	}
