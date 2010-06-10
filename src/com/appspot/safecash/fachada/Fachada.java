@@ -175,9 +175,9 @@ public class Fachada {
 	 * @param nome
 	 * @throws FuncionarioNaoExisteException
 	 */
-	public void procurarFuncionarioPorNome(String nome) throws FuncionarioNaoExisteException{
+	/*public void procurarFuncionarioPorNome(String nome) throws FuncionarioNaoExisteException{
 		this.controladorFuncionario.procurarPorNome(nome);
-	}
+	}*/
 
 	/**
 	 * Método para procurar um funcionário por cargo.
@@ -195,9 +195,9 @@ public class Fachada {
 	 * @param cpf
 	 * @throws FuncionarioNaoExisteException
 	 */
-	public void procurarFuncionarioPorCPF(String cpf) throws FuncionarioNaoExisteException{
+	/*public void procurarFuncionarioPorCPF(String cpf) throws FuncionarioNaoExisteException{
 		this.controladorFuncionario.procurarPorCPF(cpf);
-	}
+	}*/
 
 	/**
 	 * Método para remover um funcionário.
@@ -323,9 +323,9 @@ public class Fachada {
 	 * @param usuario
 	 * @throws RequisicaoNaoExisteException
 	 */
-	public void procurarRequisicaoPorUsuario(Usuario usuario) throws RequisicaoNaoExisteException{
+	/*public void procurarRequisicaoPorUsuario(Usuario usuario) throws RequisicaoNaoExisteException{
 		this.controladorRequisicao.procurarPorUsuario(usuario);
-	}
+	}*/
 
 	/**
 	 * Método para procurar requisição por status.

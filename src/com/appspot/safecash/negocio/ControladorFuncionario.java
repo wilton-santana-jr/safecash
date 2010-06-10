@@ -22,7 +22,7 @@ public class ControladorFuncionario {
 		}
 	}
 	
-	public Iterator<Funcionario> procurarPorNome(String nome) throws FuncionarioNaoExisteException{
+	/*public Iterator<Funcionario> procurarPorNome(String nome) throws FuncionarioNaoExisteException{
 		
 		Iterator<Funcionario> retorno = this.repositorio.procurarPorNome(nome);
 		
@@ -32,7 +32,7 @@ public class ControladorFuncionario {
 		else{
 			return retorno;
 		}
-	}
+	}*/
 	public Iterator<Funcionario> procurarPorCargo(String cargo) throws FuncionarioNaoExisteException{
 		
 		Iterator<Funcionario> retorno = this.procurarPorCargo(cargo);
@@ -45,7 +45,7 @@ public class ControladorFuncionario {
 		}
 	}
 	
-	public Funcionario procurarPorCPF(String cpf) throws FuncionarioNaoExisteException{
+	/*public Funcionario procurarPorCPF(String cpf) throws FuncionarioNaoExisteException{
 		
 		Funcionario retorno = this.repositorio.procurarPorCPF(cpf);
 		
@@ -55,7 +55,7 @@ public class ControladorFuncionario {
 		else{
 			return retorno;
 		}
-	}
+	}*/
 	
 	public void remover(Funcionario funcionario) throws FuncionarioNaoExisteException{
 		if(this.existe(funcionario)){

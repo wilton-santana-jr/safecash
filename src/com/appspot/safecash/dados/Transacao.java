@@ -2,28 +2,55 @@ package com.appspot.safecash.dados;
 
 import java.util.Date;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
 import com.appspot.safecash.enuns.EnumOrigemTransacao;
 import com.appspot.safecash.enuns.EnumTipoTransacao;
+import com.google.appengine.api.datastore.Key;
 
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Transacao {
 	
+	@PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+	
+	@Persistent
 	private String descricao;
+	
+	@Persistent
 	private Date data;
+	
+	@Persistent
 	private double valor;
+	
+	@Persistent
 	private EnumTipoTransacao tipo;
-	private Conta conta;
+	
+	@Persistent
 	private EnumOrigemTransacao origem;
-		
+	
 	public Transacao(String descricao, Date data, double valor,
-			EnumTipoTransacao tipo, Conta conta, EnumOrigemTransacao origem) {
+			EnumTipoTransacao tipo, EnumOrigemTransacao origem) {
 		this.descricao = descricao;
 		this.data = data;
 		this.valor = valor;
 		this.tipo = tipo;
-		this.conta = conta;
 		this.origem = origem;
 	}
 	
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -48,12 +75,7 @@ public class Transacao {
 	public void setTipo(EnumTipoTransacao tipo) {
 		this.tipo = tipo;
 	}
-	public Conta getConta() {
-		return conta;
-	}
-	public void setConta(Conta conta) {
-		this.conta = conta;
-	}
+	
 	public EnumOrigemTransacao getOrigem() {
 		return origem;
 	}
