@@ -1,0 +1,73 @@
+/* CSS Document */
+#pagar,#receber
+{
+width:375px;
+height:435px;
+background-color:#FFFFFF;
+
+
+}
+
+#pagar,#pagarCaixa
+{
+float:left;
+
+}
+
+#receber,#receberCaixa
+{
+float:right;
+
+}
+
+#pagar span ,#receber span,#pagarCaixa span ,#receberCaixa span
+{
+	display:block;
+	float:left;
+	background-color:#999999;
+	color:#FFFFFF;
+	font-weight:bolder;
+	font-size:12px;
+}
+#conteudo .corpo span
+{
+	font-family:Calibri;
+	background-color:#FFF;
+	font-weight:100;
+	color:#000;
+	padding-top:10px;
+}
+.corpo
+{
+	border:#999999;
+	border-style:solid;
+	border-width:1px;
+	width:374px;
+	height:100%;
+	display:block;
+	background-color:#FFF;
+	
+}
+#conteudo .corpo span.data
+{
+	padding-left:9px;
+}
+.data
+{
+	padding-left:10px;
+	width:85px;
+}
+.descricao
+{
+	width:220px;
+}
+.valor
+{
+	width:60px;
+}
+
+.arredonda
+{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px; 
+}
