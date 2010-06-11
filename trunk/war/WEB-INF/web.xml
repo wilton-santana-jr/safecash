@@ -48,7 +48,7 @@
     
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>com.appspot.safecash.servlets.TelaLogar</servlet-class>
+        <servlet-class>com.appspot.safecash.servlets.LoginServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
