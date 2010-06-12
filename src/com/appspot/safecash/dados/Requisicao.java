@@ -24,10 +24,28 @@ public class Requisicao {
 	
 	@Persistent
 	private EnumStatusRequisicao status;
+	
+	@Persistent
+	private Key chaveUsuario;
 
 	public Requisicao(String descricao, EnumStatusRequisicao status) {
 		this.descricao = descricao;
 		this.status = status;
+	}
+	
+	public Requisicao(String descricao, EnumStatusRequisicao status,
+			Key chaveUsuario) {
+		this.descricao = descricao;
+		this.status = status;
+		this.chaveUsuario = chaveUsuario;
+	}
+
+	public Key getChaveUsuario() {
+		return chaveUsuario;
+	}
+
+	public void setChaveUsuario(Key chaveUsuario) {
+		this.chaveUsuario = chaveUsuario;
 	}
 
 	public Key getKey() {
