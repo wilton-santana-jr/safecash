@@ -39,7 +39,7 @@ public class ControladorProjeto {
 	}
 	
 	
-	public Iterator<Projeto> procurarPorNome(String nome) throws ProjetoNaoExisteException
+	/*public Iterator<Projeto> procurarPorNome(String nome) throws ProjetoNaoExisteException
 	{
 		
 		Iterator<Projeto> projeto = this.repositorio.procurar(nome); 
@@ -48,9 +48,9 @@ public class ControladorProjeto {
 			throw new ProjetoNaoExisteException();
 		}
 		return projeto;
-	}
+	}*/
 	
-	public Iterator<Projeto> procurarPorUsuario(Usuario usuario) throws ProjetoNaoExisteException
+	/*public Iterator<Projeto> procurarPorUsuario(Usuario usuario) throws ProjetoNaoExisteException
 	{
 		
 		Iterator<Projeto> projeto = this.repositorio.procurar(usuario); 
@@ -59,7 +59,7 @@ public class ControladorProjeto {
 			throw new ProjetoNaoExisteException();
 		}
 		return projeto;
-	}
+	}*/
 	
 	public void remover(Projeto projeto)throws ProjetoNaoExisteException
 	{

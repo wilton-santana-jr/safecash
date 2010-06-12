@@ -25,7 +25,7 @@ public class ControladorConta {
 		}
 	}
 
-	public Iterator<Conta> procurar(Projeto projeto) throws ContaNaoExisteException{
+	/*public Iterator<Conta> procurar(Projeto projeto) throws ContaNaoExisteException{
 
 		Iterator<Conta> retorno = this.repositorio.procurar(projeto);
 
@@ -35,7 +35,7 @@ public class ControladorConta {
 		else{
 			return retorno;
 		}
-	}
+	}*/
 
 	public Iterator<Conta> procurar(Date dataInicial, Date dataFinal) throws ContaNaoExisteException{
 

@@ -112,9 +112,9 @@ public class Fachada {
 	 * @param projeto
 	 * @throws ContaNaoExisteException
 	 */
-	public void procurarContaPorProjeto(Projeto projeto) throws ContaNaoExisteException{
+	/*public void procurarContaPorProjeto(Projeto projeto) throws ContaNaoExisteException{
 		this.controladorConta.procurar(projeto);
-	}
+	}*/
 
 	/**
 	 * Método para procurar contas por datas.
@@ -250,9 +250,9 @@ public class Fachada {
 	 * @param modelo
 	 * @throws ModeloNaoExisteException
 	 */
-	public void procurarModelo(Modelo modelo) throws ModeloNaoExisteException{
+	/*public void procurarModelo(Modelo modelo) throws ModeloNaoExisteException{
 		this.controladorModelo.procurar(modelo);
-	}
+	}*/
 
 	//##################### PROJETO #####################//##
 
@@ -282,9 +282,9 @@ public class Fachada {
 	 * @param nome
 	 * @throws ProjetoNaoExisteException
 	 */
-	public void procurarProjetoPorNome(String nome) throws ProjetoNaoExisteException{
+	/*public void procurarProjetoPorNome(String nome) throws ProjetoNaoExisteException{
 		this.controladorProjeto.procurarPorNome(nome);
-	}
+	}*/
 
 	/**
 	 * Método para procurar um projeto por usuario.
@@ -292,9 +292,9 @@ public class Fachada {
 	 * @param usuario
 	 * @throws ProjetoNaoExisteException
 	 */
-	public void procurarProjetoPorUsuario(Usuario usuario) throws ProjetoNaoExisteException{
+	/*public void procurarProjetoPorUsuario(Usuario usuario) throws ProjetoNaoExisteException{
 		this.controladorProjeto.procurarPorUsuario(usuario);
-	}
+	}*/
 
 	/**
 	 * Método para remover um projeto.
