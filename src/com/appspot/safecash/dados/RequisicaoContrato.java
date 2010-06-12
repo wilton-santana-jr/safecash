@@ -2,33 +2,46 @@ package com.appspot.safecash.dados;
 
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
+import com.google.appengine.api.blobstore.BlobKey;
 
-@PersistenceCapable
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class RequisicaoContrato extends Requisicao {
 
+	@Persistent
 	private String responsavel;
+	
+	@Persistent
 	private String CNPJ_CPF;
+	
+	@Persistent
 	private String nomeProjeto;
+	
+	@Persistent
 	private String endereco;
+	
+	@Persistent
 	private double valor;
-	private String propostaNome;
-	private byte[] propostaDados;
+	
+	@Persistent
+	private BlobKey arquivoProposta;
+	
+	@Persistent
 	private String observacao;
 	
-	public RequisicaoContrato(String descricao, EnumStatusRequisicao status, 
-			String responsavel, String cNPJCPF,
-			String nomeProjeto, String endereco, double valor,
-			String propostaNome, byte[] propostaDados, String observacao) {
+	public RequisicaoContrato(String descricao, EnumStatusRequisicao status,
+			String responsavel, String cNPJCPF, String nomeProjeto,
+			String endereco, double valor, BlobKey arquivoProposta,
+			String observacao) {
 		super(descricao, status);
 		this.responsavel = responsavel;
 		CNPJ_CPF = cNPJCPF;
 		this.nomeProjeto = nomeProjeto;
 		this.endereco = endereco;
 		this.valor = valor;
-		this.propostaNome = propostaNome;
-		this.propostaDados = propostaDados;
+		this.arquivoProposta = arquivoProposta;
 		this.observacao = observacao;
 	}
 
@@ -72,20 +85,12 @@ public class RequisicaoContrato extends Requisicao {
 		this.valor = valor;
 	}
 
-	public String getPropostaNome() {
-		return propostaNome;
+	public BlobKey getArquivoProposta() {
+		return arquivoProposta;
 	}
 
-	public void setPropostaNome(String propostaNome) {
-		this.propostaNome = propostaNome;
-	}
-
-	public byte[] getPropostaDados() {
-		return propostaDados;
-	}
-
-	public void setPropostaDados(byte[] propostaDados) {
-		this.propostaDados = propostaDados;
+	public void setArquivoProposta(BlobKey arquivoProposta) {
+		this.arquivoProposta = arquivoProposta;
 	}
 
 	public String getObservacao() {
@@ -94,5 +99,5 @@ public class RequisicaoContrato extends Requisicao {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
-	}	
+	}
 }
