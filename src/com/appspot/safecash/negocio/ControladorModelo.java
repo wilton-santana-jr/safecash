@@ -32,7 +32,7 @@ public class ControladorModelo {
 		}
 	}
 
-	public Modelo procurar(Modelo modelo) throws ModeloNaoExisteException{
+	/*public Modelo procurar(Modelo modelo) throws ModeloNaoExisteException{
 
 		Modelo retorno;
 
@@ -43,7 +43,7 @@ public class ControladorModelo {
 			throw new ModeloNaoExisteException();
 		}
 		return retorno;
-	}
+	}*/
 
 	private boolean existe(Modelo modelo){
 		return this.repositorio.existe(modelo);

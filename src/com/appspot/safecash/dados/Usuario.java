@@ -7,6 +7,7 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Unique;
 
 import com.appspot.safecash.enuns.EnumPermissao;
 import com.google.appengine.api.datastore.Key;
@@ -22,6 +23,7 @@ public class Usuario {
 	private List<Key> chavesRequisicoes;
 	
 	@Persistent
+	@Unique
 	private String login;
 	
 	@Persistent
