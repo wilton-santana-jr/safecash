@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Iterator;
 
 import com.appspot.safecash.dados.Conta;
-import com.appspot.safecash.dados.Projeto;
 import com.appspot.safecash.enuns.EnumStatusConta;
 import com.appspot.safecash.negocio.exception.ContaJaExisteException;
 import com.appspot.safecash.negocio.exception.ContaNaoExisteException;

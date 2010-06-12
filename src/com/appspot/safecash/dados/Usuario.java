@@ -1,5 +1,6 @@
 package com.appspot.safecash.dados;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -35,6 +36,8 @@ public class Usuario {
 	@Persistent
 	private EnumPermissao permissao;
 	
+	private List<Requisicao> requisicoes;
+	
 	public Usuario(List<Key> chavesRequisicoes, String login, String senha,
 			String nome, EnumPermissao permissao) {
 		this.chavesRequisicoes = chavesRequisicoes;
@@ -42,6 +45,16 @@ public class Usuario {
 		this.senha = senha;
 		this.nome = nome;
 		this.permissao = permissao;
+	}
+
+	public List<Requisicao> getRequisicoes() {
+		if(this.requisicoes == null)
+			this.requisicoes = new ArrayList<Requisicao>();
+		return requisicoes;
+	}
+
+	public void setRequisicoes(List<Requisicao> requisicoes) {
+		this.requisicoes = requisicoes;
 	}
 
 	public Usuario(String login, String senha, String nome,

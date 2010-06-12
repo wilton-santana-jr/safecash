@@ -1,9 +1,6 @@
 package com.appspot.safecash.negocio;
 
-import java.util.Iterator;
-
 import com.appspot.safecash.dados.Projeto;
-import com.appspot.safecash.dados.Usuario;
 import com.appspot.safecash.negocio.exception.ProjetoJaExisteException;
 import com.appspot.safecash.negocio.exception.ProjetoNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioProjeto;
