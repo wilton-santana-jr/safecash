@@ -6,7 +6,7 @@ import javax.jdo.annotations.Persistent;
 
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
 
-@PersistenceCapable
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class RequisicaoReembolso extends Requisicao {
 
 	@Persistent

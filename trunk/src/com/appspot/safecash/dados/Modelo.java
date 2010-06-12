@@ -6,7 +6,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import com.google.appengine.api.datastore.Blob;
+import com.google.appengine.api.blobstore.BlobKey;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Modelo {
@@ -22,10 +22,9 @@ public class Modelo {
 	private String descricao;
 	
 	@Persistent
-	private Blob blob;
+	private BlobKey blob;
 
-	public Modelo(String nome, String descricao, Blob blob) {
-		super();
+	public Modelo(String nome, String descricao, BlobKey blob) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.blob = blob;
@@ -55,11 +54,11 @@ public class Modelo {
 		this.descricao = descricao;
 	}
 
-	public Blob getBlob() {
+	public BlobKey getBlob() {
 		return blob;
 	}
 
-	public void setBlob(Blob blob) {
+	public void setBlob(BlobKey blob) {
 		this.blob = blob;
 	}
 }

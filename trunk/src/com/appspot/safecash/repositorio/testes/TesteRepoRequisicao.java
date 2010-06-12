@@ -42,7 +42,7 @@ public class TesteRepoRequisicao {
 		repo.inserir(r1);
 		assertEquals(1, ds.prepare(new Query(Requisicao.class.getSimpleName())).countEntities());
 		
-		Requisicao r2 = new RequisicaoContrato("desc2", EnumStatusRequisicao.PENDENTE, "", "", "", "", 0.05, "", null, "");
+		Requisicao r2 = new RequisicaoContrato("desc2", EnumStatusRequisicao.PENDENTE, "", "", "", "", 0.05, null, "");
 		repo.inserir(r2);
 		assertEquals(2, ds.prepare(new Query(Requisicao.class.getSimpleName())).countEntities());
 		
