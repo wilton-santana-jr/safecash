@@ -10,17 +10,16 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import com.appspot.safecash.dados.Conta;
-import com.appspot.safecash.dados.Transacao;
 import com.appspot.safecash.enuns.EnumStatusConta;
 
 public class RepositorioContaBT implements RepositorioConta {
 
-	private static final String PROCURAR_C1 = "SELECT FROM " + Transacao.class.getName() 
+	private static final String PROCURAR_C1 = "SELECT FROM " + Conta.class.getName() 
 											  + " " +  "WHERE data == param " + 
 											  "PARAMETERS Date param";
-	private static final String PROCURAR_C2 = "SELECT FROM " + Transacao.class.getName() 
-	  										+ " WHERE data >= dataIni && data <= dataFim" 
-	  										+ " PARAMETERS Date dataIni Date dataFim";
+	private static final String PROCURAR_C2 = "SELECT FROM " + Conta.class.getName() 
+	  										+ " " + "WHERE data >= dataIni && data <= dataFim" 
+	  										+ " PARAMETERS Date dataIni, Date dataFim";
 	private static final String PROCURAR_C3 = "SELECT FROM " + Conta.class.getName() 
 											  + " " +  "WHERE status == param " + 
 											  "PARAMETERS EnumStatusConta param";

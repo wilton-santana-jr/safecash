@@ -29,6 +29,9 @@ public class RepositorioTransacaoBT implements RepositorioTransacao {
 	private static final String PROCURAR_T3 = "SELECT FROM " + Transacao.class.getName() 
 												+ " " +  "WHERE data == param " + 
 												"PARAMETERS Date param";
+	private static final String PROCURAR_T4 = "SELECT FROM " + Transacao.class.getName() 
+										+ " " + "WHERE data >= dataIni && data <= dataFim" 
+											  + " PARAMETERS Date dataIni, Date dataFim";
 	private PersistenceManager pm;
 	
 	public RepositorioTransacaoBT() { }
@@ -151,5 +154,25 @@ public class RepositorioTransacaoBT implements RepositorioTransacao {
 		pm.close();
 		
 		return p.iterator();
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Iterator<Transacao> procurar(Date dataInicio, Date dataFim) {
+		List<Transacao> ret = new ArrayList<Transacao>();
+		pm = PMF.get().getPersistenceManager();
+		Query query = pm.newQuery(PROCURAR_T4);
+		query.declareImports("import java.util.Date");
+		List<Transacao> result = (List<Transacao>) query.execute(dataInicio, dataFim);
+		for(Transacao r : result){
+			ret.add(r);
+		}
+		
+		pm.close();		
+		
+		if(ret.size() > 0)
+			return ret.iterator();
+		else
+			return null;
 	}
 }

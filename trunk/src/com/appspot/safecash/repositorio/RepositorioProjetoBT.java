@@ -21,7 +21,7 @@ public class RepositorioProjetoBT implements RepositorioProjeto {
 	  										  + " " +  "WHERE dataFim == param " + 
 	  										  "PARAMETERS Date param";
 	private static final String PROCURAR_P3 = "SELECT FROM " + Projeto.class.getName() 
-	  										  + " " +  "WHERE chaveUsuario == param " + 
+	  										  + " " +  "WHERE chaveResponsavel == param " + 
 	  										  "PARAMETERS Key param";
 	private PersistenceManager pm;
 	

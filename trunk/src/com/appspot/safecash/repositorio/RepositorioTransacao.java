@@ -18,4 +18,5 @@ public interface RepositorioTransacao extends Iterable<Transacao> {
 	public Iterator<Transacao> procurar(EnumTipoTransacao tipo);
 	public Iterator<Transacao> procurar(EnumOrigemTransacao origem);
 	public Iterator<Transacao> procurar(Date data);
+	public Iterator<Transacao> procurar(Date dataInicio, Date dataFim);
 }
