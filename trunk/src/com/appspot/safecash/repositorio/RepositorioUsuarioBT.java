@@ -47,7 +47,7 @@ public class RepositorioUsuarioBT implements RepositorioUsuario {
 	}
 
 	@Override
-	public Usuario procuar(Key chave) {
+	public Usuario procurar(Key chave) {
 		Usuario ret = null;
 		pm = PMF.get().getPersistenceManager();
 		ret = pm.getObjectById(Usuario.class, chave);

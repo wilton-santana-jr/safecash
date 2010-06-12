@@ -34,6 +34,8 @@ import com.appspot.safecash.negocio.exception.TransacaoJaExisteException;
 import com.appspot.safecash.negocio.exception.TransacaoNaoExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioJaExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
+import com.appspot.safecash.repositorio.RepositorioUsuarioBT;
+import com.google.appengine.api.datastore.Key;
 
 public class Fachada {
 
@@ -47,8 +49,8 @@ public class Fachada {
 	private ControladorTransacao controladorTransacao;
 	private ControladorUsuario controladorUsuario;
 
+	// vai ter isso aqui na fachada mesmo?
 	private HttpSession session;
-
 	public HttpServletRequest request;
 	public HttpServletResponse response;
 
@@ -59,9 +61,9 @@ public class Fachada {
 		this.controladorProjeto = new ControladorProjeto();
 		this.controladorRequisicao = new ControladorRequisicao();
 		this.controladorTransacao = new ControladorTransacao();
-		this.controladorUsuario = new ControladorUsuario();
+		this.controladorUsuario = new ControladorUsuario(new RepositorioUsuarioBT());
 		
-	//	this.gerenciaSession();
+		// this.gerenciaSession();
 	}
 
 	/**
@@ -88,7 +90,7 @@ public class Fachada {
 		//http://www.guj.com.br/posts/list/127559.java
 		//http://www.stardeveloper.com/articles/display.html?article=2001062001&page=2
 		
-		Usuario temp = this.controladorUsuario.buscar(usuario);
+		Usuario temp = this.controladorUsuario.buscar(usuario.getLogin());
 		
 		this.session.setAttribute("user", temp.getNome());
 	}
@@ -398,7 +400,7 @@ public class Fachada {
 	 * @throws UsuarioJaExisteException
 	 */
 	public void inserirUsuario(Usuario usuario) throws UsuarioJaExisteException{
-		this.controladorUsuario.inserir(usuario);
+		this.controladorUsuario.cadastrar(usuario);
 	}
 
 	/**
@@ -408,6 +410,20 @@ public class Fachada {
 	 * @throws UsuarioNaoExisteException
 	 */
 	public void removerUsuario(Usuario usuario) throws UsuarioNaoExisteException{
+		Usuario u = this.controladorUsuario.buscar(usuario.getLogin());
+		
+		// remove as requisicoes associadas ao usuario que está sendo removido
+		Requisicao r;
+		for(Key k : u.getChavesRequisicoes()){
+			try {
+				r = this.controladorRequisicao.procurar(k);
+				this.controladorRequisicao.remover(r);
+			} catch (RequisicaoNaoExisteException e) { }
+		}
+		
+		/* o usuário não pode ser removido se for responsável
+		 * por algum projeto. tem que fazer essa verificação ainda. */
+		
 		this.controladorUsuario.remover(usuario);
 	}
 
@@ -428,16 +444,44 @@ public class Fachada {
 	 * @param usuario
 	 * @throws UsuarioNaoExisteException
 	 */
-	public boolean existeUsuario(Usuario usuario) throws UsuarioNaoExisteException{
+	public boolean existeUsuario(Usuario usuario) {
+		try {
+			this.controladorUsuario.buscar(usuario.getLogin());
+			return true;
+		} catch (UsuarioNaoExisteException e) {
+			return false;
+		}		
+	}
+	
+	public Usuario buscar(Key chave) throws UsuarioNaoExisteException{
+		Usuario ret = this.controladorUsuario.buscar(chave);
 		
-		Boolean retorno = true;
-		Usuario temp = this.controladorUsuario.buscar(usuario);
+		// pega as requisicoes feitas pelo usuário e armazena no atributo requisicoes
+		for(Key k : ret.getChavesRequisicoes()){
+			try {
+				ret.getRequisicoes().add(this.controladorRequisicao.procurar(k));
+			} catch (RequisicaoNaoExisteException e) {
+				System.out.println(">> excecao em buscar Usuario (key)");
+				e.printStackTrace();
+			}
+		}
 		
-		if(temp != null){
-			return retorno;
+		return ret;
+	}
+	
+	public Usuario buscar(String login) throws UsuarioNaoExisteException{
+		Usuario ret = this.controladorUsuario.buscar(login);
+		
+		// pega as requisicoes feitas pelo usuário e armazena no atributo requisicoes
+		for(Key k : ret.getChavesRequisicoes()){
+			try {
+				ret.getRequisicoes().add(this.controladorRequisicao.procurar(k));
+			} catch (RequisicaoNaoExisteException e) {
+				System.out.println(">> excecao em buscar Usuario (login)");
+				e.printStackTrace();
+			}
 		}
-		else{
-			throw new UsuarioNaoExisteException();
-		}
+		
+		return ret;
 	}
 }

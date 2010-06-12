@@ -53,8 +53,6 @@ public class CadastroServlet extends HttpServlet{
 					this.fachada.inserirUsuario(usuario);
 				}
 			}
-		} catch (UsuarioNaoExisteException e) {
-			e.printStackTrace();
 		} catch (UsuarioJaExisteException e) {
 			e.printStackTrace();
 		}

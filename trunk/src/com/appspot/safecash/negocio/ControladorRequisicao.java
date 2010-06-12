@@ -3,10 +3,10 @@ package com.appspot.safecash.negocio;
 import java.util.Iterator;
 
 import com.appspot.safecash.dados.Requisicao;
-import com.appspot.safecash.dados.Usuario;
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
 import com.appspot.safecash.negocio.exception.RequisicaoNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioRequisicao;
+import com.google.appengine.api.datastore.Key;
 
 public class ControladorRequisicao {
 
@@ -18,17 +18,14 @@ public class ControladorRequisicao {
 		this.repositorio.inserir(requisicao);
 	}
 	
-	/*public Iterator<Requisicao> procurarPorUsuario(Usuario usuario) throws RequisicaoNaoExisteException{
+	public Requisicao procurar(Key chave) throws RequisicaoNaoExisteException{
+		Requisicao r = this.repositorio.procurar(chave);
 		
-		Iterator<Requisicao> retorno = this.repositorio.procurar(usuario);
-		
-		if(retorno == null){
+		if(r == null)
 			throw new RequisicaoNaoExisteException();
-		}
-		else{
-			return retorno;
-		}
-	}*/
+		
+		return r;
+	}
 	
 	public Iterator<Requisicao> procurarPorStatus(EnumStatusRequisicao status) throws RequisicaoNaoExisteException{
 		
