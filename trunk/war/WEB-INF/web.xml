@@ -15,6 +15,16 @@
 		<servlet-name>Login Servlet</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Logoff Servlet</servlet-name>
+		<servlet-class>com.appspot.safecash.servlets.LogoffServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Logoff Servlet</servlet-name>
+		<url-pattern>/logoff</url-pattern>
+	</servlet-mapping>
 	<!-- ==========================  -->
 
 	<!-- Configurações -->

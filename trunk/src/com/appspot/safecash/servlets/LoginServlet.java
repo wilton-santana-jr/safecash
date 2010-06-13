@@ -6,9 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.appspot.safecash.dados.Usuario;
+import com.appspot.safecash.enuns.EnumPermissao;
 import com.appspot.safecash.fachada.Fachada;
+import com.appspot.safecash.negocio.exception.UsuarioJaExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
 
 public class LoginServlet extends HttpServlet {
@@ -18,6 +21,8 @@ public class LoginServlet extends HttpServlet {
 	private Fachada fachada = Fachada.getInstance();
 	private String login;
 	private String senha;
+	
+	private Usuario user;
 	
 	protected void service(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -29,18 +34,44 @@ public class LoginServlet extends HttpServlet {
 	
 	private void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
+			//*
+			try {
+				fachada.inserirUsuario(new Usuario("jow", "123", "Jonathas", EnumPermissao.ADMIN));
+			} catch (UsuarioJaExisteException e) {
+				e.printStackTrace();
+			}
+			//*////////////////////////////////////
+			
 			if (login == null ||senha == null
 					||  login.equals("") || senha.equals("")) {
 				SendMsg.send(req, res, "Campos em branco.", "/login.jsp");
 			} else {
-				Usuario user = fachada.buscar(login);
+				user = fachada.buscar(login);
 				if (user.getSenha().equals(senha)) {
-					// SESSION
+					managerSession(req, res);
+					
+					if (user.getPermissao() == EnumPermissao.USER)
+						//res.sendRedirect("/user.jsp");
+						res.getWriter().print("USER");
+					else
+						res.sendRedirect("/admin.jsp");
+						//res.getWriter().print("ADMIN");
 				} else
 					throw new UsuarioNaoExisteException();
 			}
 		} catch (UsuarioNaoExisteException e) {
 			SendMsg.send(req, res, "Usuário e/ou senha incorreto(s).", "/login.jsp");
 		}
+	}
+	
+	private void managerSession (HttpServletRequest req, HttpServletResponse res) {
+		HttpSession session = req.getSession(true);
+		
+		session.setAttribute("login", this.login);
+		session.setAttribute("senha", this.senha);
+		session.setAttribute("nome", this.user.getNome());
+		session.setAttribute("senha", this.user.getPermissao());
+		
+		session.setMaxInactiveInterval(300);
 	}
 }
