@@ -1,35 +1,46 @@
 package com.appspot.safecash.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LoginServlet extends HttpServlet{
+import com.appspot.safecash.dados.Usuario;
+import com.appspot.safecash.fachada.Fachada;
+import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
+
+public class LoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-	//private Fachada fachada = Fachada.getInstance();
+	private Fachada fachada = Fachada.getInstance();
+	private String login;
+	private String senha;
 	
 	protected void service(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
+		this.login = req.getParameter("login");
+		this.senha = req.getParameter("senha");
 		
-		String login = req.getParameter("nome");
-		String senha = req.getParameter("senha");
-		
-		PrintWriter out = res.getWriter();
-		
-		/*
+		this.process(req, res);
+	}
+	
+	private void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
-			Boolean existeUsuario = this.fachada.existeUsuario(usuario);
-			if(existeUsuario){
-				// abrir sessão do usuário
+			if (login == null ||senha == null
+					||  login.equals("") || senha.equals("")) {
+				SendMsg.send(req, res, "Campos em branco.", "/login.jsp");
+			} else {
+				Usuario user = fachada.buscar(login);
+				if (user.getSenha().equals(senha)) {
+					// SESSION
+				} else
+					throw new UsuarioNaoExisteException();
 			}
 		} catch (UsuarioNaoExisteException e) {
-			e.printStackTrace();
-		}*/
+			SendMsg.send(req, res, "Usuário e/ou senha incorreto(s).", "/login.jsp");
+		}
 	}
 }
