@@ -12,6 +12,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.appspot.safecash.enuns.EnumStatusConta;
+import com.appspot.safecash.enuns.EnumTipoConta;
 import com.google.appengine.api.datastore.Key;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
@@ -36,24 +37,40 @@ public class Conta {
 	@Persistent
 	private EnumStatusConta status;
 	
+	@Persistent
+	private EnumTipoConta tipo;
+	
 	@NotPersistent
 	private List<Transacao> transacoes;
 	
 	public Conta(List<Key> chavesTransacoes, Date data, String descricao,
-			double valor, EnumStatusConta status) {
+			double valor, EnumStatusConta status, EnumTipoConta tipo,
+			List<Transacao> transacoes) {
 		this.chavesTransacoes = chavesTransacoes;
 		this.data = data;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.status = status;
+		this.tipo = tipo;
+		this.transacoes = transacoes;
 	}
 
 	public Conta(Date data, String descricao, double valor,
-			EnumStatusConta status) {
+			EnumStatusConta status, EnumTipoConta tipo) {
+		super();
 		this.data = data;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.status = status;
+		this.tipo = tipo;
+	}
+
+	public EnumTipoConta getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(EnumTipoConta tipo) {
+		this.tipo = tipo;
 	}
 
 	public List<Transacao> getTransacoes() {

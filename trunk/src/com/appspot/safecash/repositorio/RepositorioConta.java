@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import com.appspot.safecash.dados.Conta;
 import com.appspot.safecash.enuns.EnumStatusConta;
+import com.appspot.safecash.enuns.EnumTipoConta;
 import com.google.appengine.api.datastore.Key;
 
 public interface RepositorioConta extends Iterable<Conta> {
@@ -14,6 +15,7 @@ public interface RepositorioConta extends Iterable<Conta> {
 	public Iterator<Conta> procurar(Date data);
 	public Iterator<Conta> procurar(Date dataInicial, Date dataFinal);
 	public Iterator<Conta> procurar(EnumStatusConta status);
+	public Iterator<Conta> procurar(EnumTipoConta tipo);
 	public void remover(Conta conta);
 	public void atualizar(Conta conta);
 }

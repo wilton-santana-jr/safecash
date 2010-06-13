@@ -32,7 +32,8 @@ public class RepositorioProjetoBT implements RepositorioProjeto {
 		pm = PMF.get().getPersistenceManager();
 		Projeto p = pm.getObjectById(Projeto.class, projeto.getId());
 		p.setChaveResponsavel(projeto.getChaveResponsavel());
-		p.setChavesConta(projeto.getChavesConta());
+		p.setChaveContaEntrada(projeto.getChaveContaEntrada());
+		p.setChaveContaSaida(projeto.getChaveContaSaida());
 		p.setChavesEquipe(projeto.getChavesEquipe());
 		p.setDataFim(projeto.getDataFim());
 		p.setDataInicio(projeto.getDataInicio());

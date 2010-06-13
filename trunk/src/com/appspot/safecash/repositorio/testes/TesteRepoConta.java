@@ -17,6 +17,7 @@ import org.junit.Test;
 
 import com.appspot.safecash.dados.Conta;
 import com.appspot.safecash.enuns.EnumStatusConta;
+import com.appspot.safecash.enuns.EnumTipoConta;
 import com.appspot.safecash.repositorio.RepositorioConta;
 import com.appspot.safecash.repositorio.RepositorioContaBT;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -53,8 +54,8 @@ public class TesteRepoConta {
 			e.printStackTrace();
 		}
 		
-		Conta c1 = new Conta(data2, "desc1", 10.5, EnumStatusConta.ATRASADO);
-		Conta c2 = new Conta(data3, "desc2", 10.5, EnumStatusConta.PAGO);
+		Conta c1 = new Conta(data2, "desc1", 10.5, EnumStatusConta.ATRASADO, EnumTipoConta.ENTRADA);
+		Conta c2 = new Conta(data3, "desc2", 10.5, EnumStatusConta.PAGO, EnumTipoConta.ENTRADA);
 		
 		repo.inserir(c1);
 		repo.inserir(c2);
