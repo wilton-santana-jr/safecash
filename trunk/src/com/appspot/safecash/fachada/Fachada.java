@@ -15,6 +15,7 @@ import com.appspot.safecash.dados.Transacao;
 import com.appspot.safecash.dados.Usuario;
 import com.appspot.safecash.enuns.EnumStatusConta;
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
+import com.appspot.safecash.fachada.exception.UsuarioNaoPodeSerRemovidoException;
 import com.appspot.safecash.negocio.ControladorConta;
 import com.appspot.safecash.negocio.ControladorFuncionario;
 import com.appspot.safecash.negocio.ControladorModelo;
@@ -34,6 +35,7 @@ import com.appspot.safecash.negocio.exception.TransacaoJaExisteException;
 import com.appspot.safecash.negocio.exception.TransacaoNaoExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioJaExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
+import com.appspot.safecash.repositorio.RepositorioTransacaoBT;
 import com.appspot.safecash.repositorio.RepositorioUsuarioBT;
 import com.google.appengine.api.datastore.Key;
 
@@ -60,7 +62,7 @@ public class Fachada {
 		this.controladorModelo = new ControladorModelo();
 		this.controladorProjeto = new ControladorProjeto();
 		this.controladorRequisicao = new ControladorRequisicao();
-		this.controladorTransacao = new ControladorTransacao();
+		this.controladorTransacao = new ControladorTransacao(new RepositorioTransacaoBT());
 		this.controladorUsuario = new ControladorUsuario(new RepositorioUsuarioBT());
 		
 		// this.gerenciaSession();
@@ -408,8 +410,9 @@ public class Fachada {
 	 * 
 	 * @param usuario
 	 * @throws UsuarioNaoExisteException
+	 * @throws UsuarioNaoPodeSerRemovidoException 
 	 */
-	public void removerUsuario(Usuario usuario) throws UsuarioNaoExisteException{
+	public void removerUsuario(Usuario usuario) throws UsuarioNaoExisteException, UsuarioNaoPodeSerRemovidoException{
 		Usuario u = this.controladorUsuario.buscar(usuario.getLogin());
 		
 		// remove as requisicoes associadas ao usuario que está sendo removido
@@ -421,8 +424,12 @@ public class Fachada {
 			} catch (RequisicaoNaoExisteException e) { }
 		}
 		
-		/* o usuário não pode ser removido se for responsável
-		 * por algum projeto. tem que fazer essa verificação ainda. */
+		// o usuário não pode ser removido se for responsável por algum projeto. 
+		try {
+			this.controladorProjeto.procurarPorUsuario(u.getKey());
+		} catch (ProjetoNaoExisteException e) {
+			throw new UsuarioNaoPodeSerRemovidoException();
+		}
 		
 		this.controladorUsuario.remover(usuario);
 	}
@@ -462,7 +469,6 @@ public class Fachada {
 				ret.getRequisicoes().add(this.controladorRequisicao.procurar(k));
 			} catch (RequisicaoNaoExisteException e) {
 				System.out.println(">> excecao em buscar Usuario (key)");
-				e.printStackTrace();
 			}
 		}
 		
@@ -478,7 +484,6 @@ public class Fachada {
 				ret.getRequisicoes().add(this.controladorRequisicao.procurar(k));
 			} catch (RequisicaoNaoExisteException e) {
 				System.out.println(">> excecao em buscar Usuario (login)");
-				e.printStackTrace();
 			}
 		}
 		

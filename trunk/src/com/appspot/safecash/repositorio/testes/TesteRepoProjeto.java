@@ -23,6 +23,7 @@ import com.appspot.safecash.repositorio.RepositorioUsuario;
 import com.appspot.safecash.repositorio.RepositorioUsuarioBT;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
@@ -62,6 +63,9 @@ public class TesteRepoProjeto {
 		
 		Usuario u = repoUser.procurar("login1");
 		assertNotNull(u);
+		
+		String keyString = KeyFactory.keyToString(u.getKey());
+		assertEquals(u.getKey(), KeyFactory.stringToKey(keyString));
 		
 		Projeto p1 = new Projeto(null, null, u.getKey(), "nome1", 10.10, data2, data1);
 		Projeto p2 = new Projeto(null, null, u.getKey(), "nome2", 10.10, data3, data1);
