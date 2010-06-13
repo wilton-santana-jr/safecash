@@ -13,7 +13,6 @@ public interface RepositorioTransacao extends Iterable<Transacao> {
 	public void inserir(Transacao transacao);
 	public void remover(Transacao transacao);
 	public void atualizar(Transacao transacao);
-	public boolean existe(Transacao transacao);
 	public Transacao procurar(Key chave);
 	public Iterator<Transacao> procurar(EnumTipoTransacao tipo);
 	public Iterator<Transacao> procurar(EnumOrigemTransacao origem);

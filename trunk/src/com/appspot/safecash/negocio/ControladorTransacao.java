@@ -7,9 +7,9 @@ import com.appspot.safecash.dados.Transacao;
 import com.appspot.safecash.enuns.EnumOrigemTransacao;
 import com.appspot.safecash.enuns.EnumTipoTransacao;
 import com.appspot.safecash.negocio.exception.NenhumaTransacaoEncontradaException;
-import com.appspot.safecash.negocio.exception.TransacaoJaExisteException;
 import com.appspot.safecash.negocio.exception.TransacaoNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioTransacao;
+import com.google.appengine.api.datastore.Key;
 
 public class ControladorTransacao {
 	
@@ -19,38 +19,19 @@ public class ControladorTransacao {
 		this.repositorio = repo;
 	}
 	
-	public void inserir(Transacao transacao)throws TransacaoJaExisteException {
-		if(!this.existe(transacao)) {
-			this.repositorio.inserir(transacao);
-		}
-		else {
-			throw new TransacaoJaExisteException();
-		}
+	public void inserir(Transacao transacao) {
+		this.repositorio.inserir(transacao);
 	}
 	
-	public void remover(Transacao transacao)throws TransacaoNaoExisteException {
-		if(this.existe(transacao)) {
-			this.repositorio.remover(transacao);
-		}
-		else {
-			throw new TransacaoNaoExisteException();
-		}
+	public void remover(Transacao transacao) {
+		this.repositorio.remover(transacao);
 	}
 	
-	public void atualizar(Transacao transacao) throws TransacaoNaoExisteException {
-		if(this.existe(transacao)) {
-			this.repositorio.atualizar(transacao);
-		}
-		else {
-			throw new TransacaoNaoExisteException();
-		}
+	public void atualizar(Transacao transacao) {
+		this.repositorio.atualizar(transacao);
 	}
 	
-	private boolean existe(Transacao transacao) {
-		return this.repositorio.existe(transacao);
-	}	
-	
-	public Iterator<Transacao> procurar(EnumTipoTransacao tipo) throws NenhumaTransacaoEncontradaException{
+	public Iterator<Transacao> buscar(EnumTipoTransacao tipo) throws NenhumaTransacaoEncontradaException{
 		Iterator<Transacao> it = this.repositorio.procurar(tipo);
 		
 		if(it == null || !it.hasNext())
@@ -59,7 +40,7 @@ public class ControladorTransacao {
 		return it;
 	}
 	
-	public Iterator<Transacao> procurar(EnumOrigemTransacao origem) throws NenhumaTransacaoEncontradaException{
+	public Iterator<Transacao> buscar(EnumOrigemTransacao origem) throws NenhumaTransacaoEncontradaException{
 		Iterator<Transacao> it = this.repositorio.procurar(origem);
 		
 		if(it == null || !it.hasNext())
@@ -68,7 +49,7 @@ public class ControladorTransacao {
 		return it;
 	}
 	
-	public Iterator<Transacao> procurar(Date data) throws NenhumaTransacaoEncontradaException{
+	public Iterator<Transacao> buscar(Date data) throws NenhumaTransacaoEncontradaException{
 		Iterator<Transacao> it = this.repositorio.procurar(data);
 		
 		if(it == null || !it.hasNext())
@@ -77,13 +58,22 @@ public class ControladorTransacao {
 		return it;
 	}
 	
-	public Iterator<Transacao> procurar(Date dataInicio, Date dataFim) throws NenhumaTransacaoEncontradaException{
+	public Iterator<Transacao> buscar(Date dataInicio, Date dataFim) throws NenhumaTransacaoEncontradaException{
 		Iterator<Transacao> it = this.repositorio.procurar(dataInicio, dataFim);
 		
 		if(it == null || !it.hasNext())
 			throw new NenhumaTransacaoEncontradaException();
 		
 		return it;
+	}
+	
+	public Transacao buscar(Key chave) throws TransacaoNaoExisteException{
+		Transacao t = this.repositorio.procurar(chave);
+		
+		if(t == null)
+			throw new TransacaoNaoExisteException();
+		
+		return t;
 	}
 	
 	public Iterator<Transacao> getAll(){

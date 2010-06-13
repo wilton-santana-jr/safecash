@@ -1,5 +1,7 @@
 package com.appspot.safecash.negocio;
 
+import java.util.Iterator;
+
 import com.appspot.safecash.dados.Usuario;
 import com.appspot.safecash.negocio.exception.UsuarioJaExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
@@ -63,5 +65,9 @@ public class ControladorUsuario {
 	
 	private boolean existe(Usuario usuario){
 		return this.repositorio.existe(usuario);
+	}
+	
+	public Iterator<Usuario> getAll(){
+		return this.repositorio.iterator();
 	}
 }

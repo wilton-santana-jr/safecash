@@ -49,13 +49,6 @@ public class RepositorioTransacaoBT implements RepositorioTransacao {
 	}
 
 	@Override
-	public boolean existe(Transacao transacao) {
-		// falta implementar!
-		// o que vai diferenciar duas requisicoes ?
-		return false;
-	}
-
-	@Override
 	public void inserir(Transacao transacao) {
 		pm = PMF.get().getPersistenceManager();
 		try{

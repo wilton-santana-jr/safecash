@@ -1,6 +1,9 @@
 package com.appspot.safecash.fachada;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +16,7 @@ import com.appspot.safecash.dados.Projeto;
 import com.appspot.safecash.dados.Requisicao;
 import com.appspot.safecash.dados.Transacao;
 import com.appspot.safecash.dados.Usuario;
+import com.appspot.safecash.enuns.EnumOrigemTransacao;
 import com.appspot.safecash.enuns.EnumStatusConta;
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
 import com.appspot.safecash.fachada.exception.UsuarioNaoPodeSerRemovidoException;
@@ -26,8 +30,10 @@ import com.appspot.safecash.negocio.ControladorUsuario;
 import com.appspot.safecash.negocio.exception.ContaJaExisteException;
 import com.appspot.safecash.negocio.exception.ContaNaoExisteException;
 import com.appspot.safecash.negocio.exception.FuncionarioJaExisteException;
+import com.appspot.safecash.negocio.exception.FuncionarioNaoEncontradoException;
 import com.appspot.safecash.negocio.exception.FuncionarioNaoExisteException;
 import com.appspot.safecash.negocio.exception.ModeloNaoExisteException;
+import com.appspot.safecash.negocio.exception.NenhumaTransacaoEncontradaException;
 import com.appspot.safecash.negocio.exception.ProjetoJaExisteException;
 import com.appspot.safecash.negocio.exception.ProjetoNaoExisteException;
 import com.appspot.safecash.negocio.exception.RequisicaoNaoExisteException;
@@ -35,6 +41,8 @@ import com.appspot.safecash.negocio.exception.TransacaoJaExisteException;
 import com.appspot.safecash.negocio.exception.TransacaoNaoExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioJaExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
+import com.appspot.safecash.repositorio.RepositorioContaBT;
+import com.appspot.safecash.repositorio.RepositorioFuncionarioBT;
 import com.appspot.safecash.repositorio.RepositorioTransacaoBT;
 import com.appspot.safecash.repositorio.RepositorioUsuarioBT;
 import com.google.appengine.api.datastore.Key;
@@ -57,8 +65,8 @@ public class Fachada {
 	public HttpServletResponse response;
 
 	private Fachada() {
-		this.controladorConta = new ControladorConta();
-		this.controladorFuncionario = new ControladorFuncionario();
+		this.controladorConta = new ControladorConta(new RepositorioContaBT());
+		this.controladorFuncionario = new ControladorFuncionario(new RepositorioFuncionarioBT());
 		this.controladorModelo = new ControladorModelo();
 		this.controladorProjeto = new ControladorProjeto();
 		this.controladorRequisicao = new ControladorRequisicao();
@@ -106,19 +114,9 @@ public class Fachada {
 	 * @param conta
 	 * @throws ContaJaExisteException
 	 */
-	public void inserirConta(Conta conta) throws ContaJaExisteException {
-		this.controladorConta.inserirConta(conta);
+	public void inserirConta(Conta conta) {
+		this.controladorConta.inserir(conta);
 	}
-
-	/**
-	 * Método para procurar contas por projeto.
-	 * 
-	 * @param projeto
-	 * @throws ContaNaoExisteException
-	 */
-	/*public void procurarContaPorProjeto(Projeto projeto) throws ContaNaoExisteException{
-		this.controladorConta.procurar(projeto);
-	}*/
 
 	/**
 	 * Método para procurar contas por datas.
@@ -127,8 +125,23 @@ public class Fachada {
 	 * @param dataFinal
 	 * @throws ContaNaoExisteException
 	 */
-	public void procurarContaPorData(Date dataInicial, Date dataFinal) throws ContaNaoExisteException{
-		this.controladorConta.procurar(dataInicial, dataFinal);
+	public Iterator<Conta> procurarConta(Date dataInicial, Date dataFinal) throws ContaNaoExisteException{
+		Iterator<Conta> it = this.controladorConta.buscar(dataInicial, dataFinal);
+		
+		// adiciona as transacoes de cada Conta
+		List<Conta> contas = new ArrayList<Conta>();
+		Conta atual = null;
+		while(it.hasNext()){
+			atual = it.next();
+			for(Key k : atual.getChavesTransacoes()){
+				try {
+					atual.getTransacoes().add(this.controladorTransacao.buscar(k));
+				} catch (TransacaoNaoExisteException e) { }
+			}
+			contas.add(atual);
+		}
+		
+		return contas.iterator();
 	}
 
 	/**
@@ -138,7 +151,7 @@ public class Fachada {
 	 * @throws ContaNaoExisteException
 	 */
 	public void procurarContaPorStatus(EnumStatusConta status) throws ContaNaoExisteException{
-		this.controladorConta.procurar(status);
+		this.controladorConta.buscar(status);
 	}
 
 	/**
@@ -174,34 +187,19 @@ public class Fachada {
 	}
 
 	/**
-	 * Método para procurar um funcionário por nome.
-	 * 
-	 * @param nome
-	 * @throws FuncionarioNaoExisteException
-	 */
-	/*public void procurarFuncionarioPorNome(String nome) throws FuncionarioNaoExisteException{
-		this.controladorFuncionario.procurarPorNome(nome);
-	}*/
-
-	/**
-	 * Método para procurar um funcionário por cargo.
-	 * 
-	 * @param cargo
-	 * @throws FuncionarioNaoExisteException
-	 */
-	public void procurarFuncionarioPorCargo(String cargo) throws FuncionarioNaoExisteException{
-		this.controladorFuncionario.procurarPorCargo(cargo);
-	}
-
-	/**
 	 * Método para procurar um funcionário por CPF.
 	 * 
 	 * @param cpf
+	 * @throws FuncionarioNaoEncontradoException 
 	 * @throws FuncionarioNaoExisteException
 	 */
-	/*public void procurarFuncionarioPorCPF(String cpf) throws FuncionarioNaoExisteException{
-		this.controladorFuncionario.procurarPorCPF(cpf);
-	}*/
+	public Funcionario procurarFuncionario(String cpf) throws FuncionarioNaoEncontradoException {
+		return this.controladorFuncionario.procurar(cpf);
+	}
+	
+	public Funcionario procurarFuncionario(Key chave) throws FuncionarioNaoEncontradoException {
+		return this.controladorFuncionario.procurar(chave);
+	}
 
 	/**
 	 * Método para remover um funcionário.
@@ -335,10 +333,11 @@ public class Fachada {
 	 * Método para procurar requisição por status.
 	 * 
 	 * @param status
+	 * @return 
 	 * @throws RequisicaoNaoExisteException
 	 */
-	public void procurarRequisicaoPorStatus(EnumStatusRequisicao status) throws RequisicaoNaoExisteException{
-		this.controladorRequisicao.procurarPorStatus(status);
+	public Iterator<Requisicao> procurarRequisicaoPorStatus(EnumStatusRequisicao status) throws RequisicaoNaoExisteException{
+		return this.controladorRequisicao.procurarPorStatus(status);
 	}
 
 	/**
@@ -371,6 +370,18 @@ public class Fachada {
 	 */
 	public void inserirTransacao(Transacao transacao) throws TransacaoJaExisteException{
 		this.controladorTransacao.inserir(transacao);
+	}
+	
+	public Iterator<Transacao> buscar(EnumOrigemTransacao origem) throws NenhumaTransacaoEncontradaException{
+		return this.controladorTransacao.buscar(origem);
+	}
+	
+	public Iterator<Transacao> buscar(Date data) throws NenhumaTransacaoEncontradaException{
+		return this.controladorTransacao.buscar(data);
+	}
+	
+	public Iterator<Transacao> buscar(Date dataInicio, Date dataFim) throws NenhumaTransacaoEncontradaException{
+		return this.controladorTransacao.buscar(dataInicio, dataFim);
 	}
 
 	/**
