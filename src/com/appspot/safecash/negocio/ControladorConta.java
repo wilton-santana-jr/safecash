@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import com.appspot.safecash.dados.Conta;
 import com.appspot.safecash.enuns.EnumStatusConta;
+import com.appspot.safecash.enuns.EnumTipoConta;
 import com.appspot.safecash.negocio.exception.ContaNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioConta;
 import com.google.appengine.api.datastore.Key;
@@ -42,8 +43,17 @@ public class ControladorConta {
 	}
 
 	public Iterator<Conta> buscar(EnumStatusConta status) throws ContaNaoExisteException{
-		
 		Iterator<Conta> retorno = this.repositorio.procurar(status);
+		
+		if(retorno == null){
+			throw new ContaNaoExisteException();
+		}
+		
+		return retorno;
+	}
+	
+	public Iterator<Conta> buscar(EnumTipoConta tipo) throws ContaNaoExisteException{
+		Iterator<Conta> retorno = this.repositorio.procurar(tipo);
 		
 		if(retorno == null){
 			throw new ContaNaoExisteException();

@@ -19,6 +19,7 @@ import com.appspot.safecash.dados.Usuario;
 import com.appspot.safecash.enuns.EnumOrigemTransacao;
 import com.appspot.safecash.enuns.EnumStatusConta;
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
+import com.appspot.safecash.enuns.EnumTipoConta;
 import com.appspot.safecash.fachada.exception.UsuarioNaoPodeSerRemovidoException;
 import com.appspot.safecash.negocio.ControladorConta;
 import com.appspot.safecash.negocio.ControladorFuncionario;
@@ -175,6 +176,19 @@ public class Fachada {
 	 * @throws ContaNaoExisteException
 	 */
 	public Iterator<Conta> procurarConta(EnumStatusConta status) throws ContaNaoExisteException{
+		Iterator<Conta> it = this.controladorConta.buscar(status);
+		
+		// adiciona as transacoes de cada Conta
+		return carregarTransacoes(it);
+	}
+	
+	/**
+	 * Método para procurar contas por tipo.
+	 * 
+	 * @param status
+	 * @throws ContaNaoExisteException
+	 */
+	public Iterator<Conta> procurarConta(EnumTipoConta status) throws ContaNaoExisteException{
 		Iterator<Conta> it = this.controladorConta.buscar(status);
 		
 		// adiciona as transacoes de cada Conta
