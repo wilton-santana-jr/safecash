@@ -22,13 +22,19 @@ public class Projeto {
 	private List<Key> chavesEquipe;
 	
 	@Persistent
-	private Key chavesConta;
+	private Key chaveContaSaida;
+	
+	@Persistent 
+	private Key chaveContaEntrada;
 	
 	@Persistent
 	private Key chaveResponsavel;
 	
 	@Persistent
 	private String nome;
+	
+	@Persistent
+	private String descricao;
 	
 	@Persistent
 	private double valor;
@@ -43,7 +49,7 @@ public class Projeto {
 			Key chaveResponsavel, String nome, double valor, Date dataInicio,
 			Date dataFim) {
 		this.chavesEquipe = chavesEquipe;
-		this.chavesConta = chavesConta;
+		this.chaveContaSaida = chavesConta;
 		this.chaveResponsavel = chaveResponsavel;
 		this.nome = nome;
 		this.valor = valor;
@@ -75,11 +81,11 @@ public class Projeto {
 	}
 
 	public Key getChavesConta() {
-		return chavesConta;
+		return chaveContaSaida;
 	}
 
 	public void setChavesConta(Key chavesConta) {
-		this.chavesConta = chavesConta;
+		this.chaveContaSaida = chavesConta;
 	}
 
 	public Key getChaveResponsavel() {

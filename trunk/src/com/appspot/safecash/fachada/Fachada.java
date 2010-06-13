@@ -43,6 +43,7 @@ import com.appspot.safecash.negocio.exception.UsuarioJaExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioContaBT;
 import com.appspot.safecash.repositorio.RepositorioFuncionarioBT;
+import com.appspot.safecash.repositorio.RepositorioRequisicaoBT;
 import com.appspot.safecash.repositorio.RepositorioTransacaoBT;
 import com.appspot.safecash.repositorio.RepositorioUsuarioBT;
 import com.google.appengine.api.datastore.Key;
@@ -69,7 +70,7 @@ public class Fachada {
 		this.controladorFuncionario = new ControladorFuncionario(new RepositorioFuncionarioBT());
 		this.controladorModelo = new ControladorModelo();
 		this.controladorProjeto = new ControladorProjeto();
-		this.controladorRequisicao = new ControladorRequisicao();
+		this.controladorRequisicao = new ControladorRequisicao(new RepositorioRequisicaoBT());
 		this.controladorTransacao = new ControladorTransacao(new RepositorioTransacaoBT());
 		this.controladorUsuario = new ControladorUsuario(new RepositorioUsuarioBT());
 		
@@ -117,18 +118,14 @@ public class Fachada {
 	public void inserirConta(Conta conta) {
 		this.controladorConta.inserir(conta);
 	}
-
+	
 	/**
-	 * Método para procurar contas por datas.
+	 * Método auxiliar para carregar as Transacoes de uma Conta.
 	 * 
-	 * @param dataInicial
-	 * @param dataFinal
-	 * @throws ContaNaoExisteException
+	 * @param it  Iterator<Conta>
+	 * @return Iterator<Conta>
 	 */
-	public Iterator<Conta> procurarConta(Date dataInicial, Date dataFinal) throws ContaNaoExisteException{
-		Iterator<Conta> it = this.controladorConta.buscar(dataInicial, dataFinal);
-		
-		// adiciona as transacoes de cada Conta
+	private Iterator<Conta> carregarTransacoes(Iterator<Conta> it) {
 		List<Conta> contas = new ArrayList<Conta>();
 		Conta atual = null;
 		while(it.hasNext()){
@@ -143,6 +140,33 @@ public class Fachada {
 		
 		return contas.iterator();
 	}
+	
+	/**
+	 * Método para procurar contas por datas.
+	 * 
+	 * @param dataInicial
+	 * @param dataFinal
+	 * @throws ContaNaoExisteException
+	 */
+	public Iterator<Conta> procurarConta(Date dataInicial, Date dataFinal) throws ContaNaoExisteException{
+		Iterator<Conta> it = this.controladorConta.buscar(dataInicial, dataFinal);
+		
+		// adiciona as transacoes de cada Conta
+		return this.carregarTransacoes(it);
+	}
+	
+	/**
+	 * Método para procurar contas de uma determinada data.
+	 * 
+	 * @param data
+	 * @throws ContaNaoExisteException
+	 */
+	public Iterator<Conta> procurarConta(Date data) throws ContaNaoExisteException{
+		Iterator<Conta> it = this.controladorConta.buscar(data);
+		
+		// adiciona as transacoes de cada Conta
+		return this.carregarTransacoes(it);
+	}
 
 	/**
 	 * Método para procurar contas por status.
@@ -150,8 +174,21 @@ public class Fachada {
 	 * @param status
 	 * @throws ContaNaoExisteException
 	 */
-	public void procurarContaPorStatus(EnumStatusConta status) throws ContaNaoExisteException{
-		this.controladorConta.buscar(status);
+	public Iterator<Conta> procurarConta(EnumStatusConta status) throws ContaNaoExisteException{
+		Iterator<Conta> it = this.controladorConta.buscar(status);
+		
+		// adiciona as transacoes de cada Conta
+		return carregarTransacoes(it);
+	}
+	
+	/**
+	 * Método para procurar uma conta por sua chave.
+	 * 
+	 * @param a chave
+	 * @throws ContaNaoExisteException
+	 */
+	public Conta procurarConta(Key chave) throws ContaNaoExisteException{
+		return this.controladorConta.buscar(chave);
 	}
 
 	/**
