@@ -12,7 +12,9 @@ public class ControladorRequisicao {
 
 	private RepositorioRequisicao repositorio;
 	
-	public ControladorRequisicao(){}
+	public ControladorRequisicao(RepositorioRequisicao repositorio){
+		this.repositorio = repositorio;
+	}
 	
 	public void inserir(Requisicao requisicao){
 		this.repositorio.inserir(requisicao);
