@@ -5,81 +5,79 @@ import java.util.Iterator;
 
 import com.appspot.safecash.dados.Conta;
 import com.appspot.safecash.enuns.EnumStatusConta;
-import com.appspot.safecash.negocio.exception.ContaJaExisteException;
 import com.appspot.safecash.negocio.exception.ContaNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioConta;
+import com.google.appengine.api.datastore.Key;
 
 public class ControladorConta {
 
 	private RepositorioConta repositorio;
 
-	public ControladorConta(){}
-
-	public void inserirConta(Conta conta) throws ContaJaExisteException{
-		if(!this.existe(conta)){
-			this.repositorio.inserir(conta);
-		}
-		else{
-			throw new ContaJaExisteException();
-		}
+	public ControladorConta(RepositorioConta repositorio){
+		this.repositorio = repositorio;
 	}
 
-	/*public Iterator<Conta> procurar(Projeto projeto) throws ContaNaoExisteException{
+	public void inserir(Conta conta) {
+		this.repositorio.inserir(conta);
+	}
 
-		Iterator<Conta> retorno = this.repositorio.procurar(projeto);
-
-		if(retorno == null){
-			throw new ContaNaoExisteException();
-		}
-		else{
-			return retorno;
-		}
-	}*/
-
-	public Iterator<Conta> procurar(Date dataInicial, Date dataFinal) throws ContaNaoExisteException{
-
+	public Iterator<Conta> buscar(Date dataInicial, Date dataFinal) throws ContaNaoExisteException{
 		Iterator<Conta> retorno = this.repositorio.procurar(dataInicial, dataFinal);
 
 		if(retorno == null){
 			throw new ContaNaoExisteException();
 		}
-		else{
-			return retorno;
+		
+		return retorno;
+	}
+	
+	public Iterator<Conta> buscar(Date data) throws ContaNaoExisteException{
+		Iterator<Conta> retorno = this.repositorio.procurar(data);
+
+		if(retorno == null){
+			throw new ContaNaoExisteException();
 		}
+		
+		return retorno;
 	}
 
-	public Iterator<Conta> procurar(EnumStatusConta status) throws ContaNaoExisteException{
+	public Iterator<Conta> buscar(EnumStatusConta status) throws ContaNaoExisteException{
 		
 		Iterator<Conta> retorno = this.repositorio.procurar(status);
 		
 		if(retorno == null){
 			throw new ContaNaoExisteException();
 		}
-		else{
-			return retorno;
-		}
-
+		
+		return retorno;
+	}
+	
+	public Conta buscar(Key chave) throws ContaNaoExisteException{
+		Conta c = this.repositorio.procurar(chave);
+		
+		if(c == null)
+			throw new ContaNaoExisteException();
+		
+		return c;
 	}
 
 	public void remover(Conta conta) throws ContaNaoExisteException{
-		if(this.existe(conta)){
+		try{
 			this.repositorio.remover(conta);
-		}
-		else{
+		}catch (Exception e){
 			throw new ContaNaoExisteException();
 		}
 	}
 
 	public void atualizar(Conta conta) throws ContaNaoExisteException{
-		if(!this.existe(conta)){
-			throw new ContaNaoExisteException();
-		}
-		else{
+		try{
 			this.repositorio.atualizar(conta);
+		} catch(Exception e){
+			throw new ContaNaoExisteException();
 		}
 	}
 
-	private boolean existe(Conta conta){
-		return this.repositorio.existe(conta);
+	public Iterator<Conta> getAll(){
+		return this.repositorio.iterator();
 	}
 }

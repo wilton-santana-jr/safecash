@@ -4,14 +4,18 @@ import java.util.Iterator;
 
 import com.appspot.safecash.dados.Funcionario;
 import com.appspot.safecash.negocio.exception.FuncionarioJaExisteException;
+import com.appspot.safecash.negocio.exception.FuncionarioNaoEncontradoException;
 import com.appspot.safecash.negocio.exception.FuncionarioNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioFuncionario;
+import com.google.appengine.api.datastore.Key;
 
 public class ControladorFuncionario {
 
 	private RepositorioFuncionario repositorio;
 	
-	public ControladorFuncionario(){}
+	public ControladorFuncionario(RepositorioFuncionario repositorio){
+		this.repositorio = repositorio;
+	}
 	
 	public void inserir(Funcionario funcionario) throws FuncionarioJaExisteException{
 		if(!this.existe(funcionario)){
@@ -22,41 +26,6 @@ public class ControladorFuncionario {
 		}
 	}
 	
-	/*public Iterator<Funcionario> procurarPorNome(String nome) throws FuncionarioNaoExisteException{
-		
-		Iterator<Funcionario> retorno = this.repositorio.procurarPorNome(nome);
-		
-		if(retorno == null){
-			throw new FuncionarioNaoExisteException();
-		}
-		else{
-			return retorno;
-		}
-	}*/
-	public Iterator<Funcionario> procurarPorCargo(String cargo) throws FuncionarioNaoExisteException{
-		
-		Iterator<Funcionario> retorno = this.procurarPorCargo(cargo);
-		
-		if(retorno == null){
-			throw new FuncionarioNaoExisteException();
-		}
-		else{
-			return retorno;
-		}
-	}
-	
-	/*public Funcionario procurarPorCPF(String cpf) throws FuncionarioNaoExisteException{
-		
-		Funcionario retorno = this.repositorio.procurarPorCPF(cpf);
-		
-		if(retorno == null){
-			throw new FuncionarioNaoExisteException();
-		}
-		else{
-			return retorno;
-		}
-	}*/
-	
 	public void remover(Funcionario funcionario) throws FuncionarioNaoExisteException{
 		if(this.existe(funcionario)){
 			this.repositorio.remover(funcionario);
@@ -65,6 +34,7 @@ public class ControladorFuncionario {
 			throw new FuncionarioNaoExisteException();
 		}
 	}
+	
 	public void atualizar(Funcionario funcionario) throws FuncionarioNaoExisteException{
 		if(this.existe(funcionario)){
 			this.repositorio.atualizar(funcionario);
@@ -77,4 +47,27 @@ public class ControladorFuncionario {
 	private boolean existe(Funcionario funcionario){
 		return this.repositorio.existe(funcionario);
 	}
+	
+	public Funcionario procurar(Key chave) throws FuncionarioNaoEncontradoException{
+		Funcionario ret = this.repositorio.procurar(chave);
+		
+		if(ret == null)
+			throw new FuncionarioNaoEncontradoException();
+		
+		return ret;
+	}
+	
+	public Funcionario procurar(String cpf) throws FuncionarioNaoEncontradoException{
+		Funcionario ret = this.repositorio.procurar(cpf);
+		
+		if(ret == null)
+			throw new FuncionarioNaoEncontradoException();
+		
+		return ret;
+	}
+	
+	public Iterator<Funcionario> getAll(){
+		return this.repositorio.iterator();
+	}
+	
 }

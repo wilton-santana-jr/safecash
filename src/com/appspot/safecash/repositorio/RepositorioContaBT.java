@@ -11,6 +11,7 @@ import javax.jdo.Query;
 
 import com.appspot.safecash.dados.Conta;
 import com.appspot.safecash.enuns.EnumStatusConta;
+import com.google.appengine.api.datastore.Key;
 
 public class RepositorioContaBT implements RepositorioConta {
 
@@ -23,7 +24,7 @@ public class RepositorioContaBT implements RepositorioConta {
 	private static final String PROCURAR_C3 = "SELECT FROM " + Conta.class.getName() 
 											  + " " +  "WHERE status == param " + 
 											  "PARAMETERS EnumStatusConta param";
-	private PersistenceManager pm;
+	private PersistenceManager 	pm;
 	
 	public RepositorioContaBT() { }
 	
@@ -37,12 +38,6 @@ public class RepositorioContaBT implements RepositorioConta {
 		c.setStatus(conta.getStatus());
 		c.setValor(conta.getValor());
 		pm.close();	
-	}
-
-	@Override
-	public boolean existe(Conta conta) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
@@ -134,5 +129,15 @@ public class RepositorioContaBT implements RepositorioConta {
 		pm.close();
 		
 		return p.iterator();
+	}
+
+	@Override
+	public Conta procurar(Key chave) {
+		Conta ret = null;
+		pm = PMF.get().getPersistenceManager();
+		ret = pm.getObjectById(Conta.class, chave);
+		
+		pm.close();		
+		return ret;
 	}
 }

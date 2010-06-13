@@ -1,10 +1,12 @@
 package com.appspot.safecash.dados;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -34,6 +36,9 @@ public class Conta {
 	@Persistent
 	private EnumStatusConta status;
 	
+	@NotPersistent
+	private List<Transacao> transacoes;
+	
 	public Conta(List<Key> chavesTransacoes, Date data, String descricao,
 			double valor, EnumStatusConta status) {
 		this.chavesTransacoes = chavesTransacoes;
@@ -49,6 +54,17 @@ public class Conta {
 		this.descricao = descricao;
 		this.valor = valor;
 		this.status = status;
+	}
+
+	public List<Transacao> getTransacoes() {
+		if(this.transacoes == null)
+			this.transacoes = new ArrayList<Transacao>();
+		
+		return transacoes;
+	}
+
+	public void setTransacoes(List<Transacao> transacoes) {
+		this.transacoes = transacoes;
 	}
 
 	public Key getKey() {
