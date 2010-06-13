@@ -29,14 +29,13 @@ background-repeat:no-repeat;
 #login
 {
 display:block;
-width:319px;
-height:123px;
 
 position:absolute;
 top:190px;
 
 background-image:url(../imagens/PageLoginImages/rectangle.png);
 background-repeat:no-repeat;
+
 }
 a#botao
 {
@@ -64,6 +63,15 @@ form
 	
 	padding-left:30px;
 	padding-top:13px;
+}
+
+#msg
+{
+	width:319px;
+	height:123px;
+	
+	color:#FF0000;
+	text-align:center;	
 }
 
 #senha,#nome
