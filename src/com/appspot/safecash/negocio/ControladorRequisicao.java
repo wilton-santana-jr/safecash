@@ -49,4 +49,8 @@ public class ControladorRequisicao {
 	public void atualizar(Requisicao requisicao) throws RequisicaoNaoExisteException{
 		this.repositorio.atualizar(requisicao);
 	}
+	
+	public Iterator<Requisicao> getAll(){
+		return this.repositorio.iterator();
+	}
 }

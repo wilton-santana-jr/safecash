@@ -1,5 +1,6 @@
 package com.appspot.safecash.dados;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,11 +52,16 @@ public class Projeto {
 	
 	@NotPersistent
 	private Conta contaEntrada;
+	
+	@NotPersistent
+	private List<Funcionario> equipe;
+	
+	@NotPersistent
+	private Usuario responsavel;
 
 	public Projeto(List<Key> chavesEquipe, Key chaveContaSaida,
 			Key chaveContaEntrada, Key chaveResponsavel, String nome,
-			String descricao, double valor, Date dataInicio, Date dataFim,
-			Conta contaSaida, Conta contaEntrada) {
+			String descricao, double valor, Date dataInicio, Date dataFim) {
 		this.chavesEquipe = chavesEquipe;
 		this.chaveContaSaida = chaveContaSaida;
 		this.chaveContaEntrada = chaveContaEntrada;
@@ -65,21 +71,35 @@ public class Projeto {
 		this.valor = valor;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
-		this.contaSaida = contaSaida;
-		this.contaEntrada = contaEntrada;
 	}
 
 	public Projeto(String nome, String descricao, double valor,
-			Date dataInicio, Date dataFim, Conta contaSaida, Conta contaEntrada) {
+			Date dataInicio, Date dataFim) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
-		this.contaSaida = contaSaida;
-		this.contaEntrada = contaEntrada;
 	}
 
+	public List<Funcionario> getEquipe() {
+		if(this.equipe == null)
+			this.equipe = new ArrayList<Funcionario>();
+		return this.equipe;
+	}
+
+	public void setEquipe(List<Funcionario> equipe) {
+		this.equipe = equipe;
+	}
+
+	public Usuario getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(Usuario responsavel) {
+		this.responsavel = responsavel;
+	}
+	
 	public Long getId() {
 		return id;
 	}

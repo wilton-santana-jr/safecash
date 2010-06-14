@@ -69,6 +69,7 @@ public class RepositorioRequisicaoBT implements RepositorioRequisicao {
 		List<Requisicao> result = (List<Requisicao>) query.execute(status);
 		for(Requisicao r : result){
 			ret.add(r);
+			System.out.println("01");
 		}
 		
 		query = pm.newQuery(PROCURAR_R2);
@@ -76,6 +77,7 @@ public class RepositorioRequisicaoBT implements RepositorioRequisicao {
 		result = (List<Requisicao>) query.execute(status);
 		for(Requisicao r : result){
 			ret.add(r);
+			System.out.println("02");
 		}
 		
 		query = pm.newQuery(PROCURAR_R3);
@@ -83,6 +85,7 @@ public class RepositorioRequisicaoBT implements RepositorioRequisicao {
 		result = (List<Requisicao>) query.execute(status);
 		for(Requisicao r : result){
 			ret.add(r);
+			System.out.println("03");
 		}
 		
 		pm.close();		
@@ -119,7 +122,7 @@ public class RepositorioRequisicaoBT implements RepositorioRequisicao {
 	public Iterator<Requisicao> iterator() {
 		pm = PMF.get().getPersistenceManager();
 		
-		Extent<Requisicao> extent = pm.getExtent(Requisicao.class, false);
+		Extent<Requisicao> extent = pm.getExtent(Requisicao.class, true);
 		List<Requisicao> p = new ArrayList<Requisicao>();
 		for(Requisicao atual : extent){
 			p.add(atual);

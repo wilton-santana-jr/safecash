@@ -1,5 +1,6 @@
 package com.appspot.safecash.negocio;
 
+import java.util.Date;
 import java.util.Iterator;
 
 import com.appspot.safecash.dados.Projeto;
@@ -12,68 +13,59 @@ public class ControladorProjeto {
 	
 	private RepositorioProjeto repositorio;
 	
-	public ControladorProjeto(){}
+	public ControladorProjeto(RepositorioProjeto repositorio){
+		this.repositorio = repositorio;
+	}
 	
-	public void inserir(Projeto projeto)throws ProjetoJaExisteException
-	{
-		if(!this.existe(projeto))
-		{
+	public void inserir(Projeto projeto)throws ProjetoJaExisteException	{
 			this.repositorio.inserir(projeto);
-		}
-		else
-		{
-			throw new ProjetoJaExisteException();
-		}
 	}
 	
-	public void atualizar(Projeto projeto) throws ProjetoNaoExisteException
-	{
-		if(this.existe(projeto))
-		{
-			this.repositorio.atualizar(projeto);
-		}
-		else
-		{
-			throw new ProjetoNaoExisteException();
-		}
-	}
+	public void atualizar(Projeto projeto) throws ProjetoNaoExisteException {
+			this.repositorio.atualizar(projeto);		
+	}	
 	
-	
-	/*public Iterator<Projeto> procurarPorNome(String nome) throws ProjetoNaoExisteException
-	{
-		
-		Iterator<Projeto> projeto = this.repositorio.procurar(nome); 
-		if(projeto == null)
-		{
-			throw new ProjetoNaoExisteException();
-		}
-		return projeto;
-	}*/
-	
-	public Iterator<Projeto> procurarPorUsuario(Key chaveUsuario) throws ProjetoNaoExisteException {
-		
+	public Iterator<Projeto> procurarPorResponsavel(Key chaveUsuario) throws ProjetoNaoExisteException {
 		Iterator<Projeto> projeto = this.repositorio.procurarPorResponsavel(chaveUsuario); 
-		if(projeto == null)	{
+		
+		if(projeto == null)	
 			throw new ProjetoNaoExisteException();
-		}
+		
 		return projeto;
 	}
 	
-	public void remover(Projeto projeto)throws ProjetoNaoExisteException
-	{
-		if(this.existe(projeto))
-		{
-			this.repositorio.remover(projeto);
-		}
-		else
-		{
+	public Projeto procurarPorID(Long id) throws ProjetoNaoExisteException{
+		Projeto p = this.repositorio.procurar(id);
+		
+		if(p == null)
 			throw new ProjetoNaoExisteException();
-		}
+		
+		return p;	
 	}
 	
-	private boolean existe(Projeto projeto)
-	{
-		return this.repositorio.existe(projeto);
+	public Iterator<Projeto> procurarPorDataInicial(Date data) throws ProjetoNaoExisteException{
+		Iterator<Projeto> p = this.repositorio.procurarPorDataInicial(data);
+		
+		if(p == null)
+			throw new ProjetoNaoExisteException();
+		
+		return p;
 	}
-
+	
+	public Iterator<Projeto> procurarPorDataFinal(Date data) throws ProjetoNaoExisteException{
+		Iterator<Projeto> p = this.repositorio.procurarPorDataInicial(data);	
+		
+		if(p == null)
+			throw new ProjetoNaoExisteException();
+		
+		return p;
+	}
+	
+	public void remover(Projeto projeto)throws ProjetoNaoExisteException {
+			this.repositorio.remover(projeto);
+	}
+	
+	public Iterator<Projeto> getAll(){
+		return this.repositorio.iterator();
+	}
 }

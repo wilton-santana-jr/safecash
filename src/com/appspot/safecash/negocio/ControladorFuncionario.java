@@ -68,6 +68,5 @@ public class ControladorFuncionario {
 	
 	public Iterator<Funcionario> getAll(){
 		return this.repositorio.iterator();
-	}
-	
+	}	
 }
