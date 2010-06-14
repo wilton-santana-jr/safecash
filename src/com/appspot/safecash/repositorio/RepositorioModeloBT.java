@@ -26,12 +26,6 @@ public class RepositorioModeloBT implements RepositorioModelo {
 	}
 
 	@Override
-	public boolean existe(Modelo modelo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void inserir(Modelo modelo) {
 		pm = PMF.get().getPersistenceManager();
 		try{

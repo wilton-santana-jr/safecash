@@ -26,7 +26,7 @@ public class RepositorioContaBT implements RepositorioConta {
 											  + " " +  "WHERE status == param " + 
 											  "PARAMETERS EnumStatusConta param";
 	private static final String PROCURAR_C4 = "SELECT FROM " + Conta.class.getName() 
-	  										  + " " +  "WHERE status == param " + 
+	  										  + " " +  "WHERE tipo == param " + 
 	  										  "PARAMETERS EnumTipoConta param";
 	private PersistenceManager 	pm;
 	
@@ -116,12 +116,12 @@ public class RepositorioContaBT implements RepositorioConta {
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public Iterator<Conta> procurar(EnumTipoConta status) {
+	public Iterator<Conta> procurar(EnumTipoConta tipo) {
 		List<Conta> ret = new ArrayList<Conta>();
 		pm = PMF.get().getPersistenceManager();
 		Query query = pm.newQuery(PROCURAR_C4);
 		query.declareImports("import com.appspot.safecash.enuns.EnumTipoConta;");
-		List<Conta> result = (List<Conta>) query.execute(status);
+		List<Conta> result = (List<Conta>) query.execute(tipo);
 		for(Conta r : result){
 			ret.add(r);
 		}

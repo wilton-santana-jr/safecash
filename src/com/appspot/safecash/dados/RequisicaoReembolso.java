@@ -1,12 +1,14 @@
 package com.appspot.safecash.dados;
 
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
+@Inheritance(customStrategy = "complete-table")
 public class RequisicaoReembolso extends Requisicao {
 
 	@Persistent
