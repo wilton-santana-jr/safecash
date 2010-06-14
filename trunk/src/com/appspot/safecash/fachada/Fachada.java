@@ -44,6 +44,7 @@ import com.appspot.safecash.negocio.exception.UsuarioJaExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioContaBT;
 import com.appspot.safecash.repositorio.RepositorioFuncionarioBT;
+import com.appspot.safecash.repositorio.RepositorioModeloBT;
 import com.appspot.safecash.repositorio.RepositorioRequisicaoBT;
 import com.appspot.safecash.repositorio.RepositorioTransacaoBT;
 import com.appspot.safecash.repositorio.RepositorioUsuarioBT;
@@ -69,7 +70,7 @@ public class Fachada {
 	private Fachada() {
 		this.controladorConta = new ControladorConta(new RepositorioContaBT());
 		this.controladorFuncionario = new ControladorFuncionario(new RepositorioFuncionarioBT());
-		this.controladorModelo = new ControladorModelo();
+		this.controladorModelo = new ControladorModelo(new RepositorioModeloBT());
 		this.controladorProjeto = new ControladorProjeto();
 		this.controladorRequisicao = new ControladorRequisicao(new RepositorioRequisicaoBT());
 		this.controladorTransacao = new ControladorTransacao(new RepositorioTransacaoBT());
@@ -303,9 +304,9 @@ public class Fachada {
 	 * @param modelo
 	 * @throws ModeloNaoExisteException
 	 */
-	/*public void procurarModelo(Modelo modelo) throws ModeloNaoExisteException{
-		this.controladorModelo.procurar(modelo);
-	}*/
+	public Modelo procurarModelo(Long id) throws ModeloNaoExisteException{
+		return this.controladorModelo.procurar(id);
+	}
 
 	//##################### PROJETO #####################//##
 
@@ -371,24 +372,18 @@ public class Fachada {
 	}
 
 	/**
-	 * Método para procurar requisição por usuário.
-	 * 
-	 * @param usuario
-	 * @throws RequisicaoNaoExisteException
-	 */
-	/*public void procurarRequisicaoPorUsuario(Usuario usuario) throws RequisicaoNaoExisteException{
-		this.controladorRequisicao.procurarPorUsuario(usuario);
-	}*/
-
-	/**
 	 * Método para procurar requisição por status.
 	 * 
 	 * @param status
-	 * @return 
+	 * @return Iterator<Requisicao>
 	 * @throws RequisicaoNaoExisteException
 	 */
-	public Iterator<Requisicao> procurarRequisicaoPorStatus(EnumStatusRequisicao status) throws RequisicaoNaoExisteException{
-		return this.controladorRequisicao.procurarPorStatus(status);
+	public Iterator<Requisicao> procurarRequisicao(EnumStatusRequisicao status) throws RequisicaoNaoExisteException{
+		return this.controladorRequisicao.procurar(status);
+	}
+	
+	public Requisicao procurarRequisicao(Key chave) throws RequisicaoNaoExisteException {
+		return this.controladorRequisicao.procurar(chave);
 	}
 
 	/**

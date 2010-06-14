@@ -1,6 +1,7 @@
 package com.appspot.safecash.dados;
 
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
@@ -8,6 +9,7 @@ import com.appspot.safecash.enuns.EnumStatusRequisicao;
 import com.google.appengine.api.blobstore.BlobKey;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
+@Inheritance(customStrategy = "complete-table")
 public class RequisicaoContrato extends Requisicao {
 
 	@Persistent

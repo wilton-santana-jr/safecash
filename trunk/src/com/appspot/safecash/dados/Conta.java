@@ -57,7 +57,6 @@ public class Conta {
 
 	public Conta(Date data, String descricao, double valor,
 			EnumStatusConta status, EnumTipoConta tipo) {
-		super();
 		this.data = data;
 		this.descricao = descricao;
 		this.valor = valor;

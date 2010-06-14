@@ -29,7 +29,7 @@ public class ControladorRequisicao {
 		return r;
 	}
 	
-	public Iterator<Requisicao> procurarPorStatus(EnumStatusRequisicao status) throws RequisicaoNaoExisteException{
+	public Iterator<Requisicao> procurar(EnumStatusRequisicao status) throws RequisicaoNaoExisteException{
 		
 		Iterator<Requisicao> retorno = this.repositorio.procurar(status);
 		
@@ -43,24 +43,10 @@ public class ControladorRequisicao {
 	}
 	
 	public void remover(Requisicao requisicao) throws RequisicaoNaoExisteException{
-		if(this.existe(requisicao)){
-			this.repositorio.remover(requisicao);
-		}
-		else{
-			throw new RequisicaoNaoExisteException();
-		}
+		this.repositorio.remover(requisicao);
 	}
 	
 	public void atualizar(Requisicao requisicao) throws RequisicaoNaoExisteException{
-		if(this.existe(requisicao)){
-			this.repositorio.atualizar(requisicao);
-		}
-		else{
-			throw new RequisicaoNaoExisteException();
-		}
-	}
-	
-	private boolean existe(Requisicao requisicao){
-		return this.repositorio.existe(requisicao);
+		this.repositorio.atualizar(requisicao);
 	}
 }

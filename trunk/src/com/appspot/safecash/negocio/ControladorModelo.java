@@ -8,44 +8,28 @@ public class ControladorModelo {
 
 	private RepositorioModelo repositorio;
 
-	public ControladorModelo(){}
+	public ControladorModelo(RepositorioModelo repositorio){
+		this.repositorio = repositorio;
+	}
 
 	public void inserir(Modelo modelo){
 		this.repositorio.inserir(modelo);
 	}
 
 	public void remover(Modelo modelo) throws ModeloNaoExisteException{
-		if(this.existe(modelo)){
-			this.repositorio.remover(modelo);
-		}
-		else{
-			throw new ModeloNaoExisteException();
-		}
+		this.repositorio.remover(modelo);
 	}
 
 	public void atualizar(Modelo modelo) throws ModeloNaoExisteException{
-		if(this.existe(modelo)){
-			this.repositorio.atualizar(modelo);
-		}
-		else{
-			throw new ModeloNaoExisteException();
-		}
+		this.repositorio.atualizar(modelo);
 	}
 
-	/*public Modelo procurar(Modelo modelo) throws ModeloNaoExisteException{
-
-		Modelo retorno;
-
-		if(this.existe(modelo)){
-			retorno = this.repositorio.procurar(modelo.getNome());
-		}
-		else{
+	public Modelo procurar(Long id) throws ModeloNaoExisteException{
+		Modelo m = this.repositorio.procurar(id);
+		
+		if(m == null)
 			throw new ModeloNaoExisteException();
-		}
-		return retorno;
-	}*/
-
-	private boolean existe(Modelo modelo){
-		return this.repositorio.existe(modelo);
+		
+		return m;
 	}
 }

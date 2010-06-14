@@ -13,5 +13,4 @@ public interface RepositorioRequisicao extends Iterable<Requisicao>{
 	public Requisicao procurar(Key key);
 	public void remover(Requisicao requisicao);
 	public void atualizar(Requisicao requisicao);
-	public boolean existe(Requisicao requisicao);
 }

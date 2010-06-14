@@ -8,5 +8,4 @@ public interface RepositorioModelo extends Iterable<Modelo>{
 	public Modelo procurar(Long id);
 	public void remover(Modelo modelo);
 	public void atualizar(Modelo modelo);
-	public boolean existe(Modelo modelo);
 }
