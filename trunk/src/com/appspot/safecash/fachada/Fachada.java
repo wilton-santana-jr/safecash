@@ -45,6 +45,7 @@ import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioContaBT;
 import com.appspot.safecash.repositorio.RepositorioFuncionarioBT;
 import com.appspot.safecash.repositorio.RepositorioModeloBT;
+import com.appspot.safecash.repositorio.RepositorioProjetoBT;
 import com.appspot.safecash.repositorio.RepositorioRequisicaoBT;
 import com.appspot.safecash.repositorio.RepositorioTransacaoBT;
 import com.appspot.safecash.repositorio.RepositorioUsuarioBT;
@@ -71,7 +72,7 @@ public class Fachada {
 		this.controladorConta = new ControladorConta(new RepositorioContaBT());
 		this.controladorFuncionario = new ControladorFuncionario(new RepositorioFuncionarioBT());
 		this.controladorModelo = new ControladorModelo(new RepositorioModeloBT());
-		this.controladorProjeto = new ControladorProjeto();
+		this.controladorProjeto = new ControladorProjeto(new RepositorioProjetoBT());
 		this.controladorRequisicao = new ControladorRequisicao(new RepositorioRequisicaoBT());
 		this.controladorTransacao = new ControladorTransacao(new RepositorioTransacaoBT());
 		this.controladorUsuario = new ControladorUsuario(new RepositorioUsuarioBT());
@@ -225,6 +226,10 @@ public class Fachada {
 	public void atualizarConta(Conta conta) throws ContaNaoExisteException{
 		this.controladorConta.atualizar(conta);
 	}
+	
+	public Iterator<Conta> getAllConta(){
+		return this.controladorConta.getAll();
+	}
 
 	//##################### FUNCIONÁRIO #####################//
 
@@ -265,6 +270,10 @@ public class Fachada {
 
 	public void atualizarFuncionario(Funcionario funcionario) throws FuncionarioNaoExisteException{
 		this.controladorFuncionario.atualizar(funcionario);
+	}
+	
+	public Iterator<Funcionario> getAllFuncionario(){
+		return this.controladorFuncionario.getAll();
 	}
 
 	//##################### MODELO #####################//
@@ -307,8 +316,12 @@ public class Fachada {
 	public Modelo procurarModelo(Long id) throws ModeloNaoExisteException{
 		return this.controladorModelo.procurar(id);
 	}
+	
+	public Iterator<Modelo> getAllModelo(){
+		return this.controladorModelo.getAll();
+	}
 
-	//##################### PROJETO #####################//##
+	//##################### PROJETO #####################//
 
 	/**
 	 * Método para inserir um projeto.
@@ -330,25 +343,76 @@ public class Fachada {
 		this.controladorProjeto.atualizar(projeto);
 	}
 
-	/**
-	 * Método para procurar um projeto por nome.
-	 * 
-	 * @param nome
-	 * @throws ProjetoNaoExisteException
-	 */
-	/*public void procurarProjetoPorNome(String nome) throws ProjetoNaoExisteException{
-		this.controladorProjeto.procurarPorNome(nome);
-	}*/
-
+	
+	private void carregarProjeto(Projeto atual) {
+		try {
+			atual.setContaEntrada(this.controladorConta.buscar(atual.getChaveContaEntrada()));
+			atual.setContaSaida(this.controladorConta.buscar(atual.getChaveContaSaida()));
+			atual.setResponsavel(this.controladorUsuario.buscar(atual.getChaveResponsavel()));
+			
+			for(Key k : atual.getChavesEquipe()){
+				atual.getEquipe().add(this.controladorFuncionario.procurar(k));
+			}
+		} catch (Exception e) { }
+	}
+	
 	/**
 	 * Método para procurar um projeto por usuario.
 	 * 
 	 * @param usuario
 	 * @throws ProjetoNaoExisteException
 	 */
-	/*public void procurarProjetoPorUsuario(Usuario usuario) throws ProjetoNaoExisteException{
-		this.controladorProjeto.procurarPorUsuario(usuario);
-	}*/
+	public Iterator<Projeto> procurarProjetoPorResponsavel(Key chaveUsuario) throws ProjetoNaoExisteException{
+		Iterator<Projeto> p = this.controladorProjeto.procurarPorResponsavel(chaveUsuario);
+		
+		List<Projeto> ret = new ArrayList<Projeto>();
+		Projeto atual = null;
+		while(p.hasNext()){
+			atual = p.next();			
+			this.carregarProjeto(atual);
+			ret.add(atual);
+		}
+		
+		return ret.iterator();		
+	}
+	
+	public Projeto procurarPorID(Long id) throws ProjetoNaoExisteException{
+		Projeto p = this.controladorProjeto.procurarPorID(id);
+		this.carregarProjeto(p);
+		return p;
+	}
+	
+	public Iterator<Projeto> procurarPorDataInicial(Date data) throws ProjetoNaoExisteException{
+		Iterator<Projeto> p = this.controladorProjeto.procurarPorDataInicial(data);
+		
+		List<Projeto> ret = new ArrayList<Projeto>();
+		Projeto atual = null;
+		while(p.hasNext()){
+			atual = p.next();			
+			this.carregarProjeto(atual);
+			ret.add(atual);
+		}
+		
+		return ret.iterator();
+	}
+	
+	public Iterator<Projeto> procurarPorDataFinal(Date data) throws ProjetoNaoExisteException{
+		Iterator<Projeto> p = this.controladorProjeto.procurarPorDataFinal(data);
+		
+		List<Projeto> ret = new ArrayList<Projeto>();
+		Projeto atual = null;
+		while(p.hasNext()){
+			atual = p.next();			
+			this.carregarProjeto(atual);
+			ret.add(atual);
+		}
+		
+		return ret.iterator();
+	}
+	
+	public Iterator<Projeto> getAllProjeto(){
+		return this.controladorProjeto.getAll();
+	}
 
 	/**
 	 * Método para remover um projeto.
@@ -405,6 +469,10 @@ public class Fachada {
 	public void atualizarRequisicao(Requisicao requisicao) throws RequisicaoNaoExisteException{
 		this.controladorRequisicao.atualizar(requisicao);
 	}
+	
+	public Iterator<Requisicao> getAllRequisicao(){
+		return this.controladorRequisicao.getAll();
+	}
 
 	//##################### TRANSAÇÂO #####################//
 
@@ -449,6 +517,10 @@ public class Fachada {
 	public void atualizarTransacao(Transacao transacao) throws TransacaoNaoExisteException{
 		this.controladorTransacao.atualizar(transacao);
 	}
+	
+	public Iterator<Transacao> getAllTransacao(){
+		return this.controladorTransacao.getAll();
+	}
 
 	//##################### USUÁRIO #####################//
 
@@ -483,7 +555,7 @@ public class Fachada {
 		
 		// o usuário não pode ser removido se for responsável por algum projeto. 
 		try {
-			this.controladorProjeto.procurarPorUsuario(u.getKey());
+			this.controladorProjeto.procurarPorResponsavel(u.getKey());
 		} catch (ProjetoNaoExisteException e) {
 			throw new UsuarioNaoPodeSerRemovidoException();
 		}
@@ -545,5 +617,9 @@ public class Fachada {
 		}
 		
 		return ret;
+	}
+	
+	public Iterator<Usuario> getAllUsuario(){
+		return this.controladorUsuario.getAll();
 	}
 }

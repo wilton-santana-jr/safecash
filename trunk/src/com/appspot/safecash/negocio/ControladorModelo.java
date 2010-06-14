@@ -1,5 +1,7 @@
 package com.appspot.safecash.negocio;
 
+import java.util.Iterator;
+
 import com.appspot.safecash.dados.Modelo;
 import com.appspot.safecash.negocio.exception.ModeloNaoExisteException;
 import com.appspot.safecash.repositorio.RepositorioModelo;
@@ -31,5 +33,9 @@ public class ControladorModelo {
 			throw new ModeloNaoExisteException();
 		
 		return m;
+	}
+	
+	public Iterator<Modelo> getAll(){
+		return this.repositorio.iterator();
 	}
 }

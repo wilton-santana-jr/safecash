@@ -43,12 +43,6 @@ public class RepositorioProjetoBT implements RepositorioProjeto {
 	}
 
 	@Override
-	public boolean existe(Projeto projeto) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void inserir(Projeto projeto) {
 		pm = PMF.get().getPersistenceManager();
 		try{
@@ -126,6 +120,16 @@ public class RepositorioProjetoBT implements RepositorioProjeto {
 			return ret.iterator();
 		else
 			return null;
+	}
+	
+	@Override
+	public Projeto procurarPorID(Long id) {
+		Projeto ret = null;
+		pm = PMF.get().getPersistenceManager();
+		ret = pm.getObjectById(Projeto.class, id);
+		
+		pm.close();		
+		return ret;
 	}
 
 	@Override
