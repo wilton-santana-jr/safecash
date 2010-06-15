@@ -3,15 +3,46 @@
 <%@page import="com.appspot.safecash.fachada.Fachada"%>
 <%@page import="com.appspot.safecash.enuns.EnumStatusConta"%>
 <%@page import="com.appspot.safecash.enuns.EnumStatusRequisicao"%>
+<%@page import="com.appspot.safecash.enuns.EnumTipoConta"%>
+<%@page import="com.appspot.safecash.dados.Conta"%>
 <%@page import="com.appspot.safecash.dados.Requisicao"%>
+<%@page import="com.appspot.safecash.negocio.exception.ContaNaoExisteException"%>
+<%@page import="com.appspot.safecash.negocio.exception.RequisicaoNaoExisteException"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%
+// Verifica consistência da Seção
 if (session.getAttribute("login") == null) {
 	response.sendRedirect("login.jsp");
 	response.reset();
 }
 
 Fachada fachada = Fachada.getInstance();
-// Iterator<Requisicao> iteReq = fachada.procurarRequisicaoPorStatus(EnumStatusRequisicao.PENDENTE);
+
+Iterator<Conta> iteContasPg = null;
+Iterator<Conta> iteContasRec = null;
+
+int limitContas = 6;
+int limitRequi = 4;
+
+try {
+	iteContasPg = fachada.procurarConta(EnumTipoConta.SAIDA);
+} catch (ContaNaoExisteException exp) {
+	iteContasPg = null;
+}
+
+try {
+	iteContasRec = fachada.procurarConta(EnumTipoConta.ENTRADA);
+} catch (ContaNaoExisteException exp) {
+	iteContasRec = null;
+}
+
+Iterator<Requisicao> iteReq = null;
+
+try {
+	iteReq = fachada.procurarRequisicao(EnumStatusRequisicao.PENDENTE);
+} catch (RequisicaoNaoExisteException exp) {
+	iteReq = null;
+}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -29,19 +60,7 @@ Fachada fachada = Fachada.getInstance();
 	<div id="logo"></div>
 	
 	<div id="corpo">
-		<div id="menu">
-			<ul>
-				<li><a href="#" title="P&aacute;gina Inicial"><span id="inicio"></span></a></li>
-				<li><a href="#" title="Livro do Caixa"><span id="livro"></span></a></li>
-				<li><a href="#" title="Contas"><span id="contas"></span></a></li>
-				<li><a href="#" title="Projetos"><span id="projetos"></span></a></li>
-				<li><a href="#" title="Capaxita&ccedil;&atilde;o"><span id="capacitacao"></span></a></li>
-				<li><a href="#" title="Relat&oacute;rios"><span id="relatorios"></span></a></li>
-				<li><a href="#" title="Modelos de documentos"><span id="modelos"></span></a></li>
-				<li><span id="linha"></span></li>
-			</ul>
-		</div>
-		
+		<jsp:include page="includes/menu.txt"></jsp:include>
 		<div id="conteudo">
 			<div id="pagar">
 				<div class="cabecario">
@@ -51,28 +70,43 @@ Fachada fachada = Fachada.getInstance();
 				</div>
 				<div class="corpo">
 					<br/>
-					<% //CONTAS A PAGAR %>
-					<span class ="data">DD/MM/AAAA</span><span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span><span class="valor">R$ 0,00</span>
+					<%
+					int i = 0;
+					if (iteContasPg != null && iteContasPg.hasNext()) {
+						while (iteContasPg.hasNext() && i < limitContas) {
+							Conta conta = iteContasPg.next();
+					%>
+					<span class ="data"><% out.print(new SimpleDateFormat("dd/MM/yyyy").format(conta.getData())); %></span><span class ="descricao"><% if (conta.getDescricao().length() > 42) out.print(conta.getDescricao().substring(0, 37) + "[...]"); else out.print(conta.getDescricao());%></span><span class="valor">R$ <% out.print(String.format("%.2f", conta.getValor())); %></span>
+					<%
+							i++;
+						}
+					}
+					else
+						out.print("<span class = 'data'>Não há contas a pagar.</span");
+					%>
 				</div>
 			</div>
 			<div id="requisicoes">
 				<ul>
 					<%
-					//if (iteReq != null && iteReq.hasNext()) {
-					//	while (iteReq.hasNext()) {
-					//		Requisicao req = iteReq.next();
+					if (iteReq != null && iteReq.hasNext()) {
+						i = 0;
+						while (iteReq.hasNext() && i < limitRequi) {
+							Requisicao req = iteReq.next();
 					%>
-					<li><h4><%// out.print(fachada.buscar(req.getChaveUsuario()).getNome()); %></h4>
-						<%// out.print(req.getDescricao()); %>
+					<li><h4><% out.print(fachada.buscar(req.getChaveUsuario()).getNome()); %></h4>
+						<% out.print(req.getDescricao()); %>
 						<br/>
 					</li>
 					<%
-					//	}
-					//}
-					//else
-					//	out.print("<li><h4>Não requisições pendentes.<br/></h4></li>");
+							i++;
+						}
+					}
+					else
+						out.print("<li><h4>Não há requisições pendentes.<br/></h4></li>");
 					%>
 				</ul>
+				<a href="#" title="ver todas as contas dos usu&aacute;rios"> <span id="dir"> &gt;&gt; &nbsp;&nbsp;VER TODAS AS REQUISI&Ccedil;&Otilde;ES</span></a>
 			</div>
 			<div id="receber">
 				<div class="cabecario">
@@ -81,14 +115,25 @@ Fachada fachada = Fachada.getInstance();
 					<span class="valor">VALOR</span>
 				</div>
 				<div class="corpo">
-				<% //CONTAS A RECEBER %>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span><span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span><span class="valor">R$ 0,00</span>
+				<%
+					if (iteContasRec != null && iteContasRec.hasNext()) {
+						i = 0;
+						while (iteContasRec.hasNext() && i < limitContas) {
+							Conta conta = iteContasRec.next();
+					%>
+					<span class ="data"><% out.print(new SimpleDateFormat("dd/MM/yyyy").format(conta.getData())); %></span><span class ="descricao"><%  if (conta.getDescricao().length() > 42) out.print(conta.getDescricao().substring(0, 37) + "[...]"); else out.print(conta.getDescricao()); %></span><span class="valor">R$ <% out.print(String.format("%.2f", conta.getValor())); %></span>
+					<%
+							i++;
+						}
+					}
+					else
+						out.print("<span class = 'data'>Não há contas a receber.</span");
+					%>
 				</div>
+				<a href="#" title="ver todas as contas"> <span id="esq">&gt;&gt; &nbsp;&nbsp;VER TODAS AS CONTAS</span></a>
 			</div>
 			<div id="verTodos">
-				<a href="#" title="ver todas as contas"> <span id="esq">&gt;&gt; &nbsp;&nbsp;VER TODAS AS CONTAS</span></a>
-				<a href="#" title="ver todas as contas dos usu&aacute;rios"> <span id="dir"> &gt;&gt; &nbsp;&nbsp;VER TODAS AS REQUISI&Ccedil;&Otilde;ES</span></a>
+				<a href="#" id="botao" title="Gerenciar usuários"></a>
 			</div>
 		</div>
 	</div>

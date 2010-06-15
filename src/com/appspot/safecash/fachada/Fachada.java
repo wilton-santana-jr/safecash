@@ -231,6 +231,10 @@ public class Fachada {
 		return this.controladorConta.getAll();
 	}
 
+	public Iterator<Conta> getAll() {
+		return this.controladorConta.getAll();
+	}
+	
 	//##################### FUNCIONÁRIO #####################//
 
 	/**

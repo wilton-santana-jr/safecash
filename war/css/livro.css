@@ -23,8 +23,10 @@
 #conteudo form
 {
 	position:relative;
-	top:10px;
-	left:155px;
+	top:20px;
+	right:30px;
+	float:right;
+
 }
 .destaque
 {
@@ -50,7 +52,7 @@ left:2px;
 #livroConta
 {
 	position:relative;
-	top:15px;
+	top:10px;
 	left:8px
 }
 #livroCaixa
@@ -69,7 +71,7 @@ left:2px;
 	color:#FFFFFF;
 	font-weight:bolder;
 	position:relative;
-	top:20px;
+	top:15px;
 	left:27px;
 }
 
@@ -84,7 +86,7 @@ top:10px;
 	width:754px;
 	height:272px;
 	position:relative;
-	top: 24px;
+	top: 19px;
 	left: 26px;
 }
 #informacoesCaixa
@@ -108,4 +110,137 @@ height:270px;
 	width:50%;
 	display:block;
 	float:left;
+}
+#botao
+{
+background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
+background-repeat:no-repeat;
+display:block;
+width:144px;
+height:29px;
+float:right;
+position:relative;
+right:22px;
+top:15px;
+
+}
+
+#botao:hover
+{
+background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
+
+
+}
+
+
+#popUp
+{
+	width:411px;
+	height:309px;
+	background-image:url(../imagens/PageLivroImages/FundoPopLivro.png);
+	background-repeat:no-repeat;
+	z-index:10;
+	position:absolute;
+}
+#nomePopUp
+{
+position:relative;
+top:5px;
+left:5px;
+width:383px;
+text-align:left;
+padding-left:15px;
+text-align:left;
+}
+#popUp form
+{
+	text-align: left;
+	position: relative;
+	left: 25px;
+	top: 15px;
+}
+label.titulo
+{
+	padding-bottom: 5px;
+	font-weight: bold;
+	font-size: 13px;
+	color:black;
+}
+label
+{
+	color:#8A8A8A;
+	font-size: 11px;
+}
+
+.fechar
+{
+	width:13px;
+	height:13px;
+	background-image:url(../imagens/PageModelosImages/x.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:17px;
+	right:22px;
+	z-index:12;
+}
+
+
+.remover
+{
+	width:141px;
+	height:28px;
+	background-image:url(../imagens/PageModelosImages/botaoRemoverModelo.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:70px;
+	right:30px;
+
+}
+
+#tela
+{
+
+	background-color:#3994DA;
+	z-index:9;
+	position:absolute;
+	top:0px;
+	left:0px;
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	-moz-opacity: 0.70;
+
+}
+
+
+.esconder
+{
+	display:none;
+}
+.mostrar
+{
+	display:block;
+}
+.informativo
+{
+	color:#FF0000;
+	font-size:12px;
+	position:relative;
+	top:55px;
+	text-align:right;
+	padding-right:20px;
+}
+
+.inserir
+{
+	width:88px;
+	height:23px;
+	display:block;
+	background-image:url(../imagens/PageLivroImages/botaoLivroPopUp.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:40px;
+	right:30px;
 }

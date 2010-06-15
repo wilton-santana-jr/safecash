@@ -41,7 +41,7 @@ public class RequisicaoContratoServlet extends HttpServlet{
 		this.sessao = req.getSession();
 		this.permissao = (EnumPermissao) this.sessao.getAttribute("permissao");
 
-		if(this.permissao.equals("USER"))
+		if(this.permissao == EnumPermissao.USER)
 			this.processUser(req, res);
 		else
 			this.processAdmin(req, res);

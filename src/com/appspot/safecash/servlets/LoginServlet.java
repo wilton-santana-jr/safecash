@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import com.appspot.safecash.dados.Usuario;
 import com.appspot.safecash.enuns.EnumPermissao;
 import com.appspot.safecash.fachada.Fachada;
-import com.appspot.safecash.negocio.exception.UsuarioJaExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
 
 public class LoginServlet extends HttpServlet {
@@ -34,13 +33,44 @@ public class LoginServlet extends HttpServlet {
 	
 	private void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
-			//*
+			/*
 			try {
 				fachada.inserirUsuario(new Usuario("jow", "123", "Jonathas", EnumPermissao.ADMIN));
+				fachada.inserirUsuario(new Usuario("b", "123", "Bruno", EnumPermissao.USER));
+				fachada.inserirUsuario(new Usuario("l", "123", "Luis", EnumPermissao.USER));
+				fachada.inserirUsuario(new Usuario("t", "123", "Tiago", EnumPermissao.USER));
+				
+				fachada.inserirRequisicao(new Requisicao("11DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO", EnumStatusRequisicao.PENDENTE, fachada.buscar("b").getKey()));
+				fachada.inserirRequisicao(new Requisicao("22DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO", EnumStatusRequisicao.PENDENTE, fachada.buscar("l").getKey()));
+				fachada.inserirRequisicao(new Requisicao("33DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO", EnumStatusRequisicao.PENDENTE, fachada.buscar("t").getKey()));
 			} catch (UsuarioJaExisteException e) {
 				e.printStackTrace();
 			}
-			//*////////////////////////////////////
+			
+			Date data1 = new Date(), data2 = null, data3 = null;
+			try {			 
+				data2 = new SimpleDateFormat("dd/MM/yyyy").parse("30/11/2010");
+				data3 = new SimpleDateFormat("dd/MM/yyyy").parse("04/12/2010");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			Conta c1 = new Conta(data2, "RECEBER RECEBER RECEBER RECEBER RECEBER", 123324.67, EnumStatusConta.ATRASADO, EnumTipoConta.ENTRADA);
+			Conta c2 = new Conta(data3, "PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR", 53343.5, EnumStatusConta.PENDENTE, EnumTipoConta.SAIDA);
+			Conta c3 = new Conta(data3, "PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR", 53343.5, EnumStatusConta.PENDENTE, EnumTipoConta.SAIDA);
+			Conta c4 = new Conta(data3, "PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR", 53343.5, EnumStatusConta.PENDENTE, EnumTipoConta.SAIDA);
+			Conta c5 = new Conta(data3, "444PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR0", 233.5, EnumStatusConta.PENDENTE, EnumTipoConta.SAIDA);
+			Conta c6 = new Conta(data3, "4554PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR1", 88.5, EnumStatusConta.PENDENTE, EnumTipoConta.SAIDA);
+			Conta c7 = new Conta(data3, "666PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR PAGAR2", 111.4, EnumStatusConta.PENDENTE, EnumTipoConta.SAIDA);
+			
+			fachada.inserirConta(c1);
+			fachada.inserirConta(c5);
+			fachada.inserirConta(c6);
+			fachada.inserirConta(c7);
+			*////////////////////////////////////
+			
+			//fachada.inserirRequisicao(new Requisicao("11DESCRICAO DESCRICAO DESCRICAO DESCRICAO", EnumStatusRequisicao.PENDENTE));
+			//fachada.inserirRequisicao(new Requisicao("22DESCRICAO DESCRICAO DESCRICAO DESCRICAO", EnumStatusRequisicao.PENDENTE));
 			
 			if (login == null ||senha == null
 					||  login.equals("") || senha.equals("")) {
@@ -71,6 +101,7 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("senha", this.senha);
 		session.setAttribute("nome", this.user.getNome());
 		session.setAttribute("senha", this.user.getPermissao());
+		session.setAttribute("key", this.user.getKey());
 		
 		session.setMaxInactiveInterval(300);
 	}
