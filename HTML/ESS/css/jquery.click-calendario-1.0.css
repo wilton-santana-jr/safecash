@@ -1,6 +1,6 @@
 div.calendario {
 	width: 154px;
-	position: absolute;
+	position: absolute;/*--------------------------------*/
 	background: #fff url('/img/fe/bg_calendario_sombra.gif') repeat-y right;
 	border-left: 1px solid #f6f6f6;
 	border-top: 1px solid #f6f6f6;	
