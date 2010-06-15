@@ -1,6 +1,28 @@
 $(document).ready(function() {
-        $("#lista").find("li").each(function(i) {
-            $(this).click(function(e){
+       
+	
+		$('#calendario').calendario({
+			target:'#calendario',
+			closeClick:false,
+			top:120,
+			left:235,
+			referencePosition : '#popUp'
+		});
+	
+		$('div.calendario ul li a').click(function(){
+			var html = $(this).html();
+			$(this).remove();
+			//$(':text').attr({value:html});
+			
+			$('div.calendario ul li.default').removeClass('default');
+			$('div.calendario ul li:empty').addClass('default');
+			$('div.calendario ul li:empty').html('<a href="#">'+html + '</a>');
+		});
+	
+		
+	
+
+            $('#botao').click(function(e){
 								     
 									  var largura = $('body').outerWidth(true);
 									  var altura =  $('body').outerHeight(true);
@@ -21,7 +43,7 @@ $(document).ready(function() {
 									  						  										  
 								   } );
 			
-        });
+      
 		
 		$(".fechar").click(function(e){
 									$('#popUp').fadeOut(200);
@@ -31,7 +53,7 @@ $(document).ready(function() {
 		
 		$(".remover").click(function(e){
 									
-									var idModelo =  $('#valor').val();
+									  var idModelo =  $('#valor').val();
 									var pagina = $.post("nomedomapeamento", { id: idModelo} );
 									$('#popUp').fadeOut(200);
 									 $('#tela').fadeOut(200);

@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Álbum de fotos</title>
+<style type="text/css">
+body {background-color:#000000; color:#FFFFFF; font-family:tahoma,arial,verdana; margin:5px;}
+td.tumbnails {width:120; height:90; text-align:center}
+div.tumbnails {font-size:11px;}
+</style>
+<script type="text/javascript">
+//Código desenvolvido e testado por: Klonder.
+//Postagem exclusiva em: www.forum.imasters.com.br
+
+var imagem = new Array();
+imagem[0] = "http://fc05.deviantart.com/fs20/f/2007/270/3/4/Balance_Wallpaper_by_nxxos.jpg";
+imagem[1] = "http://www.papeldeparede.etc.br/wallpapers/paisagem-natural_3995_1280x800.jpg";
+imagem[2] = "http://www.papeldeparede.etc.br/wallpapers/amigo-pinguin_3993_1024x768.jpg";
+imagem[3] = "http://www.papeldeparede.etc.br/wallpapers/the-simpsons-ou-sopranos_3992_1024x768.jpg";
+imagem[4] = "http://www.papeldeparede.etc.br/wallpapers/bart-e-skate_3976_1024x768.jpg";
+imagem[5] = "http://www.papeldeparede.etc.br/wallpapers/_3988_1024x768.jpg";
+imagem[6] = "http://www.papeldeparede.etc.br/wallpapers/homer-astronauta_3977_1024x768.jpg";
+imagem[7] = "http://www.papeldeparede.etc.br/wallpapers/tigre-branco_3968_1024x768.jpg";
+imagem[8] = "http://www.papeldeparede.etc.br/wallpapers/bicicleta-voadora_3840_1024x768.jpg";
+imagem[9] = "http://www.papeldeparede.etc.br/wallpapers/gato-na-cama_3829_1024x768.jpg";
+
+var carregar = new Array();
+
+function carregarImagens() {
+        for (var i=0; i<imagem.length; i++) {
+                carregar[i] = new Image();
+                carregar[i].src = imagem[i];
+                document.getElementById("imgQuadro").innerHTML = "Carregando...";
+                document.getElementById("imgTumb"+i).innerHTML = "Carregando...";
+                window.setTimeout("verificaCarregamento("+i+")",100);
+        }
+}
+
+function verificaCarregamento(imgID) {
+        if(carregar[imgID].complete ) {
+                document.getElementById("imgTumb"+imgID).innerHTML = '<img src="'+carregar[imgID].src+'" width="120" height="90" onclick=abrirImagem('+imgID+')>';
+                if (imgID == 0) {
+                        document.getElementById("imgQuadro").innerHTML = '<img width="400" height="300" id="imgQuadro" src="'+imagem[imgID]+'">';
+                }
+        }else{
+                window.setTimeout("verificaCarregamento("+imgID+")", 100);
+        }
+}
+
+function abrirImagem(imgID) {
+        document.getElementById("imgQuadro").innerHTML = '<img width="400" height="300" id="imgQuadro" src="'+imagem[imgID]+'">';
+}
+
+window.onload = carregarImagens;
+</script>
+</head>
+
+<body>
+<center>
+<table border="1" width="400" height="300">
+<tr>
+        <td align="center"><div id="imgQuadro"></div></td>
+</tr>
+</table>
+
+<br>
+<table border="1">
+<tr>
+        <td class="tumbnails"><div id="imgTumb0" class="tumbnails"></div></td>
+        <td class="tumbnails"><div id="imgTumb1" class="tumbnails"></div></td>
+        <td class="tumbnails"><div id="imgTumb2" class="tumbnails"></div></td>
+        <td class="tumbnails"><div id="imgTumb3" class="tumbnails"></div></td>
+        <td class="tumbnails"><div id="imgTumb4" class="tumbnails"></div></td>
+</tr>
+</table>
+<table border="1">
+<tr>
+        <td class="tumbnails"><div id="imgTumb5" class="tumbnails"></div></td>
+        <td class="tumbnails"><div id="imgTumb6" class="tumbnails"></div></td>
+        <td class="tumbnails"><div id="imgTumb7" class="tumbnails"></div></td>
+        <td class="tumbnails"><div id="imgTumb8" class="tumbnails"></div></td>
+        <td class="tumbnails"><div id="imgTumb9" class="tumbnails"></div></td>
+</tr>
+</table>
+
+</center>
+</body>
+</html>
