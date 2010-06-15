@@ -2,10 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="css/defalt.css">
-<link rel="stylesheet" href="css/caixa.css">
+<link rel="stylesheet" href="css/defalt.css" />
+<link rel="stylesheet" href="css/caixa.css" />
 
-<link rel="stylesheet" href="css/contas.css">
+<link rel="stylesheet" href="css/livro.css" />
+<link rel="stylesheet" href="css/jquery.click-calendario-1.0.css" />
+
+
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.click-calendario-1.0-min.js"></script>
+<script type="text/javascript" src="js/livro.js"></script>
 <title>Untitled Document</title>
 </head>
 
@@ -29,6 +35,7 @@
 		</div>
 		
 		<div id="conteudo">
+
 			<a href="#" id="botao" title="Adicionar Conta"></a>
 			<form>
 				<select name= "mes"onchange="scripting(this.value)">
@@ -63,6 +70,13 @@
 					<option value="2021">2021</option>
 				</select>
 			</form>
+			<div id="livroConta" class="destaque cor">Livro Conta</div>
+			
+			<!--<form>
+				<input type="checkbox" id="conta" name="conta" value="true" checked="checked"/><label for="conta"> Conta</label>
+				<input type="checkbox" id="caixa" name="caixa" value="true"   checked="checked"/><label for="livro"> Livro</label>
+			</form>-->
+			
 			<div id="titulo" class="arredonda"><span id="esq">ENTRADA</span><span>SA&Iacute;DA</span></div>
 			
 			<div id="informacoes">
@@ -100,13 +114,76 @@
 					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
 			</div>
 			
- 	
+ 	<!--------------------------------------------------------------------------------------------->
+	
+	<div id="livroCaixa" class="destaque cor">Livro Caixa</div>
+			
+			<div id="tituloCaixa" class="arredonda"><span id="esq">ENTRADA</span><span>SA&Iacute;DA</span></div>
+			
+			<div id="informacoesCaixa">
+				<div id="pagarCaixa">
+					<div class="cabecario">
+						<span class ="data">DATA</span>
+						<span class ="descricao">DESCRI&Ccedil;&Atilde;O</span>
+						<span class="valor">VALOR</span>					</div>
+				<div class="corpo">
+					<br/>
+					<span class ="data">DD/MM/AAAA</span>
+					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;ODESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;ODESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
+					<br/>
+					<span class ="data">DD/MM/AAAA</span>
+					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
+					<br/>
+					<span class ="data">DD/MM/AAAA</span>
+					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
+			</div>
+			
+			<div id="receberCaixa">
+				<div class="cabecario">
+					<span class ="data">DATA</span>
+					<span class ="descricao">DESCRI&Ccedil;&Atilde;O</span>
+					<span class="valor">VALOR</span>				</div>
+				<div class="corpo">
+					<br/>
+					<span class ="data">DD/MM/AAAA</span>
+					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
+					<br/>
+					<span class ="data">DD/MM/AAAA</span>
+					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
+					<br/>
+					<span class ="data">DD/MM/AAAA</span>
+					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
+			</div>
+	
 	
 		</div>
 	</div>
 
 </div>
+</div>
+</div>
+<div id="popUp" class="esconder">
+	<a class="fechar" href="#" title="voltar"></a>
+	<span id="nomePopUp" class="destaque cor">Defina a nova transa&ccedil;&atilde;o</span>
+	
+	<form action="
+	#" method="post">
+	<label class="titulo">DESCRI&Ccedil;&Atilde;O:</label><br/>
+	<input type="text" name="descricao" size="55"/><br/><br/>
+	<label class="titulo">TIPO:</label><br/>
+	<input  id="entrada" type="radio" name="tipo" value="entrada"/><label for="entrada">ENTRADA</label><br/>
+	<input  id="saida" type="radio" name="tipo" value="saida"/><label for="saida">SAIDA</label><br/><br/>
+	<label class="titulo">ORIGEM:</label><br/>
+	<input  id="conta" type="radio" name="origem" value="conta"/><label for="conta">CONTA</label><br/>
+	<input  id="caixa" type="radio" name="origem" value="caixa"/><label for="caixa">CAIXA</label><br/>
+	
+	<input id="calendario" type="hidden" name="data" value="" />
+	
+	<a href="#"></a>
+	</form>
 
 
+</div> 
+<div id="tela"></div>
 </body>
 </html>
