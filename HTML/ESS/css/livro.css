@@ -23,8 +23,10 @@
 #conteudo form
 {
 	position:relative;
-	top:10px;
-	left:155px;
+	top:20px;
+	right:30px;
+	float:right;
+
 }
 .destaque
 {
@@ -50,7 +52,7 @@ left:2px;
 #livroConta
 {
 	position:relative;
-	top:15px;
+	top:0px;
 	left:8px
 }
 #livroCaixa
@@ -69,7 +71,7 @@ left:2px;
 	color:#FFFFFF;
 	font-weight:bolder;
 	position:relative;
-	top:20px;
+	top:5px;
 	left:27px;
 }
 
@@ -84,7 +86,7 @@ top:10px;
 	width:754px;
 	height:272px;
 	position:relative;
-	top: 24px;
+	top: 9px;
 	left: 26px;
 }
 #informacoesCaixa
@@ -108,4 +110,24 @@ height:270px;
 	width:50%;
 	display:block;
 	float:left;
+}
+#botao
+{
+background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
+background-repeat:no-repeat;
+display:block;
+width:144px;
+height:29px;
+float:right;
+position:relative;
+right:22px;
+top:15px;
+
+}
+
+#botao:hover
+{
+background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
+
+
 }

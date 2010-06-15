@@ -1,0 +1,221 @@
+/* CSS Document */
+
+h4,h3,h2,p
+{
+text-align:left;
+width:385px;
+padding-left:30px;
+margin-bottom:0px;
+margin-top:10px;
+font-weight:200;
+}
+#menu ul span#modelos
+{
+	background-image:url(../imagens/modelos_clicado.png);
+	/*width:102px;*/
+}
+#menu ul a:hover span#modelos
+{
+	background-image:url(../imagens/modelos_clicado.png);
+}
+
+#conteudo
+{
+	background-image:url(../imagens/PageLivroImages/fundo.jpg);
+	background-repeat:no-repeat;
+	height:740px;
+	
+	text-align:left;
+	position:relative;
+	left:3px;
+}
+#conteudo form
+{
+	position:relative;
+	top:15px;
+	left:45px;
+}
+
+.label
+{
+	font-size:18px;
+	/*font-weight:bold;*/
+	color:#000000;
+	font-family:calibri;
+	float:left;
+}
+
+.botao
+{
+	display:block;
+	width:215px;
+	height:30px;
+	background-image:url(../imagens/PageModelosImages/botaoInserirModelo.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	left:0px;
+}
+
+a.botao:hover
+{
+background-image:url(../imagens/PageModelosImages/botaoInserirModelo2.png);
+}
+
+.campo
+{
+	float:left;
+	font-size:14px;
+	font-weight:bold;
+	color:#CCC;
+	font-family:calibri;
+	
+}
+.destaque
+{
+	font-size:24px;
+	font-weight:bold;
+	display:block;
+
+	background-image:url(../imagens/reta.png);
+	background-repeat:repeat-x;
+	background-position:left bottom;
+	float:left;
+	
+	/*text-align:left;
+	padding-bottom:10px;
+	padding-left:30px;*/
+	position:relative;
+	
+	
+}
+
+#livroConta
+{
+	width:765px;
+	height:40px;
+	padding-left:30px;
+	left:5px;
+}
+
+#lista
+{
+	position:relative;
+	top:40px;
+	left:45px;
+}
+
+#lista ul
+{
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	list-style-image:url(../imagens/PageAdminImages/ponto.jpg);
+	color:#999999;
+	font-size:12px;
+	width:100%;
+}
+
+#lista ul li
+{
+	float:left;
+	width:45%;
+	padding: 10px 25px 0 5px;
+}
+#lista ul li a
+{
+	text-decoration:none;
+	color:#000000;
+	font-size:14px;
+	
+}
+
+#popUp
+{
+	width:434px;
+	height:260px;
+	background-image:url(../imagens/PageModelosImages/FundoModeloPopUp.png);
+	background-repeat:no-repeat;
+	z-index:10;
+	position:absolute;
+}
+#nomePopUp
+{
+position:relative;
+top:15px;
+left:17px;
+width:385px;
+text-align:left;
+padding-left:15px;
+text-align:left;
+}
+
+.fechar
+{
+	width:13px;
+	height:13px;
+	background-image:url(../imagens/PageModelosImages/x.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:17px;
+	right:22px;
+	z-index:12;
+}
+.download
+{
+	width:134px;
+	height:28px;
+	background-image:url(../imagens/PageModelosImages/botaoBaixarModelo.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:70px;
+	right:35px;
+
+}
+
+.remover
+{
+	width:141px;
+	height:28px;
+	background-image:url(../imagens/PageModelosImages/botaoRemoverModelo.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:70px;
+	right:30px;
+
+}
+
+#tela
+{
+
+	background-color:#3994DA;
+	z-index:9;
+	position:absolute;
+	top:0px;
+	left:0px;
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+	-moz-opacity: 0.40;
+
+}
+
+
+.esconder
+{
+	display:none;
+}
+.mostrar
+{
+	display:block;
+}
+.informativo
+{
+	color:#FF0000;
+	font-size:12px;
+	position:relative;
+	top:55px;
+	text-align:right;
+	padding-right:20px;
+}
