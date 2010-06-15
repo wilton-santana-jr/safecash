@@ -33,9 +33,10 @@ $(document).ready(function() {
 									
 									var idModelo =  $('#valor').val();
 									var pagina = $.post("nomedomapeamento", { id: idModelo} );
+									 $('#tudo').text(pagina);
 									$('#popUp').fadeOut(200);
 									 $('#tela').fadeOut(200);
-									 $('body').text(pagina);
+									
 									 
 									
 									
@@ -43,9 +44,10 @@ $(document).ready(function() {
 		$(".download").click(function(e){
 									 var idModelo =  $('#valor').val();
 									var pagina = $.post("nomedomapeamento", { id: idModelo} );
+									 $('#tudo').text(pagina);
 									$('#popUp').fadeOut(200);
 									 $('#tela').fadeOut(200);
-									 $('body').text(pagina);
+									
 									
 									
 									});
