@@ -40,7 +40,7 @@ try {
 <link rel="stylesheet" href="css/caixa.css" />
 
 <link rel="stylesheet" href="css/contas.css" />
-<title>$afe Cash - Administrador Financeiro</title>
+<title>$afeCash - Administrador Financeiro</title>
 </head>
 
 <body>
@@ -109,7 +109,7 @@ try {
 						}
 					}
 					else
-						out.print("<span class = 'data'>Não há contas a receber.</span");
+						out.print("Não há contas a receber.");
 					%>
 				</div>
 			</div>
@@ -133,7 +133,7 @@ try {
 						}
 					}
 					else
-						out.print("<span class = 'data'>Não há contas a pagar.</span");
+						out.print("Não há contas a pagar.");
 					%>
 				</div>
 			</div>

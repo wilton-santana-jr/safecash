@@ -20,6 +20,7 @@ import com.appspot.safecash.enuns.EnumOrigemTransacao;
 import com.appspot.safecash.enuns.EnumStatusConta;
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
 import com.appspot.safecash.enuns.EnumTipoConta;
+import com.appspot.safecash.enuns.EnumTipoTransacao;
 import com.appspot.safecash.fachada.exception.UsuarioNaoPodeSerRemovidoException;
 import com.appspot.safecash.negocio.ControladorConta;
 import com.appspot.safecash.negocio.ControladorFuncionario;
@@ -501,7 +502,11 @@ public class Fachada {
 	public Iterator<Transacao> buscar(Date dataInicio, Date dataFim) throws NenhumaTransacaoEncontradaException{
 		return this.controladorTransacao.buscar(dataInicio, dataFim);
 	}
-
+	
+	public Iterator<Transacao> buscar(EnumTipoTransacao tipo) throws NenhumaTransacaoEncontradaException{
+		return this.controladorTransacao.buscar(tipo);
+	}
+	
 	/**
 	 * Método para remover uma transação.
 	 * 

@@ -82,7 +82,7 @@ try {
 						}
 					}
 					else
-						out.print("<span class = 'data'>Não há contas a pagar.</span");
+						out.print("Não há contas a pagar.");
 					%>
 				</div>
 			</div>
@@ -127,7 +127,7 @@ try {
 						}
 					}
 					else
-						out.print("<span class = 'data'>Não há contas a receber.</span");
+						out.print("Não há contas a receber.");
 					%>
 				</div>
 				<a href="#" title="ver todas as contas"> <span id="esq">&gt;&gt; &nbsp;&nbsp;VER TODAS AS CONTAS</span></a>
