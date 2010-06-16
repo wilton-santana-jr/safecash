@@ -1,6 +1,8 @@
 package com.appspot.safecash.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,9 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.appspot.safecash.dados.Transacao;
 import com.appspot.safecash.dados.Usuario;
+import com.appspot.safecash.enuns.EnumOrigemTransacao;
 import com.appspot.safecash.enuns.EnumPermissao;
+import com.appspot.safecash.enuns.EnumTipoTransacao;
 import com.appspot.safecash.fachada.Fachada;
+import com.appspot.safecash.negocio.exception.TransacaoJaExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
 
 public class LoginServlet extends HttpServlet {
@@ -33,6 +39,15 @@ public class LoginServlet extends HttpServlet {
 	
 	private void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
+			try {
+				fachada.inserirTransacao(new Transacao("TRANSACAO TRANSACAO TRANSACAO TRANSACAO TRANSACAO TRANSACAO TRANSACAO TRANSACAO TRANSACAO", new SimpleDateFormat("dd/MM/yyyy").parse("30/11/2010"), 44.78, EnumTipoTransacao.SAIDA, EnumOrigemTransacao.CAIXA));
+				fachada.inserirTransacao(new Transacao("TRANSACAO TRANSACAO TRANSACAO TRANSACAO TRANSACAO TRANSACAO TRANSACAO TRANSACAO TRANSACAO", new SimpleDateFormat("dd/MM/yyyy").parse("30/11/2010"), 44.78, EnumTipoTransacao.SAIDA, EnumOrigemTransacao.CONTA));
+			} catch (TransacaoJaExisteException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
 			/*
 			try {
 				fachada.inserirUsuario(new Usuario("jow", "123", "Jonathas", EnumPermissao.ADMIN));

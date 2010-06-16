@@ -1,39 +1,80 @@
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import="com.appspot.safecash.fachada.Fachada"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="com.appspot.safecash.dados.Transacao"%>
+<%@page import="com.appspot.safecash.enuns.EnumOrigemTransacao"%>
+<%@page import="com.appspot.safecash.negocio.exception.NenhumaTransacaoEncontradaException"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.appspot.safecash.enuns.EnumTipoTransacao"%>
+<%
+//Verifica consistência da Seção
+if (session.getAttribute("login") == null) {
+	response.sendRedirect("login.jsp");
+	response.reset();
+}
+
+Fachada fachada = Fachada.getInstance();
+
+Iterator<Transacao> iteTransConta = null;
+Iterator<Transacao> iteTransCaixa = null;
+
+try {
+	iteTransConta = fachada.buscar(EnumOrigemTransacao.CONTA);
+} catch (NenhumaTransacaoEncontradaException exp) {
+	iteTransConta = null;
+}
+
+try {
+	iteTransCaixa = fachada.buscar(EnumOrigemTransacao.CAIXA);
+} catch (NenhumaTransacaoEncontradaException exp) {
+	iteTransCaixa = null;
+}
+
+ArrayList<Transacao> transContaEntrada = new ArrayList<Transacao>();
+ArrayList<Transacao> transContaSaida = new ArrayList<Transacao>();
+
+ArrayList<Transacao> transCaixaEntrada = new ArrayList<Transacao>();
+ArrayList<Transacao> transCaixaSaida = new ArrayList<Transacao>();
+
+while (iteTransConta != null && iteTransConta.hasNext()) {
+	Transacao c = iteTransConta.next();
+	if (c.getTipo() == EnumTipoTransacao.ENTRADA)
+		transContaEntrada.add(c);
+	else
+		transContaSaida.add(c);
+}
+
+while (iteTransCaixa != null && iteTransCaixa.hasNext()) {
+	Transacao c = iteTransCaixa.next();
+	if (c.getTipo() == EnumTipoTransacao.ENTRADA)
+		transCaixaEntrada.add(c);
+	else
+		transCaixaSaida.add(c);
+}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<%@page import="java.text.SimpleDateFormat"%><html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="css/defalt.css">
-<link rel="stylesheet" href="css/caixa.css">
+<link rel="stylesheet" href="css/defalt.css" />
+<link rel="stylesheet" href="css/caixa.css" />
 
-<link rel="stylesheet" href="css/livro.css">
-<link rel="stylesheet" href="css/jquery.click-calendario-1.0.css">
-
+<link rel="stylesheet" href="css/livro.css" />
+<link rel="stylesheet" href="css/jquery.click-calendario-1.0.css" />
 
 <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.click-calendario-1.0-min.js"></script>
 <script type="text/javascript" src="js/livro.js"></script>
-<title>Untitled Document</title>
+<title>$afeCash - Administrador Financeiro</title>
 </head>
-
 <body>
 <div id="tudo">
-	<div id="dados">Usu&aacute;rio: <span class="cor">Bruno Medeiros</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt;&gt; <a href="#" class="cor" title="logout">logout</a></div>
+	<div id="dados">Usu&aacute;rio: <span class="cor"><% out.print(session.getAttribute("nome")); %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt;&gt; <a href="/logoff" class="cor" title="logout">logout</a></div>
 	<div id="logo"></div>
 	
 	<div id="corpo">
-		<div id="menu">
-			<ul>
-				<li><a href="#" title="P&aacute;gina Inicial"><span id="inicio"></span></a></li>
-				<li><a href="#" title="Livro do Caixa"><span id="livro"></span></a></li>
-				<li><a href="#" title="Contas"><span id="contas"></span></a></li>
-				<li><a href="#" title="Projetos"><span id="projetos"></span></a></li>
-				<li><a href="#" title="Requisi&ccedil;&atilde;o"><span id="requisicao"></span></a></li>
-				<li><a href="#" title="Relat&oacute;rios"><span id="relatorios"></span></a></li>
-				<li><a href="#" title="Modelos de documentos"><span id="modelos"></span></a></li>
-				<li><span id="linha"></span></li>
-			</ul>
-		</div>
-		
+		<jsp:include page="includes/menu.txt"></jsp:include>
 		<div id="conteudo">
 
 			<a href="#" id="botao" title="Adicionar Conta"></a>
@@ -87,14 +128,18 @@
 						<span class="valor">VALOR</span>					</div>
 				<div class="corpo">
 					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;ODESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;ODESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
+					<%
+					if (transContaEntrada.size() != 0) {
+						for (Transacao c : transContaEntrada) {
+					%>
+					<span class ="data"><% out.print(new SimpleDateFormat("dd/MM/yyyy").format(c.getData())); %></span><span class ="descricao"><%  if (c.getDescricao().length() > 32) out.print(c.getDescricao().substring(0, 27) + "[...]"); else out.print(c.getDescricao()); %></span><span class="valor">R$ <% out.print(String.format("%.2f", c.getValor())); %></span>
+					<%
+						}
+					}
+					else
+						out.print("Não há transações de conta a receber.");
+					%>
+					</div>
 			</div>
 			
 			<div id="receber">
@@ -104,14 +149,18 @@
 					<span class="valor">VALOR</span>				</div>
 				<div class="corpo">
 					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
+					<%
+					if (transContaSaida.size() != 0) {
+						for (Transacao c : transContaSaida) {
+					%>
+					<span class ="data"><% out.print(new SimpleDateFormat("dd/MM/yyyy").format(c.getData())); %></span><span class ="descricao"><%  if (c.getDescricao().length() > 32) out.print(c.getDescricao().substring(0, 27) + "[...]"); else out.print(c.getDescricao()); %></span><span class="valor">R$ <% out.print(String.format("%.2f", c.getValor())); %></span>
+					<%
+						}
+					}
+					else
+						out.print("Não há transações de conta a pagar.");
+					%>
+					</div>
 			</div>
 			
  	<!--------------------------------------------------------------------------------------------->
@@ -128,14 +177,18 @@
 						<span class="valor">VALOR</span>					</div>
 				<div class="corpo">
 					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;ODESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;ODESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
+					<%
+					if (transCaixaEntrada.size() != 0) {
+						for (Transacao c : transCaixaEntrada) {
+					%>
+					<span class ="data"><% out.print(new SimpleDateFormat("dd/MM/yyyy").format(c.getData())); %></span><span class ="descricao"><%  if (c.getDescricao().length() > 32) out.print(c.getDescricao().substring(0, 27) + "[...]"); else out.print(c.getDescricao()); %></span><span class="valor">R$ <% out.print(String.format("%.2f", c.getValor())); %></span>
+					<%
+						}
+					}
+					else
+						out.print("Não há transações de caixa a receber.");
+					%>
+					</div>
 			</div>
 			
 			<div id="receberCaixa">
@@ -145,14 +198,18 @@
 					<span class="valor">VALOR</span>				</div>
 				<div class="corpo">
 					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
+					<%
+					if (transCaixaSaida.size() != 0) {
+						for (Transacao c : transCaixaSaida) {
+					%>
+					<span class ="data"><% out.print(new SimpleDateFormat("dd/MM/yyyy").format(c.getData())); %></span><span class ="descricao"><%  if (c.getDescricao().length() > 32) out.print(c.getDescricao().substring(0, 27) + "[...]"); else out.print(c.getDescricao()); %></span><span class="valor">R$ <% out.print(String.format("%.2f", c.getValor())); %></span>
+					<%
+						}
+					}
+					else
+						out.print("Não há transações de caixa a pagar.");
+					%>
+					</div>
 			</div>
 	
 	
