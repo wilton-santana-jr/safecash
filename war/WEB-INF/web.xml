@@ -15,7 +15,7 @@
 		<servlet-name>Login Servlet</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
-	
+	<!-- ======= -->
 	<servlet>
 		<servlet-name>Logoff Servlet</servlet-name>
 		<servlet-class>com.appspot.safecash.servlets.LogoffServlet</servlet-class>
@@ -24,6 +24,36 @@
 	<servlet-mapping>
 		<servlet-name>Logoff Servlet</servlet-name>
 		<url-pattern>/logoff</url-pattern>
+	</servlet-mapping>
+	<!-- ======= -->
+	<servlet>
+		<servlet-name>Gerencia Usuarios Servlet</servlet-name>
+		<servlet-class>com.appspot.safecash.servlets.GerenciaUsuarioServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Gerencia Usuarios Servlet</servlet-name>
+		<url-pattern>/managerusers</url-pattern>
+	</servlet-mapping>
+	<!-- ======= -->
+	<servlet>
+		<servlet-name>Conta Servlet</servlet-name>
+		<servlet-class>com.appspot.safecash.servlets.ContaServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Conta Servlet</servlet-name>
+		<url-pattern>/contas</url-pattern>
+	</servlet-mapping>
+	<!-- ======= -->
+	<servlet>
+		<servlet-name>Livro Servlet</servlet-name>
+		<servlet-class>com.appspot.safecash.servlets.LivroServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Livro Servlet</servlet-name>
+		<url-pattern>/livro</url-pattern>
 	</servlet-mapping>
 	<!-- ==========================  -->
 

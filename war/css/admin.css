@@ -177,3 +177,256 @@ height:64px;
 position:relative;
 left:505px;
 }
+
+
+#popUp
+{
+	width:675px;
+	height:492px;
+	background-image:url(../imagens/PageAdminImages/fundoGerenciaUser.png);
+	background-repeat:no-repeat;
+	z-index:10;
+	position:absolute;
+	text-align:left;
+}
+#nomePopUp
+{
+position:relative;
+top:5px;
+left:7px;
+width:645px;
+height:40px;
+padding-top:5px;
+text-align:left;
+padding-left:15px;
+text-align:left;
+}
+
+.fechar
+{
+	width:13px;
+	height:13px;
+	background-image:url(../imagens/PageModelosImages/x.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:17px;
+	right:22px;
+	z-index:12;
+}
+.destaque
+{
+	font-size:24px;
+	font-weight:bold;
+	display:block;
+	width:464px;
+	height:40px;
+	background-image:url(../imagens/reta.png);
+	background-repeat:repeat-x;
+	background-position:left bottom;
+	float:left;
+	padding-left:30px
+	/*text-align:left;
+	padding-bottom:10px;
+	padding-left:30px;*/
+}
+#cabecario
+{
+font-size:24px;
+	font-weight:bold;
+	display:block;
+	color:#999999;
+	width:464px;
+	height:100px;
+	position:relative;
+	top:15px;
+	left:20px;
+}
+
+#usuarios
+{
+display:block;
+float:left;
+width:310px;
+height:370px;
+position:relative;
+top:0px;
+left:20px;
+}
+
+#usuarios ul
+{
+	margin:0;
+	padding:0;
+	list-style:none;
+	height:320px;
+}
+
+#usuarios a
+{
+	width:291px;
+	height:35px;
+	background-image:url(../imagens/PageAdminImages/botaoRemoverUsuario.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:17px;
+	right:22px;
+}
+#usuarios label
+{
+	padding-bottom:10px;
+	padding-left:25px;
+	display:block;
+	
+}
+
+#usuarios input[type="radio"]
+{
+	
+	float:left;
+}
+
+#editar .editarUsuario
+{
+	width:352px;
+	height:35px;
+	background-image:url(../imagens/PageAdminImages/botaoEditarUsuario.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:0px;
+	right:15px;
+	float:right;
+}
+
+#editar a
+{
+	width:89px;
+	height:25px;
+	background-image:url(../imagens/PageAdminImages/botaoAtualizar.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:-5px;
+	right:20px;
+	float:right;
+	/*padding: 5px 5px 5px 5px;*/
+}
+
+#cadastrar a
+{
+	width:89px;
+	height:25px;
+	background-image:url(../imagens/PageAdminImages/botaoCadastrar.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:-5px;
+	right:20px;
+	float:right;
+}
+
+#cadastrar .cadastrarUsuario
+{
+	width:355px;
+	height:35px;
+	background-image:url(../imagens/PageAdminImages/botaoCadastrarUsuario.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:0px;
+	right:15px;
+	float:right;
+}
+#cadastrar
+{
+	width:355px;
+	height:190px;
+	float:right;
+	display:block;
+}
+#editar
+{
+	width:355px;
+	height:190px;
+	float:right;
+	display:block;
+}
+/*#formCadastrar 
+{
+	background-color:#CCCCCC;
+	display:block;
+	position:relative;
+	top:10px;
+	right:10px;
+}*/
+
+#formEditar, #formCadastrar
+{
+	background-color:#CCCCCC;
+	display:block;
+	position:relative;
+	top:10px;
+	right:10px;
+	width:348px;
+	height:135px;
+}
+
+#formEditar form, #formCadastrar form
+{
+	width:338px;
+	height:115px;
+	padding-left:10px;
+	padding-top:20px;	
+}
+
+#formEditar input[type="text"], #formCadastrar input[type="text"],#formEditar input[type="password"], #formCadastrar input[type="password"]
+{
+	display:block;
+	padding-left:5px;
+	position:relative;
+	top:-1px;
+	margin-bottom:10px;
+	height:15px;
+	width:265px;
+}
+#formEditar label, #formCadastrar label,#formEditar input[type="radio"], #formCadastrar input[type="radio"]
+{
+	display:block;
+	float:left;
+	margin-bottom:10px;
+	font-family:calibri;
+	font-size:13px;
+}
+
+#formEditar label, #formCadastrar label
+{
+	position:relative;
+	top:1px;
+}
+.arredonda
+{
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px; 
+}
+.botao
+{
+	display:block;
+	width:355px;
+	height:35px;
+}
+
+#tela
+{
+
+	background-color:#3994DA;
+	z-index:9;
+	position:absolute;
+	top:0px;
+	left:0px;
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	-moz-opacity: 0.70;
+
+}

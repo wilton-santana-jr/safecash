@@ -65,6 +65,8 @@ public class Usuario {
 		this.senha = senha;
 		this.nome = nome;
 		this.permissao = permissao;
+		
+		this.chavesRequisicoes = new ArrayList<Key>();
 	}
 
 	public Key getKey() {
