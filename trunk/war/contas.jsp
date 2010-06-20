@@ -38,8 +38,11 @@ try {
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/defalt.css" />
 <link rel="stylesheet" href="css/caixa.css" />
-
 <link rel="stylesheet" href="css/contas.css" />
+
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/contas.js"></script>
+
 <title>$afeCash - Administrador Financeiro</title>
 </head>
 
@@ -141,6 +144,71 @@ try {
 	</div>
 </div>
 </div>
+
+<div id="popUp"  class="esconder">
+	<a class="fechar" href="#" title="voltar"></a>
+	<span id="nomePopUp" class="destaque cor">Inserir Conta</span>
+	
+	<div id="conta"> 
+		<form action="#" method="post">
+			<div id="esq">
+				<label for="dataConta">DATA:</label><input type="text" name="dataConta" id="dataConta" />
+				<label for="valorConta">VALOR:</label><input type="text" name="valorConta" id="valorConta" />
+				<label for="estadoConta">ESTADO:</label><select name="estadoConta" id="estadoConta">
+															<option value="pendente">Pendente</option>
+															<option value="ok">OK</option>
+															<option value="atrasado">Atrasado</option>
+														</select>
+														
+				<label class="limpa">TIPO:</label><input type="radio" name="tipoConta" id="tipoSaida" value="saida" /><label for="tipoSaida">SA&Iacute;DA</label><input type="radio" name="tipoConta" value="entrada"  id="tipoEntrada"/><label for="tipoEntrada">ENTRADA</label>
+			</div>
+			<div id="dir">
+				<label for="descricaoConta">DESCRI&Ccedil;&Atilde;O:</label><textarea name="descricao" id="descricaoConta"></textarea>
+			</div>
+		</form>
+	</div>
+	<div id="transacao" class="arredonda">
+		<div id="cabecarioTransacao" >
+			<span>TRANSA&Ccedil;&Atilde;O</span>
+		</div>
+		<div id="corpoTransacao">
+			<form action="#" method="post">
+				<a href="#" class="adicionar" title="Adicionar Transa&ccedil;&atilde;o"></a>
+				<label for="descricaoTransacao">DESCRI&Ccedil;&Atilde;O:</label><input type="text" name="descricaoTransacao" id="descricaoTransacao" />
+				
+				<label for="origemTransacao">ORIGEM:</label><label for="valorTransacao">VALOR:</label><label for="estadoTransacao">TIPO:</label><label for="dataTransacao">DATA:</label>
+				<select name="origemTransacao" id="origemTransacao">
+															<option value="caixa">CAIXA</option>
+															<option value="conta">CONTA</option>
+														</select>
+				<input type="text" name="valorTransacao" id="valorTransacao" />
+				<select name="tipoTransacao" id="tipoTransacao">
+															<option value="entrada">Entrada</option>
+															<option value="saida">Saída</option>
+														</select>
+				<input type="text" name="data" id="dataTransacao" /> 
+														
+														
+			</form>
+		</div>
+	</div>
+	
+	<div id="listaTransacao" class="arredonda">
+		<div id="cabecarioLista" >
+			<span>TRANSA&Ccedil;&Atilde;O</span>
+		</div>
+		<div id="cabecarioListaCorpo" >
+			<span class="data"> DATA </span><span class="descricao">DESCRI&Ccedil;&Atilde;O</span><span class="valor">VALOR</span><span class="tipo">TIPO</span><span class="estado">ORIGEM</span>
+		</div>
+		
+		<div id="corpoLista">
+		</div>
+		
+		</div>
+		<a href="#" title="Inserir Conta" class="inserirConta"></a>
+</div>
+	
+<div id="tela"></div>
 
 </body>
 </html>

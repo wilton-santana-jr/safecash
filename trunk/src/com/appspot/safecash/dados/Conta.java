@@ -62,6 +62,8 @@ public class Conta {
 		this.valor = valor;
 		this.status = status;
 		this.tipo = tipo;
+		
+		this.chavesTransacoes = new ArrayList<Key>();
 	}
 
 	public EnumTipoConta getTipo() {

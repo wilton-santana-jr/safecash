@@ -51,6 +51,7 @@ import com.appspot.safecash.repositorio.RepositorioRequisicaoBT;
 import com.appspot.safecash.repositorio.RepositorioTransacaoBT;
 import com.appspot.safecash.repositorio.RepositorioUsuarioBT;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 public class Fachada {
 
@@ -437,9 +438,21 @@ public class Fachada {
 	 * @param requisicao
 	 */
 	public void inserirRequisicao(Requisicao requisicao){
-		this.controladorRequisicao.inserir(requisicao);
+		long key = (long) (Math.random() * 100000000);
+		
+		Key newKey = KeyFactory.createKey(Requisicao.class.getSimpleName(), key);
+		requisicao.setKey(newKey);
+		
+		try {
+			Usuario user = this.buscar(requisicao.getChaveUsuario());
+			user.getChavesRequisicoes().add(newKey);
+			this.atualizarUsuario(user);
+			
+			this.controladorRequisicao.inserir(requisicao);
+		} catch (UsuarioNaoExisteException e) {
+			e.printStackTrace();
+		}
 	}
-
 	/**
 	 * Método para procurar requisição por status.
 	 * 
@@ -556,6 +569,7 @@ public class Fachada {
 		// remove as requisicoes associadas ao usuario que está sendo removido
 		Requisicao r;
 		for(Key k : u.getChavesRequisicoes()){
+			System.out.println("REMOVENDO REQ");
 			try {
 				r = this.controladorRequisicao.procurar(k);
 				this.controladorRequisicao.remover(r);
@@ -565,11 +579,11 @@ public class Fachada {
 		// o usuário não pode ser removido se for responsável por algum projeto. 
 		try {
 			this.controladorProjeto.procurarPorResponsavel(u.getKey());
-		} catch (ProjetoNaoExisteException e) {
 			throw new UsuarioNaoPodeSerRemovidoException();
+		} catch (ProjetoNaoExisteException e) {
+			this.controladorUsuario.remover(usuario);
 		}
 		
-		this.controladorUsuario.remover(usuario);
 	}
 
 	/**

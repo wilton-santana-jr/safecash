@@ -23,6 +23,9 @@ public class Transacao {
 	private String descricao;
 	
 	@Persistent
+	private boolean conta;
+	
+	@Persistent
 	private Date data;
 	
 	@Persistent
@@ -41,6 +44,8 @@ public class Transacao {
 		this.valor = valor;
 		this.tipo = tipo;
 		this.origem = origem;
+		
+		this.setConta(false);
 	}
 	
 	public Key getKey() {
@@ -81,5 +86,13 @@ public class Transacao {
 	}
 	public void setOrigem(EnumOrigemTransacao origem) {
 		this.origem = origem;
+	}
+	
+	public boolean isConta() {
+		return conta;
+	}
+
+	public void setConta(boolean conta) {
+		this.conta = conta;
 	}
 }
