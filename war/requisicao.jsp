@@ -9,9 +9,16 @@ if (session.getAttribute("login") == null) {
 
 Fachada fachada = Fachada.getInstance();
 
+Iterator<Requisicao> iteReq = fachada.getAllRequisicao();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<%@page import="java.util.Iterator"%>
+<%@page import="com.appspot.safecash.dados.Requisicao"%>
+<%@page import="com.appspot.safecash.negocio.exception.RequisicaoNaoExisteException"%>
+<%@page import="com.appspot.safecash.enuns.EnumStatusRequisicao"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.appspot.safecash.dados.Usuario"%><html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link  type="text/css" rel="stylesheet" href="css/defalt.css"/>
@@ -75,21 +82,22 @@ Fachada fachada = Fachada.getInstance();
 						<span class="requisitante">REQUISITANTE</span>						
 					</div>
 					<div class="corpo">
+					<%
+					if (iteReq != null && iteReq.hasNext()) {
+						 while (iteReq.hasNext()) {
+							 Requisicao r = iteReq.next();
+							 Usuario user = fachada.buscar(r.getChaveUsuario());
+					%>
 						<br/>
-						<span class ="data">DD/MM/AAAA</span>
-						<span class ="assunto">ASSUNTO ASSUNTO da ASSUNTO ASSUNTO</span>
-						<span class="estado ok">OK</span>
-						<span class="requisitante">Bruno Medeiros <a id="ID_DA_REQUISICAO" href="#">&gt;&gt;VISUALIZAR</a></span>	
-						<br/>
-						<span class ="data">DD/MM/AAAA</span>
-						<span class ="assunto">ASSUNTO ASSUNTO da ASSUNTO ASSUNTO</span>
-						<span class="estado pronto">PRONTO</span>
-						<span class="requisitante">Jow <a id="ID_DA_REQUISICAO" href="#">&gt;&gt;VISUALIZAR</a></span>	
-						<br/>
-						<span class ="data">DD/MM/AAAA</span>
-						<span class ="assunto">ASSUNTO ASSUNTO da ASSUNTO ASSUNTO</span>
-						<span class="estado pendente">PENDENTE</span>
-						<span class="requisitante">Siri<a id="ID_DA_REQUISICAO" href="#">&gt;&gt;VISUALIZAR</a></span>	
+						<span class ="data"><%= new SimpleDateFormat("dd/MM/yyyy").format(r.getData()) %></span>
+						<span class ="assunto"><%= r.getAssunto() %></span>
+						<span class="estado <%= r.getStatus().toString().toLowerCase() %>"><%= r.getStatus().toString() %></span>
+						<span class="requisitante"><%= user.getNome() %> <a id="<%= user.getKey() %>" href="#">&gt;&gt;VISUALIZAR</a><input type="hidden" name="<%= user.getKey() %>" value="<%= r.getTipo().toString().toLowerCase().charAt(0)%>" /></span>
+					<%
+						}
+					} else
+						out.print("Não há  requisições cadastradas.");
+					%>	
 					</div>
 				</div>
 	

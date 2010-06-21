@@ -78,16 +78,14 @@ public class GerenciaUsuarioServlet extends HttpServlet{
 		try {
 			Usuario user = fachada.buscar(login);
 			
-			System.out.println(user.getNome());
-			System.out.println(user.getLogin());
-			System.out.println(user.getSenha());
-			
 			String senha = req.getParameter("senha");
 			String nome = req.getParameter("nome");
 			EnumPermissao permissao = req.getParameter("permissao").equalsIgnoreCase("USER") ? EnumPermissao.USER : EnumPermissao.ADMIN;
 			
 			Usuario userNew = new Usuario(user.getLogin(), senha, nome, permissao);
 			userNew.setKey(user.getKey());
+			
+			userNew.setChavesRequisicoes(user.getChavesRequisicoes());
 			
 			fachada.atualizarUsuario(userNew);
 			SendMsg.send(req, res, "Usuário atualizado com sucesso.", url);

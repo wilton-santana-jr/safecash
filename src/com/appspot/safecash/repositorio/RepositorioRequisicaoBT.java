@@ -10,7 +10,7 @@ import javax.jdo.Query;
 
 import com.appspot.safecash.dados.Requisicao;
 import com.appspot.safecash.dados.RequisicaoContrato;
-import com.appspot.safecash.dados.RequisicaoReembolso;
+import com.appspot.safecash.dados.RequisicaoGeral;
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
 import com.google.appengine.api.datastore.Key;
 
@@ -22,7 +22,7 @@ public class RepositorioRequisicaoBT implements RepositorioRequisicao {
 	private static final String PROCURAR_R2 = "SELECT FROM " + RequisicaoContrato.class.getName() 
 											  + " " +  "WHERE status == param " + 
 											  "PARAMETERS EnumStatusRequisicao param";
-	private static final String PROCURAR_R3 = "SELECT FROM " + RequisicaoReembolso.class.getName() 
+	private static final String PROCURAR_R3 = "SELECT FROM " + RequisicaoGeral.class.getName() 
 											  + " " +  "WHERE status == param " + 
 											  "PARAMETERS EnumStatusRequisicao param";
 	private PersistenceManager pm;
@@ -35,8 +35,8 @@ public class RepositorioRequisicaoBT implements RepositorioRequisicao {
 		Requisicao r = pm.getObjectById(requisicao.getClass(), requisicao.getKey());
 		r.setDescricao(requisicao.getDescricao());
 		r.setStatus(requisicao.getStatus());
-		if(r instanceof RequisicaoReembolso)
-			((RequisicaoReembolso) r).setValor(((RequisicaoReembolso) requisicao).getValor());
+		if(r instanceof RequisicaoGeral)
+			((RequisicaoGeral) r).setValor(((RequisicaoGeral) requisicao).getValor());
 		else if(r instanceof RequisicaoContrato){
 			((RequisicaoContrato) r).setArquivoProposta(((RequisicaoContrato) requisicao).getArquivoProposta());
 			((RequisicaoContrato) r).setCNPJ_CPF(((RequisicaoContrato) requisicao).getCNPJ_CPF());
@@ -104,8 +104,8 @@ public class RepositorioRequisicaoBT implements RepositorioRequisicao {
 			ret = pm.getObjectById(Requisicao.class, key);
 		if(key.getKind().equals(RequisicaoContrato.class.getSimpleName()))
 			ret = pm.getObjectById(RequisicaoContrato.class, key); 
-		else if(key.getKind().equals(RequisicaoReembolso.class.getSimpleName()))
-			ret = pm.getObjectById(RequisicaoReembolso.class, key);
+		else if(key.getKind().equals(RequisicaoGeral.class.getSimpleName()))
+			ret = pm.getObjectById(RequisicaoGeral.class, key);
 		
 		pm.close();		
 		return ret;
@@ -133,8 +133,8 @@ public class RepositorioRequisicaoBT implements RepositorioRequisicao {
 			p.add(atual);
 		}
 		
-		Extent<RequisicaoReembolso> extent3 = pm.getExtent(RequisicaoReembolso.class, false);
-		for(RequisicaoReembolso atual : extent3){
+		Extent<RequisicaoGeral> extent3 = pm.getExtent(RequisicaoGeral.class, false);
+		for(RequisicaoGeral atual : extent3){
 			p.add(atual);
 		}
 		

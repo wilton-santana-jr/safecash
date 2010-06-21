@@ -5,7 +5,7 @@
 		<li><a href="contas.jsp" title="Contas"><span id="contas"></span></a></li>
 		<li><a href="#" title="Projetos"><span id="projetos"></span></a></li>
 		<li><a href="requisicao.jsp" title="Requisi&ccedil;&atilde;o"><span id="requisicao"></span></a></li>
-		<li><a href="#" title="Relat&oacute;rios"><span id="relatorios"></span></a></li>
+		<li><a href="relatorios.jsp" title="Relat&oacute;rios"><span id="relatorios"></span></a></li>
 		<li><a href="modelos.jsp" title="Modelos de documentos"><span id="modelos"></span></a></li>
 		<li><span id="linha"></span></li>
 	</ul>
