@@ -43,8 +43,8 @@ public class RequisicaoGeralServlet extends HttpServlet{
 		
 	private void processUser(HttpServletRequest req, HttpServletResponse res){
 
-		Requisicao requisicao = new Requisicao(this.descricao, EnumStatusRequisicao.PENDENTE);
-		this.fachada.inserirRequisicao(requisicao);
+		//Requisicao requisicao = new Requisicao(this.descricao, EnumStatusRequisicao.PENDENTE);
+		//this.fachada.inserirRequisicao(requisicao);
 	}
 	
 	private void processAdmin(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
@@ -61,12 +61,12 @@ public class RequisicaoGeralServlet extends HttpServlet{
 			this.status = EnumStatusRequisicao.OK;
 		}
 		
-		try {
-			Requisicao requisicao = new Requisicao(this.descricao, this.status);
-			this.fachada.atualizarRequisicao(requisicao);
+		/*try {
+			//Requisicao requisicao = new Requisicao(this.descricao, this.status);
+			//this.fachada.atualizarRequisicao(requisicao);
 			SendMsg.send(req, res, "Status alterado com sucesso.", "/usermanager.jsp");
 		} catch (RequisicaoNaoExisteException e) {
 			SendMsg.send(req, res, "Requisição não existe.", "/usermanager.jsp");
-		}
+		}*/
 	}
 }

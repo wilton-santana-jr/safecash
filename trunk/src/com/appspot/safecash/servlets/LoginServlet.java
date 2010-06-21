@@ -1,6 +1,8 @@
 package com.appspot.safecash.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,9 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.appspot.safecash.dados.Requisicao;
 import com.appspot.safecash.dados.Usuario;
 import com.appspot.safecash.enuns.EnumPermissao;
+import com.appspot.safecash.enuns.EnumStatusRequisicao;
+import com.appspot.safecash.enuns.EnumTipoRequisicao;
 import com.appspot.safecash.fachada.Fachada;
+import com.appspot.safecash.negocio.exception.UsuarioJaExisteException;
 import com.appspot.safecash.negocio.exception.UsuarioNaoExisteException;
 
 public class LoginServlet extends HttpServlet {
@@ -40,22 +46,26 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			} catch (ParseException e) {
 				e.printStackTrace();
-			}*/
-			/*
+			}
+			*/
 			try {
 				fachada.inserirUsuario(new Usuario("l", "123", "Luis", EnumPermissao.USER));
 				fachada.inserirUsuario(new Usuario("t", "123", "Tiago", EnumPermissao.USER));
 				
-				fachada.inserirRequisicao(new Requisicao("22DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO", EnumStatusRequisicao.PENDENTE, fachada.buscar("l").getKey()));
-				fachada.inserirRequisicao(new Requisicao("33DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO", EnumStatusRequisicao.PENDENTE, fachada.buscar("t").getKey()));
+				fachada.inserirRequisicao(new Requisicao("Assunto 1", "22DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO"
+						, EnumStatusRequisicao.PENDENTE, EnumTipoRequisicao.GERAL, new SimpleDateFormat("dd/MM/yyyy").parse("30/11/2010"), fachada.buscar("l").getKey()));
+				fachada.inserirRequisicao(new Requisicao("Assunto 2", "33DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO DESCRICAO"
+						, EnumStatusRequisicao.PENDENTE, EnumTipoRequisicao.CONTRATO, new SimpleDateFormat("dd/MM/yyyy").parse("30/11/2010"), fachada.buscar("t").getKey()));
 			} catch (UsuarioJaExisteException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 			
 			try {
 				fachada.inserirUsuario(new Usuario("admin", "admin", "admin", EnumPermissao.ADMIN));
-			} catch (UsuarioJaExisteException e) {e.printStackTrace();}
-			*/
+			} catch (UsuarioJaExisteException e2) {e2.printStackTrace();}
+			
 			
 			/*
 			try {

@@ -32,7 +32,6 @@ if (session.getAttribute("login") == null) {
 				<input class="campo" size="50" type="text" id="campo" name="endereco" value="file:///G:/Interface/PageModelos.png"/>-->
 				<a class="botao" href="#" title="armazenar"></a>
 			</form>
-			<span class="mostrar informativo">Texto para informar o usuário</span>
 			<div id="livroConta" class="destaque cor">Modelos Armazenados no Sistema</div>
 			
 			

@@ -13,8 +13,9 @@ import org.junit.Test;
 
 import com.appspot.safecash.dados.Requisicao;
 import com.appspot.safecash.dados.RequisicaoContrato;
-import com.appspot.safecash.dados.RequisicaoReembolso;
+import com.appspot.safecash.dados.RequisicaoGeral;
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
+import com.appspot.safecash.enuns.EnumTipoRequisicao;
 import com.appspot.safecash.repositorio.RepositorioRequisicao;
 import com.appspot.safecash.repositorio.RepositorioRequisicaoBT;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -46,23 +47,23 @@ public class TesteRepoRequisicao {
 		assertEquals(0, ds.prepare(new Query(Requisicao.class.getSimpleName()))
 				.countEntities());
 
-		Requisicao r1 = new Requisicao("desc1", EnumStatusRequisicao.OK);
+		Requisicao r1 = new Requisicao("11", "desc1", EnumStatusRequisicao.OK, EnumTipoRequisicao.CONTRATO, null);
 		repo.inserir(r1);
 		assertEquals(1, ds.prepare(new Query(Requisicao.class.getSimpleName()))
 				.countEntities());
 
-		Requisicao r2 = new RequisicaoContrato("desc2",
-				EnumStatusRequisicao.PENDENTE, "", "", "", "", 0.05, null, "");
+		Requisicao r2 = new RequisicaoContrato("11", "desc2",
+				EnumStatusRequisicao.PENDENTE, "", "", "", "", 0.05, null, "", null);
 		repo.inserir(r2);
 		assertEquals(1, ds.prepare(
 				new Query(RequisicaoContrato.class.getSimpleName()))
 				.countEntities());
 
-		Requisicao r3 = new RequisicaoReembolso("desc3",
-				EnumStatusRequisicao.OK, 15.5);
+		Requisicao r3 = new RequisicaoGeral("11", "desc3",
+				EnumStatusRequisicao.OK, 15.5, null);
 		repo.inserir(r3);
 		assertEquals(1, ds.prepare(
-				new Query(RequisicaoReembolso.class.getSimpleName()))
+				new Query(RequisicaoGeral.class.getSimpleName()))
 				.countEntities());
 
 		Iterator<Requisicao> it = repo.iterator();
@@ -77,7 +78,7 @@ public class TesteRepoRequisicao {
 		assertTrue(it.hasNext());
 		r = it.next();
 		assertNotNull(r);
-		assertTrue(r instanceof RequisicaoReembolso);
+		assertTrue(r instanceof RequisicaoGeral);
 		assertFalse(it.hasNext());
 	}
 
@@ -89,7 +90,7 @@ public class TesteRepoRequisicao {
 
 		Requisicao result1;
 		Key k1;
-		Requisicao r1 = new Requisicao("desc1", EnumStatusRequisicao.OK);
+		Requisicao r1 = new Requisicao("11", "desc1", EnumStatusRequisicao.OK, EnumTipoRequisicao.GERAL, null);
 		k1 = KeyFactory.createKey(Requisicao.class.getSimpleName(),
 				"arbitragem");
 		r1.setKey(k1);
@@ -102,8 +103,8 @@ public class TesteRepoRequisicao {
 
 		Requisicao result2;
 		Key k2;
-		Requisicao r2 = new RequisicaoContrato("desc2",
-				EnumStatusRequisicao.PENDENTE, "", "", "", "", 0.05, null, "");
+		Requisicao r2 = new RequisicaoContrato("11", "desc2",
+				EnumStatusRequisicao.PENDENTE, "", "", "", "", 0.05, null, "", null);
 		k2 = KeyFactory.createKey(RequisicaoContrato.class.getSimpleName(),
 				"arbitragem");
 		r2.setKey(k2);
@@ -117,14 +118,14 @@ public class TesteRepoRequisicao {
 
 		Requisicao result3;
 		Key k3;
-		Requisicao r3 = new RequisicaoReembolso("desc3",
-				EnumStatusRequisicao.OK, 15.5);
-		k3 = KeyFactory.createKey(RequisicaoReembolso.class.getSimpleName(),
+		Requisicao r3 = new RequisicaoGeral("11", "desc3",
+				EnumStatusRequisicao.OK, 15.5, null);
+		k3 = KeyFactory.createKey(RequisicaoGeral.class.getSimpleName(),
 				"arbitragem");
 		r3.setKey(k3);
 		repo.inserir(r3);
 		assertEquals(1, ds.prepare(
-				new Query(RequisicaoReembolso.class.getSimpleName()))
+				new Query(RequisicaoGeral.class.getSimpleName()))
 				.countEntities());
 		result3 = repo.procurar(k3);
 		assertEquals(KeyFactory.keyToString(k3), KeyFactory.keyToString(result3
@@ -139,7 +140,7 @@ public class TesteRepoRequisicao {
 				.countEntities());
 		repo.remover(result3);
 		assertEquals(0, ds.prepare(
-				new Query(RequisicaoReembolso.class.getSimpleName()))
+				new Query(RequisicaoGeral.class.getSimpleName()))
 				.countEntities());
 	}
 
@@ -152,12 +153,12 @@ public class TesteRepoRequisicao {
 				new Query(RequisicaoContrato.class.getSimpleName()))
 				.countEntities());
 		assertEquals(0, ds.prepare(
-				new Query(RequisicaoReembolso.class.getSimpleName()))
+				new Query(RequisicaoGeral.class.getSimpleName()))
 				.countEntities());
 
-		repo.inserir(new Requisicao("desc1", EnumStatusRequisicao.OK));
-		repo.inserir(new RequisicaoReembolso("desc3", EnumStatusRequisicao.OK, 15.5));
-		repo.inserir(new RequisicaoContrato("desc2", EnumStatusRequisicao.PENDENTE, "", "", "", "", 0.05, null, ""));
+		repo.inserir(new Requisicao("11", "desc1", EnumStatusRequisicao.OK, EnumTipoRequisicao.CONTRATO, null));
+		repo.inserir(new RequisicaoGeral("11", "desc3", EnumStatusRequisicao.OK, 15.5, null));
+		repo.inserir(new RequisicaoContrato("11", "desc2", EnumStatusRequisicao.PENDENTE, "", "", "", "", 0.05, null, "", null));
 		Iterator<Requisicao> it = repo.procurar(EnumStatusRequisicao.OK);
 		assertTrue(it.hasNext());
 		assertNotNull(it.next());

@@ -8,11 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.appspot.safecash.dados.RequisicaoReembolso;
 import com.appspot.safecash.enuns.EnumPermissao;
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
 import com.appspot.safecash.fachada.Fachada;
-import com.appspot.safecash.negocio.exception.RequisicaoNaoExisteException;
 
 // FALTA MAPEAR
 
@@ -45,8 +43,8 @@ public class RequisicaoReembolsoServlet extends HttpServlet {
 
 	private void processUser(HttpServletRequest req, HttpServletResponse res){
 
-		RequisicaoReembolso requisicao = new RequisicaoReembolso(this.descricao, EnumStatusRequisicao.PENDENTE, this.valor);
-		this.fachada.inserirRequisicao(requisicao);
+		//RequisicaoGeral requisicao = new RequisicaoGeral(this.descricao, EnumStatusRequisicao.PENDENTE, this.valor);
+		//this.fachada.inserirRequisicao(requisicao);
 	}
 
 	private void processAdmin(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
@@ -63,12 +61,12 @@ public class RequisicaoReembolsoServlet extends HttpServlet {
 			this.status = EnumStatusRequisicao.OK;
 		}
 
-		try {
-			RequisicaoReembolso requisicao = new RequisicaoReembolso(this.descricao, this.status, this.valor);
+		/*try {
+			RequisicaoGeral requisicao = new RequisicaoGeral(this.descricao, this.status, this.valor);
 			this.fachada.atualizarRequisicao(requisicao);
 			SendMsg.send(req, res, "Status alterado com sucesso.", "/usermanager.jsp");
 		} catch (RequisicaoNaoExisteException e) {
 			SendMsg.send(req, res, "Requisição não existe.", "/usermanager.jsp");
-		}
+		}*/
 	}
 }

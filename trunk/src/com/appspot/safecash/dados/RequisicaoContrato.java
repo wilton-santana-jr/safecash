@@ -1,11 +1,14 @@
 package com.appspot.safecash.dados;
 
+import java.util.Date;
+
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
 import com.appspot.safecash.enuns.EnumStatusRequisicao;
+import com.appspot.safecash.enuns.EnumTipoRequisicao;
 import com.google.appengine.api.blobstore.BlobKey;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
@@ -33,11 +36,11 @@ public class RequisicaoContrato extends Requisicao {
 	@Persistent
 	private String observacao;
 	
-	public RequisicaoContrato(String descricao, EnumStatusRequisicao status,
+	public RequisicaoContrato(String assunto, String descricao, EnumStatusRequisicao status, 
 			String responsavel, String cNPJCPF, String nomeProjeto,
 			String endereco, double valor, BlobKey arquivoProposta,
-			String observacao) {
-		super(descricao, status);
+			String observacao, Date data) {
+		super(assunto, descricao, status, EnumTipoRequisicao.CONTRATO, data);
 		this.responsavel = responsavel;
 		CNPJ_CPF = cNPJCPF;
 		this.nomeProjeto = nomeProjeto;
