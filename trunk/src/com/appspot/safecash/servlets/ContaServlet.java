@@ -49,6 +49,7 @@ public class ContaServlet extends HttpServlet {
 		
 		try {
 			Date date = new SimpleDateFormat("dd/MM/yyyy").parse(data);
+			valorString = CashValidator.validate(valorString);
 			Double valorDouble = Double.parseDouble(valorString);
 
 			long key = (long) (Math.random() * 100000000);
@@ -73,7 +74,8 @@ public class ContaServlet extends HttpServlet {
 		try {
 			String descricao = req.getParameter("descricao");
 			Date data = new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("data"));
-			double valor = Double.parseDouble(req.getParameter("valor"));
+			
+			double valor = Double.parseDouble(CashValidator.validate(req.getParameter("valor")));
 			EnumTipoConta tipo = req.getParameter("tipo").equalsIgnoreCase("ENTRADA") ? EnumTipoConta.ENTRADA : EnumTipoConta.SAIDA;
 			
 			String estadoStr = req.getParameter("estado");

@@ -65,6 +65,7 @@ while (iteTransCaixa != null && iteTransCaixa.hasNext()) {
 
 <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.click-calendario-1.0-min.js"></script>
+<script type="text/javascript" src="js/jquery.meio.mask.min.js"></script>
 <script type="text/javascript" src="js/livro.js"></script>
 <title>$afeCash - Administrador Financeiro</title>
 </head>
@@ -228,7 +229,7 @@ while (iteTransCaixa != null && iteTransCaixa.hasNext()) {
 	<label for="descricao" class="titulo">DESCRI&Ccedil;&Atilde;O:</label><br/>
 	<input id="descricao" type="text" name="descricao" size="55"/><br/>
 	<label for="valor" class="titulo">VALOR:<br /> R$</label>
-	<input type="text" name="valor" id="valor" size="20"/><br/>
+	<input type="text" name="valor" id="valor" size="20" alt="decimal"/><br/>
 	
 	<label for="entrada" class="titulo">TIPO:</label> <label id="origem" for="conta" class="titulo">ORIGEM:</label><br/>
 	<input  id="entrada" type="radio" name="tipo" value="entrada" checked="checked"/><label for="entrada">ENTRADA</label><input  id="conta" type="radio" name="origem" value="conta" checked="checked"/><label id="labelConta" for="conta">CONTA</label><br/>
