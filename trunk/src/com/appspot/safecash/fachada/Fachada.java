@@ -14,6 +14,8 @@ import com.appspot.safecash.dados.Funcionario;
 import com.appspot.safecash.dados.Modelo;
 import com.appspot.safecash.dados.Projeto;
 import com.appspot.safecash.dados.Requisicao;
+import com.appspot.safecash.dados.RequisicaoContrato;
+import com.appspot.safecash.dados.RequisicaoGeral;
 import com.appspot.safecash.dados.Transacao;
 import com.appspot.safecash.dados.Usuario;
 import com.appspot.safecash.enuns.EnumOrigemTransacao;
@@ -440,8 +442,15 @@ public class Fachada {
 	public void inserirRequisicao(Requisicao requisicao){
 		long key = (long) (Math.random() * 100000000);
 		
-		Key newKey = KeyFactory.createKey(Requisicao.class.getSimpleName(), key);
-		requisicao.setKey(newKey);
+		Key newKey = null;
+		
+		if (requisicao instanceof RequisicaoGeral) {
+			newKey = KeyFactory.createKey(RequisicaoGeral.class.getSimpleName(), key);
+			requisicao.setKey(newKey);
+		} else if (requisicao instanceof RequisicaoContrato) {
+			newKey = KeyFactory.createKey(RequisicaoContrato.class.getSimpleName(), key);
+			requisicao.setKey(newKey);
+		}
 		
 		try {
 			Usuario user = this.buscar(requisicao.getChaveUsuario());

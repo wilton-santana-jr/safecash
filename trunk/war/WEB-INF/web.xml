@@ -55,6 +55,26 @@
 		<servlet-name>Livro Servlet</servlet-name>
 		<url-pattern>/livro</url-pattern>
 	</servlet-mapping>
+	<!-- ======= -->
+	<servlet>
+		<servlet-name>Requisicao Servlet</servlet-name>
+		<servlet-class>com.appspot.safecash.servlets.RequisicaoServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Requisicao Servlet</servlet-name>
+		<url-pattern>/requisicao</url-pattern>
+	</servlet-mapping>
+	<!-- ======= -->
+	<servlet>
+		<servlet-name>Projeto Servlet</servlet-name>
+		<servlet-class>com.appspot.safecash.servlets.ProjetoServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Projeto Servlet</servlet-name>
+		<url-pattern>/projeto</url-pattern>
+	</servlet-mapping>
 	<!-- ==========================  -->
 
 	<!-- Configurações -->
