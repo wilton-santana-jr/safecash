@@ -38,9 +38,14 @@ try {
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/defalt.css" />
 <link rel="stylesheet" href="css/caixa.css" />
+
+<link rel="stylesheet" href="css/jquery.click-calendario-1.0.css" />
 <link rel="stylesheet" href="css/contas.css" />
 
 <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.maskedinput-1.2.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.click-calendario-1.0-min.js"></script>
+<script type="text/javascript" src="js/jquery.meio.mask.min.js"></script>
 <script type="text/javascript" src="js/contas.js"></script>
 
 <title>$afeCash - Administrador Financeiro</title>
@@ -152,8 +157,8 @@ try {
 	<div id="conta"> 
 		<form action="#" method="post">
 			<div id="esq">
-				<label for="dataConta">DATA:</label><input type="text" name="dataConta" id="dataConta" />
-				<label for="valorConta">VALOR:</label><input type="text" name="valorConta" id="valorConta" />
+				<label for="dataConta">DATA:</label><input type="text" name="dataConta" id="dataConta" alt="date-us" />
+				<label for="valorConta">VALOR:</label><input type="text" name="valorConta" id="valorConta"  alt="decimal" />
 				<label for="estadoConta">ESTADO:</label><select name="estadoConta" id="estadoConta">
 															<option value="pendente">Pendente</option>
 															<option value="ok">OK</option>
@@ -181,12 +186,12 @@ try {
 															<option value="caixa">CAIXA</option>
 															<option value="conta">CONTA</option>
 														</select>
-				<input type="text" name="valorTransacao" id="valorTransacao" />
+				<input type="text" name="valorTransacao" id="valorTransacao"  alt="decimal"/>
 				<select name="tipoTransacao" id="tipoTransacao">
 															<option value="entrada">Entrada</option>
 															<option value="saida">Saída</option>
 														</select>
-				<input type="text" name="data" id="dataTransacao" /> 
+				<input type="text" name="data" id="dataTransacao" alt="date-us"/> 
 														
 														
 			</form>
