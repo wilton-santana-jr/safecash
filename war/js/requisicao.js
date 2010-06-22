@@ -37,30 +37,26 @@ $(document).ready(
 					 * da div popUp)
 					 */
 
-					if (tipoRequisicao == 'c') {
-						$('#popUpContrato').css(
-								{
-									top : alturaJanela / 2 - $('#popUpContrato').height() / 2,
-									left : largura / 2 - $('#popUpContrato').width() / 2
-								});
-						// chamar o método post!!!!!!!
-						$('#nomePopUpContrato').text('Requisição de Contrato:' + nomeRequisitante);
-						$('#informacoesContrato').html(descricaoRequisicao);
-						$('#informacoesContrato input:hidden').val(idPedido);
-						$('#popUpContrato').fadeIn(200);
-
-					} else if (tipoRequisicao == 'g') {
-						$('#popUpGeral').css(
-								{
-									top : alturaJanela / 2 - $('#popUpGeral').height() / 2,
-									left : largura / 2 - $('#popUpGeral').width() / 2
-								});
-						// chamar o método post!!!!!!!
-						$('#nomePopUpGeral').text('Requisição Geral:' + nomeRequisitante);
+					if(tipoRequisicao == 'c')
+					{
+							$('#popUpContrato').css({top:alturaJanela/2 -$('#popUpContrato').height()/2,left:largura/2 - $('#popUpContrato').width()/2});
+							//chamar o método post!!!!!!!
+							$('#nomePopUpContrato').text('Requisição de Contrato:'+nomeRequisitante);
+							$('#informacoesContrato').html(descricaoRequisicao);
+							$('#informacoesContrato input:hidden').val(idPedido);
+							 $('#popUpContrato').fadeIn(200);
+							
+					}
+					else if(tipoRequisicao == 'g')
+					{
+						$('#popUpGeral').css({top:alturaJanela/2 -$('#popUpGeral').height()/2,left:largura/2 - $('#popUpGeral').width()/2});							
+						//chamar o método post!!!!!!!
+						$('#nomePopUpGeral').text('Requisição Geral:'+nomeRequisitante);
 						$('#informacoesGeral').html(descricaoRequisicao);
 						$('#informacoesGeral input:hidden').val(idPedido);
-						$('#popUpGeral').fadeIn(200);
+						 $('#popUpGeral').fadeIn(200);
 					}
+				
 
 					// $('#nomePopUp').text(modelo);
 					// $('#PopUp p').text(descricao);

@@ -30,7 +30,7 @@ $(document).ready(function() {
 	});
 
 	$(".fechar").click(function(e) {
-		$('div.calendario').hide(200);
+		
 		$('#popUp').fadeOut(200);
 		$('#tela').fadeOut(200);
 
@@ -96,4 +96,29 @@ $(document).ready(function() {
 		
 	});
 
+	
+	
+	$('#dataConta').focus(function(){
+		$(this).calendario({
+			target:'#dataConta'
+				
+		});
+		//$(this).attr('disabled', 'disabled');
+		
+		//removeAttr('disabled');
+	});
+	
+	//$('#dataConta').mask("99/99/9999");
+	//$('#dataTransacao').mask("99/99/9999");
+	//$('#valorConta').mask("999999999.99");
+	
+	$('input:text').setMask();
+	
+	
+	$('#dataTransacao').focus(function(){
+		$(this).calendario({
+			target:'#dataTransacao'
+		});
+	});
+	
 });
