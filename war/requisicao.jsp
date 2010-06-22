@@ -1,4 +1,10 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.appspot.safecash.dados.Requisicao"%>
+<%@page import="com.appspot.safecash.negocio.exception.RequisicaoNaoExisteException"%>
+<%@page import="com.appspot.safecash.enuns.EnumStatusRequisicao"%>
+<%@page import="com.appspot.safecash.dados.Usuario"%>
 <%@page import="com.appspot.safecash.fachada.Fachada"%>
 <%
 //Verifica consistência da Seção
@@ -13,12 +19,7 @@ Iterator<Requisicao> iteReq = fachada.getAllRequisicao();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<%@page import="java.util.Iterator"%>
-<%@page import="com.appspot.safecash.dados.Requisicao"%>
-<%@page import="com.appspot.safecash.negocio.exception.RequisicaoNaoExisteException"%>
-<%@page import="com.appspot.safecash.enuns.EnumStatusRequisicao"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.appspot.safecash.dados.Usuario"%><html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link  type="text/css" rel="stylesheet" href="css/defalt.css"/>
@@ -89,10 +90,10 @@ Iterator<Requisicao> iteReq = fachada.getAllRequisicao();
 							 Usuario user = fachada.buscar(r.getChaveUsuario());
 					%>
 						<br/>
-						<span class ="data"><%= new SimpleDateFormat("dd/MM/yyyy").format(r.getData()) %></span>
-						<span class ="assunto"><%= r.getAssunto() %></span>
+						<span class="data"><%= new SimpleDateFormat("dd/MM/yyyy").format(r.getData()) %></span>
+						<span class="assunto" id="<%= r.getKey() + "_a" %>"><%= r.getAssunto() %></span>
 						<span class="estado <%= r.getStatus().toString().toLowerCase() %>"><%= r.getStatus().toString() %></span>
-						<span class="requisitante"><%= user.getNome() %> <a id="<%= user.getKey() %>" href="#">&gt;&gt;VISUALIZAR</a><input type="hidden" name="<%= user.getKey() %>" value="<%= r.getTipo().toString().toLowerCase().charAt(0)%>" /></span>
+						<span class="requisitante" id="<%= r.getKey() + "_r" %>"><%= user.getNome() %> <a id="<%= r.getKey() %>" href="#" title="<%= r.getAssunto() + " : " + user.getNome()%>">&gt;&gt;VISUALIZAR</a><input type="hidden" name="<%= r.getKey() %>" value="<%= r.getTipo().toString().toLowerCase().charAt(0)%>" /></span>
 					<%
 						}
 					} else
@@ -110,21 +111,7 @@ Iterator<Requisicao> iteReq = fachada.getAllRequisicao();
 	<span id="nomePopUpContrato" class="destaque cor">REQUISIÇÃO TIPO: CONTRATO</span>
 	<div id="informacoesContrato">	
 		<ul>
-			<li><span class="titulo">Descri&ccedil;&atilde;o:</span><br/>descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição
-			</li>
-			<li><span class="titulo">Nome do Projeto:</span>bbgvdjbvjksdb
-			</li>
-			<li><span class="titulo">Contratante:</span>vbngfbjfb nkfdj	
-			</li>
-			<li><span class="titulo">CNPJ/CPF:</span>32160251315
-			</li>
-			<li><span class="titulo">Valor:</span>6562196
-			</li>
-			<li><span class="titulo">Estado: &nbsp;</span><select name="estado" ><option>Pendente</option> <option >Pronto</option> <option>OK</option></select>
-			
-			</li>
-			<li><span class="titulo">Obs:</span>fmnvfdm.,nxc,mv nxc mv n 
-			</li>
+			<li><span class="titulo">Aguarde...</span></li>
 		</ul>
 		<input type="hidden" name="id"  />
 	</div>
@@ -135,12 +122,10 @@ Iterator<Requisicao> iteReq = fachada.getAllRequisicao();
 
 <div id="popUpGeral" class="esconder">
 <a class="fecharGeral" href="#" title="voltar"></a>
-	<span id="nomePopUpGeral" class="destaque cor">REQUISIÇÃO TIPO: Geral</span>
+	<span id="nomePopUpGeral" class="destaque cor">REQUISIÇÃO TIPO : Geral</span>
 	<div id="informacoesGeral">	
 		<ul>
-			<li><span class="titulo">Descri&ccedil;&atilde;o:</span><br/>descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição		</li>
-			<li><span class="titulo">Estado: &nbsp;</span><select name="estado" ><option>Pendente</option> <option >Pronto</option> <option>OK</option></select>
-			</li>	
+			<li><span class="titulo">Aguarde...</span></li>	
 		</ul>
 		<input type="hidden" name="id"  />
 	</div>
