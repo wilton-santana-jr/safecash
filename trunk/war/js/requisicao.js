@@ -1,6 +1,8 @@
 $(document).ready(
 		function() {
 
+			var idPedido;
+			
 			$('span.requisitante a').click(function(e) {
 
 				var largura = $('body').outerWidth(true);
@@ -12,55 +14,52 @@ $(document).ready(
 						width : largura,
 						height : altura
 					});
+					
+					
 					$('#tela').fadeIn(200);
-					var idPedido = $(this).attr('id');
-					
-					alert(idPedido);
-					
+					idPedido = $(this).attr('id');
 					var tipoRequisicao = $("input[name=" + idPedido + "]:hidden").val();
 					
-					alert(tipoRequisicao);
-
-					/*
-					 * $.post("nomedomapeamento", { id: idPedido,pedido: true}
-					 * );retornar um caracter referente ao tipo de requisição C =>
-					 * contrato,G=> geral
-					 */
-					/*
-					 * var nomeRequisitante = $.post("nomedomapeamento", { id:
-					 * idPedido,nome: true} );/*retornar o nome do requisitante
-					 */
-					/*
-					 * var descricaoRequisicao = $.post("nomedomapeamento", {
-					 * id: idPedido,descricao: true} );/*retornar uma lista com
-					 * os pontos de descrição da requisição(na mesma formatação
-					 * da div popUp)
-					 */
-
+					var titulo = $(this).attr("title");
+					
 					if(tipoRequisicao == 'c')
 					{
 							$('#popUpContrato').css({top:alturaJanela/2 -$('#popUpContrato').height()/2,left:largura/2 - $('#popUpContrato').width()/2});
-							//chamar o método post!!!!!!!
-							$('#nomePopUpContrato').text('Requisição de Contrato:'+nomeRequisitante);
-							$('#informacoesContrato').html(descricaoRequisicao);
+							$('#nomePopUpContrato').text(titulo);
 							$('#informacoesContrato input:hidden').val(idPedido);
-							 $('#popUpContrato').fadeIn(200);
 							
+							var typeVar = 'list';
+							var sourceVar = 'contrato';
+							
+							$.post("requisicao", {
+								type : typeVar,
+								source : sourceVar,
+								chave : idPedido
+							}, function(data) {
+								$("#informacoesContrato ul").html(data);
+							});
+							
+							$('#popUpContrato').fadeIn(200);
 					}
 					else if(tipoRequisicao == 'g')
 					{
 						$('#popUpGeral').css({top:alturaJanela/2 -$('#popUpGeral').height()/2,left:largura/2 - $('#popUpGeral').width()/2});							
-						//chamar o método post!!!!!!!
-						$('#nomePopUpGeral').text('Requisição Geral:'+nomeRequisitante);
-						$('#informacoesGeral').html(descricaoRequisicao);
+						$('#nomePopUpGeral').text(titulo);
 						$('#informacoesGeral input:hidden').val(idPedido);
-						 $('#popUpGeral').fadeIn(200);
+						
+						var typeVar = 'list';
+						var sourceVar = 'geral';
+						
+						$.post("requisicao", {
+							type : typeVar,
+							source : sourceVar,
+							chave : idPedido
+						}, function(data) {
+							$("#informacoesGeral ul").html(data);
+						});
+						
+						$('#popUpGeral').fadeIn(200);
 					}
-				
-
-					// $('#nomePopUp').text(modelo);
-					// $('#PopUp p').text(descricao);
-					// $('#valor').val( idModelo);
 
 					$('.informativo').hide();
 
@@ -81,34 +80,42 @@ $(document).ready(
 
 			$(".salvarGeral").click(function(e) {
 
-				var idRequisicao = $('#informacoesGeral input:hidden').val();
+				var typeVar = 'alter';
+				var sourceVar = 'geral';
 				var estadoRequisicao = $("#informacoesGeral select").val();
-				var pagina = $.post("nomedomapeamento", {
-					id : idRequisicao,
-					estado : estadoRequisicao
+				
+				$.post("requisicao", {
+					type : typeVar,
+					source : sourceVar,
+					chave : idPedido,
+					status : estadoRequisicao
+				}, function(data) {
+					$("#informacoes").html(data);
 				});
-				$('tudo').text(pagina);
-
+				
 				$('#popUpGeral').fadeOut(200);
 				$('#tela').fadeOut(200);
 
 			});
-			$(".salvarContrato").click(
-					function(e) {
+			
+			$(".salvarContrato").click( function(e) {
 
-						var idRequisicao = $(
-								'#informacoesContrato input:hidden').val();
-						var estadoRequisicao = $("#informacoesGeral select")
-								.val();
-						var pagina = $.post("nomedomapeamento", {
-							id : idRequisicao,
-							estado : estadoRequisicao
-						});
-						$('tudo').text(pagina);
-						$('#popUpContrato').fadeOut(200);
-						$('#tela').fadeOut(200);
-
-					});
+				var typeVar = 'alter';
+				var sourceVar = 'contrato';
+				var estadoRequisicao = $("#informacoesContrato select").val();
+				
+				$.post("requisicao", {
+					type : typeVar,
+					source : sourceVar,
+					chave : idPedido,
+					status : estadoRequisicao
+				}, function(data) {
+					$("#informacoes").html(data);
+				});
+				
+				$('#popUpContrato').fadeOut(200);
+				$('#tela').fadeOut(200);
+			});
 
 			$(".responderGeral").click(function(e) {
 
