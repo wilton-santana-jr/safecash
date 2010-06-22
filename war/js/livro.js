@@ -87,7 +87,14 @@ $(document).ready(function() {
 				case 'radio':
 					this.checked = false;
 				}
+				
+				$('#conta').httr({checked:"checked"});
+				$('#entrada').httr({checked:"checked"});
+				
 			});
 		});
 	});
+	
+	$('input:text').setMask();
+	
 });

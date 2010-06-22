@@ -48,6 +48,8 @@ public class LivroServlet extends HttpServlet {
 				this.data = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 
 			this.date = new SimpleDateFormat("dd/MM/yyyy").parse(this.data);
+			
+			this.valorString = CashValidator.validate(this.valorString);
 			this.valorDouble = Double.parseDouble(this.valorString);
 
 			Transacao transacao = new Transacao(this.descricao, this.date, this.valorDouble, this.tipo, this.origem);
