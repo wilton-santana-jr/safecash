@@ -18,7 +18,7 @@ if DATABASE_ENGINE == 'mysql':
     DATABASE_HOST = 'localhost'    # Set to empty string for localhost. Not used with sqlite3.
     DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 elif DATABASE_ENGINE == 'sqlite3':
-    DATABASE_NAME = 'safecash'     # Or path to database file if using sqlite3.
+    DATABASE_NAME = 'safecash.db'  # Or path to database file if using sqlite3.
     DATABASE_USER = ''
     DATABASE_PASSWORD = ''
     DATABASE_HOST = ''
