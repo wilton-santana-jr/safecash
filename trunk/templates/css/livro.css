@@ -1,0 +1,270 @@
+/* CSS Document */
+
+
+
+#menu ul span#livro
+{
+	background-image:url(../imagens/livro_clicado.png);
+	/*width:102px;*/
+}
+#menu ul a:hover span#livro
+{
+	background-image:url(../imagens/livro_clicado.png);
+}
+#conteudo
+{
+	background-image:url(../imagens/PageLivroImages/fundo.jpg);
+	background-repeat:no-repeat;
+	height:740px;
+	text-align:left;
+	position:relative;
+	left:3px;
+}
+#conteudo form
+{
+	position:relative;
+	top:20px;
+	right:30px;
+	float:right;
+
+}
+.destaque
+{
+	font-size:24px;
+	font-weight:bold;
+	display:block;
+	width:464px;
+	height:40px;
+	background-image:url(../imagens/reta.png);
+	background-repeat:repeat-x;
+	background-position:left bottom;
+	float:left;
+	padding-left:30px
+	/*text-align:left;
+	padding-bottom:10px;
+	padding-left:30px;*/
+}
+#receberCaixa
+{
+position:relative;
+left:2px;
+}
+#livroConta
+{
+	position:relative;
+	top:-5px;
+	left:8px
+}
+#livroCaixa
+{
+	position:relative;
+	top:5px;
+	left:-20px
+}
+
+#titulo,#tituloCaixa
+{
+	clear:both;
+	width:750px;
+	background-color:#3994DA;
+	padding:5px 0 5px 5px;
+	color:#FFFFFF;
+	font-weight:bolder;
+	position:relative;
+	top:0px;
+	left:27px;
+}
+
+#tituloCaixa
+{
+left:0px;
+top:10px;
+}
+#informacoes,#informacoesCaixa
+{
+	background-color:#CCCCCC;
+	width:754px;
+	height:272px;
+	position:relative;
+	top: 4px;
+	left: 26px;
+}
+#informacoesCaixa
+{
+left:0px;
+top:14px;
+
+}
+
+.corpo
+{
+height:270px;
+}
+
+#pagar,#receber
+{
+height:270px;
+}
+#esq
+{
+	width:50%;
+	display:block;
+	float:left;
+}
+#botao
+{
+background-image:url(../imagens/PageLivroImages/botaoInserirTransacao.png);
+background-repeat:no-repeat;
+display:block;
+width:180px;
+height:29px;
+float:right;
+position:relative;
+right:22px;
+top:15px;
+
+}
+
+#botao:hover
+{
+background-image:url(../imagens/PageLivroImages/botaoInserirTransacao.png);
+
+
+}
+
+
+#popUp
+{
+	width:411px;
+	height:309px;
+	background-image:url(../imagens/PageLivroImages/fundoPopLivro.png);
+	background-repeat:no-repeat;
+	z-index:10;
+	position:absolute;
+}
+#nomePopUp
+{
+position:relative;
+top:5px;
+left:5px;
+width:383px;
+text-align:left;
+padding-left:15px;
+text-align:left;
+}
+#popUp form
+{
+	text-align: left;
+	position: relative;
+	left: 25px;
+	top: 15px;
+}
+label.titulo
+{
+	padding-bottom: 5px;
+	font-weight: bold;
+	font-size: 13px;
+	color:black;
+}
+label
+{
+	color:#8A8A8A;
+	font-size: 11px;
+}
+
+
+#origem
+{
+	position:relative;
+	top 0px;
+	left:50px;
+}
+#conta
+{
+	position:relative;
+	top 0px;
+	left:10px;
+}
+#labelConta
+{
+	position:relative;
+	top 0px;
+	left:10px;
+}
+#caixa
+{
+	position:relative;
+	top 0px;
+	left:25px;
+}
+#labelCaixa
+{
+	position:relative;
+	top 0px;
+	left:25px;
+}
+.fechar
+{
+	width:13px;
+	height:13px;
+	background-image:url(../imagens/PageModelosImages/x.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:17px;
+	right:22px;
+	z-index:12;
+}
+
+
+.remover
+{
+	width:141px;
+	height:28px;
+	background-image:url(../imagens/PageModelosImages/botaoRemoverModelo.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:70px;
+	right:30px;
+
+}
+
+#tela
+{
+
+	background-color:#3994DA;
+	z-index:9;
+	position:absolute;
+	top:0px;
+	left:0px;
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	-moz-opacity: 0.70;
+
+}
+
+
+
+.informativo
+{
+	color:#FF0000;
+	font-size:12px;
+	position:relative;
+	top:55px;
+	text-align:right;
+	padding-right:20px;
+}
+
+.inserir
+{
+	width:88px;
+	height:23px;
+	display:block;
+	background-image:url(../imagens/PageLivroImages/botaoLivroPopUp.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:80px;
+	right:30px;
+}
