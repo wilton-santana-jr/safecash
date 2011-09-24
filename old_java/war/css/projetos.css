@@ -1,0 +1,891 @@
+/* CSS Document */
+
+
+
+#menu ul span#projetos
+{
+	background-image:url(../imagens/projetos_clicado.png);
+	/*width:102px;*/
+}
+#menu ul a:hover span#projetos
+{
+	background-image:url(../imagens/projetos_clicado.png);
+}
+#conteudo
+{
+	background-image:url(../imagens/PageProjetosImages/fundo.png);
+	background-repeat:no-repeat;
+	height:794px;
+	text-align:left;
+	position:relative;
+}
+.destaque
+{
+	font-size:24px;
+	font-weight:bold;
+	display:block;
+	width:464px;
+	height:40px;
+	background-position:left bottom;
+	float:left;
+	padding-left:30px;
+	position:relative;
+	top:15px;
+	position:relative;
+	left:9px;
+	/*text-align:left;
+	padding-bottom:10px;
+	padding-left:30px;*/
+}
+#conteudo form
+{
+	position:relative;
+	top:20px;
+	right:40px;
+	float:right;
+
+}
+#conteudo form select
+{
+	width:90px;
+}
+
+#botao
+{
+	background-image:url(../imagens/PageProjetosImages/botaoInserir.png);
+	background-repeat:no-repeat;
+	display:block;
+	width:156px;
+	height:31px;
+	float:right;
+	position:relative;
+	right:22px;
+	top:15px;
+
+}
+
+#botao:hover
+{
+background-image:url(../imagens/PageProjetosImages/botaoInserir.png);
+
+
+}
+#separacao
+{
+	position:relative;
+	top:40px;
+	left:9px;
+}
+/* root element for tabs */
+#flowtabs {
+	
+	/* dimensions */
+	width:794px;
+	height:36px !important;
+	margin:0 !important; 
+	padding:0;	
+	clear:both;
+	/* IE6 specific branch (prefixed with "_") */
+	_margin-bottom:-2px;
+}
+
+/* single tab */
+#flowtabs li { 
+	float:left; 
+	margin:0; 
+	padding:0; 
+	text-indent:0; 
+	list-style-type:none;
+}
+
+/* a- tag inside single tab */
+#flowtabs li a {
+	background: url(../imagens/agrupadas.png) no-repeat;
+	display:block;
+	height: 34px;   
+	width: 264px; 	
+	padding:0px;
+	margin:0px;
+	
+	/* font decoration */
+	color:#000;
+	font-size:12px;
+	line-height:33px;
+	text-align:center;
+	text-decoration:none;
+}
+
+/* adjust the background image position on each tab */
+#flowtabs #t1 			{ background-position: 0 0; }
+#flowtabs #t2 			{ background-position: -264px 0; }
+#flowtabs #t3 			{ background-position: -529px 0; width:264px;}/*192*/
+/*#flowtabs #t4 			{ background-position: -567px 0; }*/
+ 
+/* mouseover state */
+#flowtabs a:hover 		{ color:#fff;	 }
+#flowtabs #t1:hover 	{ background-position:      0 -36px; }
+#flowtabs #t2:hover 	{ background-position: -264px -36px; }
+#flowtabs #t3:hover 	{ background-position: -529px -36px; }
+/*#flowtabs #t4:hover 	{ background-position: -567px -36px; }*/
+
+/* currently selected tabs */
+#flowtabs a.current		{ cursor:default; color:#fff; line-height:34px; }
+#flowtabs #t1.current { background-position:      0 -72px; }
+#flowtabs #t2.current { background-position: -264px -72px; }
+#flowtabs #t3.current { background-position: -529px -72px; }
+/*#flowtabs #t4.current { background-position: -567px -66px; }*/
+
+
+/* panes */
+#flowpanes {
+	/*background: url(imagens/blue_panes.jpg) no-repeat 0 -100px;		*/
+	width:794px;
+	height:450px;	
+}
+
+
+/* single pane */
+#flowpanes div {
+	display:none;	
+	color:#fff;	
+	margin:20px 40px;
+}
+
+/* some decorations for elements inside single pane */
+
+
+
+#flowpanes .narrow {
+	padding-right:160px;		
+}
+
+	/* override the root element to enable scrolling */
+	#flowpanes {
+		position:relative;
+		overflow:hidden;
+		clear:both;
+	}
+
+	/* override single pane */
+		#flowpanes div {
+		float:left;
+		display:block;
+		width:794px;
+		font-size:14px;
+		margin:0;
+		padding:0;
+	}
+	/* our additional wrapper element for the items */
+	#flowpanes .items {
+		width:20000em;
+		position:absolute;
+		clear:both;
+		margin:0;
+		padding:0;
+	}
+
+	#flowpanes .less, #flowpanes .less a {
+		color:#999 !important;
+		font-size:11px;
+	}
+	
+	
+	#flowpanes div.meses
+	{
+		display:block;
+		width:794px;
+		height:410px;
+		margin:0;
+		padding:0;
+	}
+	
+	
+     #flowpanes div.meses div#esqUm , #flowpanes div.meses div#esqDois,#flowpanes div.meses div#dirUm,#flowpanes div.meses div#dirDois
+	{
+		display:block;
+		width:380px;
+		height:190px;
+		font-family:Calibri;
+	}
+	
+	#flowpanes div#esqUm,#flowpanes div#esqDois
+	{
+		float:left;
+		position:relative;
+		left:10px;
+		top:10px;
+		
+	}
+	
+	#flowpanes div#dirUm,#flowpanes div#dirDois
+	{
+		float:right;
+		position:relative;
+		right:10px;
+		top:10px;
+		
+	}
+	
+	#flowpanes div.cabecario
+	{
+		background:#CCC;
+		color:#FFFFFF;
+		margin:0;
+		height:0;
+			display:block;
+		width:380px;
+		height:25px;
+	}
+	#flowpanes div.cabecario span
+	{
+		padding-left:15px;
+		padding-top:5px;
+		
+		display:block;
+		font-weight:bold;
+	}
+	
+	#flowpanes div.corpo
+	{
+		border:solid;
+		border-width:1px;
+		border-color:#CCC;
+		margin:0;
+		padding:0;
+			display:block;
+		width:378px;
+		height:165px;
+	}
+	
+	#flowpanes div.corpo ul
+	{
+		margin: 0 0 0 0;
+		padding: 0 0 0 0;
+		list-style-image:url(../imagens/PageAdminImages/ponto.jpg);
+		
+		position:relative;
+		left:30px;
+		top:10px;
+	}
+	
+	#flowpanes div.corpo ul li
+	{
+		padding-bottom:5px;
+	}
+	
+	#flowpanes div.corpo ul a
+	{
+		font-size:12px;
+		color:#000000;
+		text-decoration:none;
+		
+	}
+
+#popUp
+{
+	width:680px;
+	height:1372px;
+	background-image:url(../imagens/PageProjetosImages/fundoPopUp.png);
+	background-repeat:no-repeat;
+	z-index:10;
+	position:absolute;
+}
+.fechar
+{
+	width:13px;
+	height:13px;
+	background-image:url(../imagens/PageModelosImages/x.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:17px;
+	right:22px;
+	z-index:12;
+}
+
+#nomePopUp
+{
+	background-image:url("../imagens/reta.png");
+background-position:left bottom;
+background-repeat:repeat-x;
+display:block;
+float:left;
+font-size:24px;
+font-weight:bold;
+height:35px;
+left:9px;
+padding-left:30px;
+position:relative;
+text-align:left;
+top:20px;
+width:630px;
+}
+
+#popUp form
+{
+	text-align: left;
+	position: relative;
+	left: 25px;
+	top: 50px;
+	display:block;
+	width:680px;
+	height:100px;
+}
+label
+{
+	
+	font-size: 14px;
+	font-family:calibri;
+	display:block;
+	float:left;
+	margin-bottom:5px;
+	font-weight:bold;
+	text-align:right;
+}
+input,select
+{
+	display:block;
+	float:left;
+	margin-bottom:10px;
+
+}
+
+#nomeProjeto
+{
+	
+	width:540px;
+	height:15px;
+	
+}
+#valorProjeto,#dataTerProjeto,#dataIniProjeto
+{
+	width:100px;
+	height:15px;
+}
+#valorProjeto
+{
+	margin-left:45px;
+}
+#nomeProjeto
+{
+	margin-left:46px;
+}
+#labelDataTerProjeto,#labelDataIniProjeto
+{
+	width:113px;
+	height:15px;
+	text-align:right;
+}
+#responsavelProjetos
+{
+	width:100px;
+}
+span.separacao
+{
+	display:block;
+	height:30px;
+	width:640px;
+	background:#CCC;
+	color:#666666;
+	border-top:solid;
+	border-width:2px;
+	border-top-color:#666666;
+	
+	left:9px;
+	position:relative;
+	top:60px;
+	font-size:18px;
+	text-align:left;
+	padding-left:20px;
+	float:left;
+	font-weight:bold;
+}
+#tela
+{
+
+	background-color:#3994DA;
+	z-index:9;
+	position:absolute;
+	top:0px;
+	left:0px;
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	-moz-opacity: 0.70;
+
+}
+
+/*
+label.titulo
+{
+	padding-bottom: 5px;
+	font-weight: bold;
+	font-size: 13px;
+	color:black;
+}
+label
+{
+	color:#8A8A8A;
+	font-size: 11px;
+}
+
+
+#origem
+{
+	position:relative;
+	top 0px;
+	left:50px;
+}
+#conta
+{
+	position:relative;
+	top 0px;
+	left:10px;
+}
+#labelConta
+{
+	position:relative;
+	top 0px;
+	left:10px;
+}
+#caixa
+{
+	position:relative;
+	top 0px;
+	left:25px;
+}
+#labelCaixa
+{
+	position:relative;
+	top 0px;
+	left:25px;
+}
+
+
+.remover
+{
+	width:141px;
+	height:28px;
+	background-image:url(../imagens/PageModelosImages/botaoRemoverModelo.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:70px;
+	right:30px;
+
+}
+
+
+
+
+.informativo
+{
+	color:#FF0000;
+	font-size:12px;
+	position:relative;
+	top:55px;
+	text-align:right;
+	padding-right:20px;
+}
+
+.inserir
+{
+	width:88px;
+	height:23px;
+	display:block;
+	background-image:url(../imagens/PageLivroImages/botaoLivroPopUp.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:80px;
+	right:30px;
+}*/
+
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+#contaEntrada ,#contaEntradaSaida
+{
+	width:675px;
+	height:539px;
+	z-index:10;
+	position:absolute;
+	text-align:left;
+	float:left;
+}
+
+
+.fechar
+{
+	width:13px;
+	height:13px;
+	background-image:url(../imagens/PageModelosImages/x.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:17px;
+	right:22px;
+	z-index:12;
+}
+.destaque
+{
+	font-size:24px;
+	font-weight:bold;
+	display:block;
+	width:464px;
+	height:40px;
+	background-image:url(../imagens/reta.png);
+	background-repeat:repeat-x;
+	background-position:left bottom;
+	float:left;
+	padding-left:30px
+	
+	
+}
+
+#conta, #conta form , #contaSaida, #contaSaida form
+{
+	display:block;
+	width:630px;
+	height:100px;
+	position:relative;
+	left:0px;
+	top: 0px;
+	text-align:left;
+	height:215px;
+}
+
+#conta, #contaSaida
+{
+	top:100px;
+	left:30px;
+}
+/*#formEditar input[type="text"], #formCadastrar input[type="text"],#formEditar input[type="password"], #formCadastrar input[type="password"]
+{
+	display:block;
+	padding-left:5px;
+	position:relative;
+	top:-1px;
+	margin-bottom:10px;
+	height:15px;
+	width:265px;
+}
+#formEditar label, #formCadastrar label,#formEditar input[type="radio"], #formCadastrar input[type="radio"]
+{
+	display:block;
+	float:left;
+	margin-bottom:10px;
+	font-family:calibri;
+	font-size:13px;
+}
+*/
+
+
+#esq input[type="text"], #dir input[type="text"],#esqSaida input[type="text"], #dirSaida input[type="text"]
+{
+	display:block;
+	padding-left:5px;
+	position:relative;
+	
+	margin-bottom:10px;
+	height:12px;
+	width:100px;
+}
+#esq label, #dir label,#esq input[type="radio"], #esq select,#esqSaida label, #dirSaida label,#esqSaida input[type="radio"], #esqSaida select
+{
+	display:block;
+	float:left;
+	margin-bottom:10px;
+	font-family:calibri;
+	font-size:12px;
+	text-align:left;
+}
+#esq input[type="radio"], #esqSaida input[type="radio"]
+{
+	position:relative;
+	top:-2px;
+}
+#esq, #esqSaida
+{
+	display:block;
+	float:left;
+	width:200px;
+	position:relative;
+}
+
+#dir, #dirSaida
+{
+	display:block;
+	float:right;
+	position:relative;
+	right:25px;
+	width:400px;
+	
+}
+#dir textarea,#dirSaida textarea
+{
+	width:315px;
+	height:90px;
+	margin-left:10px;
+}
+#dataConta,#dataContaSaida
+{
+	top:0px;
+	left:22px;
+}
+#valorConta,#valorContaSaida
+{
+	top:0px;
+	left:14px;
+}
+#estadoConta,#estadoContaSaida
+{
+	top:0px;
+	left:6px;
+	position:relative;
+}
+
+.limpa
+{
+	clear:both;
+}
+#transacao, #transacaoSaida
+{
+	width:620px;
+	height:135px;
+	display:block;
+	background-color:#CCC;
+	position:relative;
+	top:80px;
+	left:20px;
+	float:left;
+	z-index:15;
+}
+#cabecarioTransacao,#cabecarioTransacaoSaida
+{
+	width:620px;
+	background-color:#3994DA;
+	display:block;
+	height:25px;
+	float:left;
+	-moz-border-radius:5px 5px 0px 0px;
+}
+
+#cabecarioTransacao span, #cabecarioTransacaoSaida span
+{
+	display:block;
+	float:left;
+	color:#FFFFFF;
+	font-size:16px;
+	padding-left:20px;
+	padding-top:3px;
+}
+#corpoTransacao, #corpoTransacao form,#corpoTransacaoSaida, #corpoTransacaoSaida form
+{
+
+	width:620px;
+	height:110px;
+	display:block;
+	float:left;
+	left:0px;
+	top:0px;
+}
+#corpoTransacao form,#corpoTransacaoSaida form
+{
+	padding-left:10px;
+	width:610px;
+}
+#corpoTransacao form a,#corpoTransacaoSaida form a
+{
+	width:96px;
+	height:105px;
+	background-image:url(../imagens/PageContasImage/botaoAdicionar.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:0px;
+	right:5px;	
+	display:block;
+}
+/*#corpoTransacao form input[type="text"],#corpoTransacao form input[type="text"]#corpoTransacao form label
+{
+	float:left;
+}*/
+#corpoTransacao form label,#corpoTransacaoSaida form label
+{
+	width:125px;
+	display:block;
+	float:left;
+	text-align:left;
+}
+#descricaoTransacao,#descricaoTransacaoSaida
+{
+	width:470px;
+	margin-left:10px;
+		display:block;
+	margin-bottom:5px;
+}
+#origemTransacao,#origemTransacaoSaida
+{
+	margin-left:10px;
+	width:100px;
+
+}
+#valorTransacao,#valorTransacaoSaida
+{
+	position:relative;
+	top:0px;
+	left:15px;
+	width:100px;
+
+}
+
+#tipoTransacao,#tipoTransacaoSaida
+{
+	position:relative;
+	top:0px;
+	left:35px;
+	width:100px;
+}
+
+#dataTransacao,#dataTransacaoSaida
+{
+	position:relative;
+	top:0px;
+	left:60px;
+	width:100px;
+}
+
+
+#listaTransacao,#listaTransacaoSaida
+{
+	width:620px;
+	height:150px;
+	display:block;
+	background-color:#CCC;
+	position:relative;
+	top:100px;
+	left:20px;
+	float:left;
+	z-index:15;
+}
+#cabecarioLista,#cabecarioListaSaida
+{
+	width:620px;
+	background-color:#3994DA;
+	display:block;
+	height:25px;
+	float:left;
+	-moz-border-radius:5px 5px 0px 0px;
+}
+
+#cabecarioLista span,#cabecarioListaSaida span
+{
+	display:block;
+	float:left;
+	color:#FFFFFF;
+	font-size:16px;
+		padding-left:20px;
+	padding-top:3px;	
+}
+
+#cabecarioListaCorpo span,#corpoLista span,#cabecarioListaCorpoSaida span,#corpoListaSaida span
+{
+	font-size:13px;
+	display:block;
+	float:left;
+}
+
+#listaTransacao span.data,#corpoLista span.data,#listaTransacaoSaida span.data,#corpoListaSaida span.data
+{
+	width:65px;
+	
+}
+#listaTransacao span.descricao,#corpoLista span.descricao,#listaTransacaoSaida span.descricao,#corpoListaSaida span.descricao
+{
+	width:363px;
+	
+}
+#listaTransacao span.tipo, #corpoLista span.tipo,#listaTransacaoSaida span.tipo, #corpoListaSaida span.tipo
+{
+	width:55px;
+	
+}
+#listaTransacao span.valor,#corpoLista span.valor,#listaTransacaoSaida span.valor,#corpoListaSaida span.valor
+{
+	width:60px;
+	
+}
+#listaTransacao span.estado,#corpoLista span.estado,#listaTransacaoSaida span.estado,#corpoListaSaida span.estado
+{
+	width:65px;
+	
+}
+#corpoLista span.data,#corpoListaSaida span.data
+{
+	margin:0;
+	padding:0;
+	width:75px;
+}
+
+#corpoLista,#corpoListaSaida
+{
+
+	width:618px;
+	height:110px;
+	display:block;
+	float:left;
+	background:#FFFFFF;
+	border:solid;
+	border-width:1px;
+	border-color:#CCC;
+	-moz-border-radius:0px 0px 5px 5px;
+}
+#listaTransacao #corpoLista span.pendente,#listaTransacaoSaida #corpoListaSaida span.pendente
+{
+	color:#FF0000;
+}
+#listaTransacao #corpoLista span.ok,#listaTransacaoSaida #corpoListaSaida span.ok
+{
+	color:#00FF66;
+}
+
+#listaTransacao #corpoLista span.atrasado,#listaTransacaoSaida #corpoListaSaida span.atrasado
+{
+	color:#FF9900;
+}
+.inserirProjeto
+{
+	width:125px;
+	height:28px;
+	background-image:url(../imagens/PageContasImage/botaoInserir.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	top:210px;
+	right:30px;	
+	display:block;
+
+}
+
+#separa
+{
+	top:135px;
+}
+
+#contaSaida
+{
+	top:110px;
+}
+#ContaSaida
+{
+	position:relative;
+	top:75px;
+}
+
+#transacaoSaida
+{
+	top: 145px;
+}
+
+#listaTransacaoSaida
+{
+	top:170px;
+}
