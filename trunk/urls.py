@@ -7,6 +7,7 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('',
     # HOME
     (r'^home/$', 'apps.home.views.home'),
+    (r'^login/$', 'apps.home.views.login'),
     
     # LIVRO
     (r'^livro/$', 'apps.livro.views.home'),
