@@ -1,4 +1,8 @@
 # Django settings for SAFECASH project.
+import os.path
+import posixpath
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -50,6 +54,14 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = ''
 
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "media")
+
+STATIC_URL = "/media/"
+
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_ROOT, "media"),
+]
+
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
@@ -85,6 +97,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    
     'apps.home',
     'apps.livro',
     'apps.conta',
