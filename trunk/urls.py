@@ -4,26 +4,31 @@ from django.conf.urls.defaults import *
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
-    # HOME
-    (r'^home/$', 'apps.home.views.home'),
-    (r'^login/$', 'apps.home.views.login'),
+# HOME
+urlpatterns = patterns('apps.home.views',
+    (r'^home/$', 'home'),
+    (r'^login/$', 'login'))
     
-    # LIVRO
-    (r'^livro/$', 'apps.livro.views.home'),
+# LIVRO
+urlpatterns += patterns('apps.livro.views',
+    (r'^livro/$', 'home'))
     
-    # CONTA
-    (r'^contas/$', 'apps.conta.views.home'),
+# CONTA
+urlpatterns += patterns('apps.conta.views',
+    (r'^contas/$', 'home'))
     
-    # PROJETO
-    (r'^projetos/$', 'apps.projeto.views.home'),
+# PROJETO
+urlpatterns += patterns('apps.projeto.views',
+    (r'^projetos/$', 'home'))
     
-    # REQUISICAO
-    (r'^requisicao/$', 'apps.requisicao.views.home'),
+# REQUISICAO
+urlpatterns += patterns('apps.requisicao.views',
+    (r'^requisicao/$', 'home'))
     
-    # RELATORIO
-    (r'^relatorios/$', 'apps.relatorio.views.home'),
+# RELATORIO
+urlpatterns += patterns('apps.relatorio.views',
+    (r'^relatorios/$', 'home'))
     
-    # MODELO
-    (r'^modelos/$', 'apps.modelo.views.home'),
-)
+# MODELO
+(urlpatterns += patterns('apps.modelo.views',
+    (r'^modelos/$', 'home'))
