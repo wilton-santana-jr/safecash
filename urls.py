@@ -4,7 +4,7 @@ from django.conf.urls.defaults import *
 # from django.contrib import admin
 # admin.autodiscover()
 
-# SOMENTO INCLUDES DAS APPS - NÃO ALTERAR
+# SOMENTE INCLUDES DAS APPS - NAO ALTERAR
 urlpatterns = patterns('',
     (r'^', include('apps.home.urls')),
     (r'^livro/', include('apps.livro.urls')),
