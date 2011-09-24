@@ -84,5 +84,11 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'safecash',
+    'apps.home',
+    'apps.livro',
+    'apps.conta',
+    'apps.projeto',
+    'apps.requisicao',
+    'apps.relatorio',
+    'apps.modelo',
 )
