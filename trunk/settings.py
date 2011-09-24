@@ -90,5 +90,5 @@ INSTALLED_APPS = (
     'apps.projeto',
     'apps.requisicao',
     'apps.relatorio',
-    'apps.modelo',
+    'apps.modelo'
 )
