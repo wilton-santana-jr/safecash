@@ -30,5 +30,5 @@ urlpatterns += patterns('apps.relatorio.views',
     (r'^relatorios/$', 'home'))
     
 # MODELO
-(urlpatterns += patterns('apps.modelo.views',
+urlpatterns += patterns('apps.modelo.views',
     (r'^modelos/$', 'home'))
