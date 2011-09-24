@@ -6,23 +6,23 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
     # HOME
-    (r'^home/$', 'home.views.home'),
+    (r'^home/$', 'apps.home.views.home'),
     
     # LIVRO
-    (r'^livro/$', 'livro.views.home'),
+    (r'^livro/$', 'apps.livro.views.home'),
     
     # CONTA
-    (r'^contas/$', 'conta.views.home'),
+    (r'^contas/$', 'apps.conta.views.home'),
     
     # PROJETO
-    (r'^projetos/$', 'projeto.views.home'),
+    (r'^projetos/$', 'apps.projeto.views.home'),
     
     # REQUISICAO
-    (r'^requisicao/$', 'requisicao.views.home'),
+    (r'^requisicao/$', 'apps.requisicao.views.home'),
     
     # RELATORIO
-    (r'^relatorios/$', 'relatorio.views.home'),
+    (r'^relatorios/$', 'apps.relatorio.views.home'),
     
     # MODELO
-    (r'^modelos/$', 'modelo.views.home'),
+    (r'^modelos/$', 'apps.modelo.views.home'),
 )
