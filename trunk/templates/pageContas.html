@@ -1,39 +1,24 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="css/defalt.css" type="text/css"></link>
-<link rel="stylesheet" href="css/caixa.css" type="text/css"></link>
+{% extends "base.html" %}
 
-<link rel="stylesheet" href="css/contas.css" type="text/css"></link>
+{% block head_title %}
+Contas
+{% endblock %}
 
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/jquery.click-calendario-1.0-min.js"></script>
-<script type="text/javascript" src="js/contas.js"></script>
+{% block  head_css_extra %} 
 
-<title>Untitled Document</title>
-</head>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/caixa.css" type="text/css"></link>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/contas.css" type="text/css"></link>
+{% endblock %}
+{% block  head_js_extra %} 
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.click-calendario-1.0-min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/contas.js"></script>
+{% endblock %}
 
-<body>
-<div id="tudo">
-	<div id="dados">Usu&aacute;rio: <span class="cor">Bruno Medeiros</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt;&gt; <a href="#" class="cor" title="logout">logout</a></div>
-	<div id="logo"></div>
-	
-	<div id="corpo">
-		<div id="menu">
-			<ul>
-				<li><a href="#" title="P&aacute;gina Inicial"><span id="inicio"></span></a></li>
-				<li><a href="#" title="Livro do Caixa"><span id="livro"></span></a></li>
-				<li><a href="#" title="Contas"><span id="contas"></span></a></li>
-				<li><a href="#" title="Projetos"><span id="projetos"></span></a></li>
-				<li><a href="#" title="Requisi&ccedil;&atilde;o"><span id="requisicao"></span></a></li>
-				<li><a href="#" title="Relat&oacute;rios"><span id="relatorios"></span></a></li>
-				<li><a href="#" title="Modelos de documentos"><span id="modelos"></span></a></li>
-				<li><span id="linha"></span></li>
-			</ul>
-		</div>
-		
-		<div id="conteudo">
+
+{% block name_user %}Bruno Medeiros {% endblock %}
+
+
+{% block base_content %} 
 			<a href="#" id="botao" title="Adicionar Conta"></a>
 			<form action="#" method="post">
 				<select name= "mes"onchange="scripting(this.value)">
@@ -110,9 +95,8 @@
 		</div>
 	</div>
 
-</div>
-</div>
-
+{%endblock%}
+{%block base_popup%}
 <div id="popUp"  class="esconder">
 	<a class="fechar" href="#" title="voltar"></a>
 	<span id="nomePopUp" class="destaque cor">Inserir Conta</span>
@@ -179,7 +163,5 @@
 		</div>
 		<a href="#" title="Inserir Conta" class="inserirConta"></a>
 </div>
-	
-<div id="tela"></div>
-</body>
-</html>
+	{%endblock%}
+
