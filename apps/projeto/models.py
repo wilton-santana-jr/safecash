@@ -8,3 +8,5 @@ class Projeto(models.Model):
     data_inicio = models.DateField()
     data_fim = models.DateField()
 
+    class Meta:
+        db_table = 'projeto'

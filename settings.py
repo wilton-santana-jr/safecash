@@ -16,11 +16,11 @@ MANAGERS = ADMINS
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 
 if DATABASE_ENGINE == 'mysql':
-    DATABASE_NAME = 'safecash'     # Or path to database file if using sqlite3.
-    DATABASE_USER = 'root'         # Not used with sqlite3.
-    DATABASE_PASSWORD = ''         # Not used with sqlite3.
-    DATABASE_HOST = 'localhost'    # Set to empty string for localhost. Not used with sqlite3.
-    DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+    DATABASE_NAME = 'g112if692_eq02'     # Or path to database file if using sqlite3.
+    DATABASE_USER = 'g112if692_eq02'     # Not used with sqlite3.
+    DATABASE_PASSWORD = 'eeUThdeD'       # Not used with sqlite3.
+    DATABASE_HOST = 'mysql.cin.ufpe.br'  # Set to empty string for localhost. Not used with sqlite3.
+    DATABASE_PORT = ''                   # Set to empty string for default. Not used with sqlite3.
 elif DATABASE_ENGINE == 'sqlite3':
     DATABASE_NAME = 'safecash.db'  # Or path to database file if using sqlite3.
     DATABASE_USER = ''
