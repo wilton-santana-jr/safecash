@@ -5,88 +5,61 @@ Modelos
 {% endblock %}
 
 {% block  head_css_extra %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/modelos.css">
- {% endblock %}
-
-{% block  head_js_extra %} 
-
-
-<script type="text/javascript" src="{{ STATIC_URL }}js/funcao.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/modelos.css">
 {% endblock %}
 
+{% block  head_js_extra %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/funcao.js"></script>
+{% endblock %}
 
 {% block name_user %}Bruno Medeiros {% endblock %}
 
+{% block base_content %}
+    <form>
+        <a class="botao" href="#" title="armazenar"></a>
+    </form>
 
-{% block base_content %} 
+    <span class="mostrar informativo">Texto para informar o usu&aacute;rio</span>
+    <div id="livroConta" class="destaque cor">Modelos Armazenados no Sistema</div>
+        <div id="lista">
+            <ul>
+                <li id="1"><a href="#" title="Maior Detalhamento">NOME DO MODELO ARMAZENADO</a></li>
+                <li id="2"><a href="#" title="Maior Detalhamento">NOME DO MODELO CONTRATO</a></li>
+                <li id="3"><a href="#" title="Maior Detalhamento">PEDIDO N&Uacute;MERO 1</a></li>
+                <li id="4"><a href="#" title="Maior Detalhamento">CURSO IN-COMPANY</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
 
-			<form>
-			<!--<label class="label" for="campo">ARMAZENAR UM MODELO:&nbsp;&nbsp;&nbsp;</label>
-				<input class="campo" size="50" type="text" id="campo" name="endereco" value="file:///G:/Interface/PageModelos.png"/>-->
-				<a class="botao" href="#" title="armazenar"></a>
-			</form>
-			<span class="mostrar informativo">Texto para informar o usuário</span>
-			<div id="livroConta" class="destaque cor">Modelos Armazenados no Sistema</div>
-			
-			
-			<div id="lista">
-				<ul>
-					<li id="1"><a href="#" title="Maior Detalhamento">NOME DO MODELO ARMAZENADO</a></li>
-					<li id="2"><a href="#" title="Maior Detalhamento">NOME DO MODELO CONTRATO</a></li>
-					<li id="3"><a href="#" title="Maior Detalhamento">PEDIDO NÚMERO 1</a></li>
-					<li id="4"><a href="#" title="Maior Detalhamento">CURSO IN-COMPANY</a></li>
-				</ul>
-			</div>
-			
-		
-		</div>
-		
-	  {%endblock%}
-			
-	
+{% block base_popup %}
+    <div id="popUp" class="esconder">
+        <a class="fechar" href="#" title="voltar"></a>
+        <span id="nomePopUp" class="destaque cor">nome do modelo</span>
+        <br/><br/>
+        <h3>Descri&ccedil;&aatilde;o:</h3>
+        <input id="valor" type="hidden" name="idModelo" value="teste" />
 
-{%block base_popup%} 
+        <div>
+            <p>text text text text text text text otextotext otextot extot e xtot extote xtotext o tex totextotextote xtotex totext otextotex totext otext o texto</p>
+        </div>
 
-<div id="popUp" class="esconder">
-				<a class="fechar" href="#" title="voltar"></a>
-				<span id="nomePopUp" class="destaque cor">nome do modelo</span>
-				<br/><br/>
-				<h3>Descrição:</h3>
-				<input id="valor" type="hidden" name="idModelo" value="teste" />
-				<div>
-				<p>text text text text text text text otextotext otextot extot e xtot extote xtotext o tex totextotextote xtotex totext otextotex totext otext o texto</p>
-				</div>
-				<a class="remover" href="#" title="Excluir Modelo"></a>
-				<a class="download" href="#" title="Download do Modelo"></a>
-	</div>
-	
-<div id="popUp" class="esconder">
-				<a class="fechar" href="#" title="voltar"></a>
-				<span id="nomePopUp" class="destaque cor">nome do modelo</span>
-				<br/><br/>
-				<h3>Descrição:</h3>
-				<input id="valor" type="hidden" name="idModelo" value="teste" />
-				<div>
-				<p>text text text text text text text otextotext otextot extot e xtot extote xtotext o tex totextotextote xtotex totext otextotex totext otext o texto</p>
-				</div>
-				<a class="remover" href="#" title="Excluir Modelo"></a>
-				<a class="download" href="#" title="Download do Modelo"></a>
-</div>
+        <a class="remover" href="#" title="Excluir Modelo"></a>
+        <a class="download" href="#" title="Download do Modelo"></a>
+    </div>
 
-<div id="popUpInserir" class="esconder">
-				<a class="fecharInserir" href="#" title="voltar"></a>
-				<span id="nomePopUpInserir" class="destaque cor">Defina o novo modelo</span>
-				<br/><br/>
-				<form action="#" method="post">
-					<label for="nome">NOME DO MODELO:</label>
-					<input type="text" name="nome" id="nome" size="55" />
-					<label for="endereco">CAMINHO DO MODELO:</label>
-					<input type="file" name="endereco" id="endereco" size="37" value="PROCURAR"/>
-					<label for="descricao">DESCRI&Ccedil;&Atilde;O DO MODELO:</label>
-					<textarea id="descricao" name="descricao" m ></textarea>
-				</form>
-				<a class="armazenar" href="#" title="Armazenar"></a>
-			
-</div>
-{%endblock%}
-
+    <div id="popUpInserir" class="esconder">
+        <a class="fecharInserir" href="#" title="voltar"></a>
+        <span id="nomePopUpInserir" class="destaque cor">Defina o novo modelo</span>
+        <br/><br/>
+        <form action="#" method="post">
+            <label for="nome">NOME DO MODELO:</label>
+            <input type="text" name="nome" id="nome" size="55" />
+            <label for="endereco">CAMINHO DO MODELO:</label>
+            <input type="file" name="endereco" id="endereco" size="37" value="PROCURAR"/>
+            <label for="descricao">DESCRI&Ccedil;&Atilde;O DO MODELO:</label>
+            <textarea id="descricao" name="descricao" m ></textarea>
+        </form>
+        <a class="armazenar" href="#" title="Armazenar"></a>
+    </div>
+{% endblock %}
