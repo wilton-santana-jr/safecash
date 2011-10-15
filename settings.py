@@ -47,16 +47,17 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, "media", "arquivos")
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL =  "/media/arquivos/"
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, "media")
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "media", "static")
 
-STATIC_URL = "/media/"
+
+STATIC_URL = "/media/static/"
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, "media"),
@@ -74,6 +75,7 @@ SECRET_KEY = 'b@r=x-m%e$y#jmwfvs^2zz@au9-^^nh+t+c-5c!lkmvb8#ay-o'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
+    
 #     'django.template.loaders.eggs.load_template_source',
 )
 
@@ -83,14 +85,17 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
+
 ROOT_URLCONF = 'trunk.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    'templates',
+     os.path.join(PROJECT_ROOT, "templates"),
 )
+
+
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -98,6 +103,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
+    
     
     'apps.home',
     'apps.livro',
