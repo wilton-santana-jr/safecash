@@ -6,4 +6,4 @@ from django.conf.urls.defaults import *
 
 # PROJETO
 urlpatterns = patterns('apps.projeto.views',
-    (r'^$', 'home'))
+    (r'^$', 'projeto'))
