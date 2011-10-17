@@ -6,4 +6,6 @@ from django.conf.urls.defaults import *
 
 # MODELO
 urlpatterns = patterns('apps.modelo.views',
-    (r'^$', 'home'))
+    (r'^$', 'home'),
+    (r'^get_more_info/', 'get_more_info')
+)
