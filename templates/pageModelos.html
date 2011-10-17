@@ -23,10 +23,9 @@ Modelos
     <div id="livroConta" class="destaque cor">Modelos Armazenados no Sistema</div>
         <div id="lista">
             <ul>
-                <li id="1"><a href="#" title="Maior Detalhamento">NOME DO MODELO ARMAZENADO</a></li>
-                <li id="2"><a href="#" title="Maior Detalhamento">NOME DO MODELO CONTRATO</a></li>
-                <li id="3"><a href="#" title="Maior Detalhamento">PEDIDO N&Uacute;MERO 1</a></li>
-                <li id="4"><a href="#" title="Maior Detalhamento">CURSO IN-COMPANY</a></li>
+                {% for modelo in modelos %}
+                <li id="{{ modelo.id }}"><a href="#" title="Clique para obter mais detalhes">{{ modelo.nome }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>
