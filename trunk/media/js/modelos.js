@@ -6,13 +6,16 @@ $(document).ready(function() {
             var alturaJanela = $(window).height();
             var modelo = $(this).text();
             var idModelo = $(this).attr('id');
-            var descricao = $.post("get_more_info/", { id: idModelo });
+
+            $.post("get_more_info/", { id: idModelo }, function (data) {
+                $('#popUp p').text(data.desc);
+            }, 'json');
+
             // $('body').text(id);
             $('#tela').css({width: largura, height: altura});
             $('#tela').fadeIn(200);
             $('#popUp').css({top: (alturaJanela/2) - (260/2), left: (largura/2) - (434/2)});
             $('#nomePopUp').text(modelo);
-            $('#popUp p').text(descricao);
             $('#valor').val(idModelo);
             $('#popUp').fadeIn(200);
             $('.informativo').hide();
