@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.http import HttpResponse
 from django.utils import simplejson
 
 def home(request):
@@ -13,4 +14,6 @@ def home(request):
 
 def get_more_info(request):
     print 'modelo requisitado: ' + request.POST['id']
-    return HttpResponse(simplejson.dumps({'oi': '11'}), minetype='application/javascript')
+    descricao = 'descricao do modelo requisitado'
+    toSend = { 'desc' : descricao }
+    return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')

@@ -2,7 +2,7 @@ from django.db import models
 from apps.projeto.models import *
 
 class Conta(models.Model):
-    projeto = models.ForeignKey(Projeto, related_name='contas')
+    projeto = models.ForeignKey(Projeto, null=True, blank=True, related_name='contas')
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
     valor_total = models.FloatField(default=0)
@@ -15,7 +15,7 @@ class Conta(models.Model):
 
 
 class Transacao(models.Model):
-    conta = models.ForeignKey(Projeto, related_name='transacoes')
+    conta = models.ForeignKey(Conta, related_name='transacoes')
     nome = models.CharField(max_length=100)
     valor = models.FloatField(default=0)
     data_vencimento = models.DateField()
