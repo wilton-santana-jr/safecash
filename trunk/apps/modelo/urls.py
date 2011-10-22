@@ -7,5 +7,8 @@ from django.conf.urls.defaults import *
 # MODELO
 urlpatterns = patterns('apps.modelo.views',
     (r'^$', 'home'),
-    (r'^get_more_info/', 'get_more_info')
+    (r'^get_more_info/', 'get_more_info'),
+    (r'^remove/', 'remove'),
+    (r'^download/', 'download'),
+    (r'^insert/', 'insert')
 )

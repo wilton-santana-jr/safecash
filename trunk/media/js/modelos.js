@@ -34,16 +34,24 @@ $(document).ready(function() {
 
     $(".remover").click(function(e) {
         var idModelo =  $('#valor').val();
-        var pagina = $.post("nomedomapeamento", { id: idModelo} );
-        $('#tudo').html(pagina);
+        $.post("remove/", { id: idModelo}, function (data) {
+            if (data.code == 'error')
+                alert('deu merda!');
+        }, 'json');
+        
+        
+        //$('#tudo').html(pagina);
         $('#popUp').fadeOut(200);
         $('#tela').fadeOut(200);
     });
 
     $(".download").click(function(e) {
         var idModelo =  $('#valor').val();
-        var pagina = $.post("nomedomapeamento", { id: idModelo} );
-        $('#tudo').html(pagina);
+        $.post("download/", { id: idModelo}, function (data) {
+            window.open(data.url);
+        }, 'json' );
+        
+        //$('#tudo').html(pagina);
         $('#popUp').fadeOut(200);
         $('#tela').fadeOut(200);
     });
@@ -70,12 +78,21 @@ $(document).ready(function() {
     $(".armazenar").click(function(e) {
          var nomeModelo =  $("#popUpInserir input[type='text']").val();
          var enderecoModelo = $("#popUpInserir input[type='file']").val();
+        //console.log(enderecoModelo);
          var descricaoModelo = $("#popUpInserir textarea").val();
-         var pagina = $.post("nomedomapeamento", { nome: nomeModelo,endereco: enderecoModelo,descricao: descricaoModelo} );
+        // $.post("insert/", { nome: nomeModelo,endereco: enderecoModelo,descricao: descricaoModelo} );
+        
+         if(nomeModelo && enderecoModelo && descricaoModelo){
+            $('#form_modelo').submit();
+            $('div.calendario').hide(200);
+            $('#popUpInserir').fadeOut(200);
+            $('#tela').fadeOut(200);
+         } else {
+            alert('Não foi possível inserir o modelo!');
+         }
          // $("#popUpInserir textarea").val(nomeModelo + enderecoModelo+descricaoModelo );
-         $('#tudo').html(pagina);
-         $('div.calendario').hide(200);
-         $('#popUpInserir').fadeOut(200);
-         $('#tela').fadeOut(200);
+         
+         //$('#tudo').html(pagina);
      });
+     
 });
