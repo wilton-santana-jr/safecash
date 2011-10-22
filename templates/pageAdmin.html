@@ -37,21 +37,21 @@ Home
 			<div id="requisicoes">
 				<ul>
 					<li><h4>NOME USU&Aacute;RIO</h4>
-						capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação
+						capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o
 						<br/>
 						<span class="cor">R$ 0,00</span>					</li>
 						<li><h4>NOME USU&Aacute;RIO</h4>
-						capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação
+						capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o
 						<br/>
 						<span class="cor">R$ 0,00</span>					</li>
 					</li>
 						<li><h4>NOME USU&Aacute;RIO</h4>
-						capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação
+						capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o
 						<br/>
 						<span class="cor">R$ 0,00</span>					</li>
 					</li>
 						<!--*<li><h4>NOME USU&Aacute;RIO</h4>
-						capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação capacitação
+						capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o
 						<br/>
 						<span class="cor">R$ 0,00</span>					</li>-->
 				</ul>
@@ -78,7 +78,7 @@ Home
 			</div>
 			<div id="verTodos">
 				
-				<a href="#" id="botao" title="Gerenciar usuários"></a>
+				<a href="#" id="botao" title="Gerenciar usu&aacute;rios"></a>
 			</div>
 		</div>
 	{%endblock%}
@@ -92,16 +92,9 @@ Home
 	<span id="cabecario">Usu&aacute;rios</span>
 	<div id="usuarios">
 		<ul>
-			<li><input type="radio" name="usuario" value="bmo" id="bmo"/><label for="bmo">Bruno Medeiros de Oliveira</label></li>
-			<li><input type="radio" name="usuario" value="" /><label for="">Bruno Coelho Santiago</label></li>
-			<li><input type="radio" name="usuario" value="tsr" id="tsr" /><label for="tsr">Tiago Silva Ramos</label></li>
-			<li><input type="radio" name="usuario" value="" /><label for="">Jonathas Dantas</label></li>
-			<li><input type="radio" name="usuario" value="lamp" id="lamp" /><label for="lamp">Lu&iacute;s Gabriel</label></li>
-			<li><input type="radio" name="usuario" value="bmo" id="bmo"/><label for="">Bruno Medeiros de Oliveira</label></li>
-			<li><input type="radio" name="usuario" value="" /><label for="">Bruno Coelho Santiago</label></li>
-			<li><input type="radio" name="usuario" value="tsr" id="tsr"/><label for="">Tiago Silva Ramos</label></li>
-			<li><input type="radio" name="usuario" value="" /><label for="">Jonathas Dantas</label></li>
-			<li><input type="radio" name="usuario" value="lamp" id="lamp"/><label for="">Lu&iacute;s Gabriel</label></li>
+		    {% for usuario in usuarios %}
+			<li id="li_{{ usuario.username }}"><input type="radio" name="usuario" value="{{ usuario.username }}" id="{{ usuario.username }}"/><label for="{{ usuario.username }}">{{ usuario.first_name }} ({{ usuario.username }})</label></li>
+			{% endfor %}
 		</ul>
 		
 		<a href="#" title="Remover Usu&aacute;rio" class="removerUsuario"></a>	
@@ -126,7 +119,7 @@ Home
 				<form action="#" method="post">
 					<label for="nomeCadastro">NOME:&nbsp;</label><input id="nomeCadastro" type="text" name="nomeCadastro" size="41"/>
 					<label for="loginCadastro">LOGIN:&nbsp;</label><input id="loginCadastro" type="text" name="loginCadastro" size="41"/>
-					<label for="senhaCadastro">SENHA:&nbsp;</label><input id="senhaCadastro" type="password" name="senhaEdicao" size="41"/>
+					<label for="senhaCadastro">SENHA:&nbsp;</label><input id="senhaCadastro" type="password" name="senhaCadastro" size="41"/>
 					<input type="radio" name="tipoCadastro" value="usuario" id="cadastroUser" /><label for="cadastroUser">USER</label>
 					<input type="radio" name="tipoCadastro" value="administrador" id="cadastroAdmin" /><label for="cadastroAdmin">ADMIN</label>
 					<a href="#" title="Castrar Usu&aacute;rio"></a>
