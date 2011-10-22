@@ -6,4 +6,5 @@ from django.conf.urls.defaults import *
 
 # CONTA
 urlpatterns = patterns('apps.conta.views',
-    (r'^$', 'home'))
+    (r'^$', 'home'),
+    (r'^insert/$', 'insert'))
