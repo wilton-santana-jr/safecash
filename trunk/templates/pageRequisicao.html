@@ -11,8 +11,8 @@
 {% endblock %}
 
 {% block  head_js_extra %} 
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/requisicao.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/requisicao.js"></script>
 {% endblock %}
 
 
@@ -52,7 +52,7 @@
 					<option value="2021">2021</option>
 				</select>
 			</form>
-			<div id="titulo" class="arredonda">REQUISI&Ccedil;&Otilde;ES DO MÊS DE JUNHO</div>
+			<div id="titulo" class="arredonda">REQUISI&Ccedil;&Otilde;ES DO M&EcircS DE JUNHO</div>
 				<div id="informacoes">
 					<div class="cabecario">
 						<span class ="data">DATA</span>
@@ -61,21 +61,26 @@
 						<span class="requisitante">REQUISITANTE</span>						
 					</div>
 					<div class="corpo">
+					{% for requisicao in requisicoes %}
 						<br/>
-						<span class ="data">DD/MM/AAAA</span>
-						<span class ="assunto">ASSUNTO ASSUNTO da ASSUNTO ASSUNTO</span>
-						<span class="estado ok">OK</span>
-						<span class="requisitante">Bruno Medeiros <a id="ID_DA_REQUISICAO" href="#">&gt;&gt;VISUALIZAR</a><input type="hidden" name="ID_DA_REQUISICAO" value="C" /></span>	
-						<br/>
-						<span class ="data">DD/MM/AAAA</span>
-						<span class ="assunto">ASSUNTO ASSUNTO da ASSUNTO ASSUNTO</span>
-						<span class="estado pronto">PRONTO</span>
-						<span class="requisitante">Jow <a id="ID_DA_REQUISICAO2" href="#">&gt;&gt;VISUALIZAR</a><input type="hidden" name="ID_DA_REQUISICAO2" value="C" /></span>	
-						<br/>
-						<span class ="data">DD/MM/AAAA</span>
-						<span class ="assunto">ASSUNTO ASSUNTO da ASSUNTO ASSUNTO</span>
-						<span class="estado pendente">PENDENTE</span>
-						<span class="requisitante">Siri<a id="ID_DA_REQUISICAO3" href="#">&gt;&gt;VISUALIZAR</a><input type="hidden" name="ID_DA_REQUISICAO3" value="G" /></span>	
+						<span class ="data">{{ requisicao.data|date:"d/m/Y" }}</span>
+						<span class ="assunto">{{ requisicao.assunto }}</span>
+						{% if requisicao.status == '1' %}
+							<span id="{{ requisicao.id }}_estado" class="estado ok">OK</span>
+						{% else %}
+							{% if requisicao.status == '2' %}
+								<span id="{{ requisicao.id }}_estado" class="estado pronto">PRONTO</span>
+							{% else %}
+								<span id="{{ requisicao.id }}_estado" class="estado pendente">PENDENTE</span>
+							{% endif %}
+						{% endif %}
+						{% if requisicao.tipo == 0 %} {% comment %}geral{% endcomment %}
+								<span class="requisitante">{{ requisicao.usuario.first_name }}<a id="{{ requisicao.id }}" href="#">&gt;&gt;VISUALIZAR</a><input type="hidden" name="{{ requisicao.id }}" value="c" /></span>	
+						{% else %}  {% comment %}contrato{% endcomment %}
+								<span class="requisitante">{{ requisicao.usuario.first_name }}<a id="{{ requisicao.id }}" href="#">&gt;&gt;VISUALIZAR</a><input type="hidden" name="{{ requisicao.id }}" value="g" /></span>	
+						{% endif %}
+					
+					{% endfor %}
 					</div>
 				</div>
 	
@@ -88,23 +93,23 @@
 
 <div id="popUpContrato" class="esconder">
 <a class="fecharContrato" href="#" title="voltar"></a>
-	<span id="nomePopUpContrato" class="destaque cor">REQUISIÇÃO TIPO: CONTRATO</span>
+	<span id="nomePopUpContrato" class="destaque cor">REQUISI&ccedil;&atilde;O TIPO: CONTRATO</span>
 	<div id="informacoesContrato">	
 		<ul>
-			<li><span class="titulo">Descri&ccedil;&atilde;o:</span><br/>descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição
+			<li><span class="titulo">Descri&ccedil;&atilde;o:</span><br/></span><span id="descricaoContrato"></span>
 			</li>
-			<li><span class="titulo">Nome do Projeto:</span>bbgvdjbvjksdb
+			<li><span class="titulo">Nome do Projeto:</span><span id="nomeProjContrato"></span>
 			</li>
-			<li><span class="titulo">Contratante:</span>vbngfbjfb nkfdj	
+			<li><span class="titulo">Contratante:</span><span id="contratante"></span>
 			</li>
-			<li><span class="titulo">CNPJ/CPF:</span>32160251315
+			<li><span class="titulo">CNPJ/CPF:</span><span id="cnpjCpfContrato"></span>
 			</li>
-			<li><span class="titulo">Valor:</span>6562196
+			<li><span class="titulo">Valor:</span><span id="valorContrato"></span>
 			</li>
 			<li><span class="titulo">Estado: &nbsp;</span><select name="estado" ><option>Pendente</option> <option >Pronto</option> <option>OK</option></select>
 			
 			</li>
-			<li><span class="titulo">Obs:</span>fmnvfdm.,nxc,mv nxc mv n 
+			<li><span class="titulo">Obs:</span><span id="obsContrato"></span>
 			</li>
 		</ul>
 		<input type="hidden" name="id"  />
@@ -116,10 +121,11 @@
 
 <div id="popUpGeral" class="esconder">
 <a class="fecharGeral" href="#" title="voltar"></a>
-	<span id="nomePopUpGeral" class="destaque cor">REQUISIÇÃO TIPO: Geral</span>
+	<span id="nomePopUpGeral" class="destaque cor">REQUISI&ccedil;&atilde;O TIPO: Geral</span>
 	<div id="informacoesGeral">	
 		<ul>
-			<li><span class="titulo">Descri&ccedil;&atilde;o:</span><br/>descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição descrição descrição descrição descriçãodescriçãodescrição descrição descrição		</li>
+			<li><span class="titulo">Descri&ccedil;&atilde;o:</span><br/><span id="descricaoGeral"></span>
+			</li>
 			<li><span class="titulo">Estado: &nbsp;</span><select name="estado" ><option>Pendente</option> <option >Pronto</option> <option>OK</option></select>
 			</li>	
 		</ul>

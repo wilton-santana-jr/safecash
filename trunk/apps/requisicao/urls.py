@@ -6,4 +6,6 @@ from django.conf.urls.defaults import *
 
 # REQUISICAO
 urlpatterns = patterns('apps.requisicao.views',
-    (r'^$', 'home'))
+    (r'^$', 'home'),
+	(r'^visualizar/', 'visualizar'),
+	(r'^salvarEstado/', 'salvarEstado'))
