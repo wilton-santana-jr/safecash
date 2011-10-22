@@ -18,7 +18,6 @@
 	text-align:left;
 	position:relative;
 	left:1px;
-	
 }
 
 #conteudo form
@@ -27,8 +26,8 @@
 	top:20px;
 	right:30px;
 	float:right;
-
 }
+
 #titulo
 {
 	width:750px;
@@ -57,31 +56,29 @@
 	display:block;
 	float:left;
 }
+
 #receber,#pagar
 {
 	height:415px;
 }
+
 #botao
 {
-background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
-background-repeat:no-repeat;
-display:block;
-width:144px;
-height:29px;
-float:right;
-position:relative;
-right:22px;
-top:15px;
-
+    background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
+    background-repeat:no-repeat;
+    display:block;
+    width:144px;
+    height:29px;
+    float:right;
+    position:relative;
+    right:22px;
+    top:15px;
 }
 
 #botao:hover
 {
-background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
-
-
+    background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
 }
-
 
 #popUp
 {
@@ -93,6 +90,7 @@ background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
 	position:absolute;
 	text-align:left;
 }
+
 #nomePopUp
 {
 	position:relative;
@@ -119,6 +117,7 @@ background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
 	right:22px;
 	z-index:12;
 }
+
 .destaque
 {
 	font-size:24px;
@@ -138,328 +137,327 @@ background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
 
 #conta, #conta form
 {
-display:block;
-width:630px;
-height:100px;
-position:relative;
-
+    display:block;
+    width:630px;
+    height:100px;
+    position:relative;
 }
 
 #conta
 {
 	top:25px;
-left:25px;
+    left:25px;
 }
-/*#formEditar input[type="text"], #formCadastrar input[type="text"],#formEditar input[type="password"], #formCadastrar input[type="password"]
-{
-	display:block;
-	padding-left:5px;
-	position:relative;
-	top:-1px;
-	margin-bottom:10px;
-	height:15px;
-	width:265px;
-}
-#formEditar label, #formCadastrar label,#formEditar input[type="radio"], #formCadastrar input[type="radio"]
-{
-	display:block;
-	float:left;
-	margin-bottom:10px;
-	font-family:calibri;
-	font-size:13px;
-}
-*/
-
 
 #esq input[type="text"], #dir input[type="text"]
 {
-	display:block;
-	padding-left:5px;
-	position:relative;
-	
-	margin-bottom:10px;
-	height:12px;
-	width:100px;
+    display:block;
+    padding-left:5px;
+    position:relative;
+    margin-bottom:10px;
+    height:12px;
+    width:100px;
 }
+
 #esq label, #dir label,#esq input[type="radio"], #esq select
 {
-	display:block;
-	float:left;
-	margin-bottom:10px;
-	font-family:calibri;
-	font-size:12px;
+    display:block;
+    float:left;
+    margin-bottom:10px;
+    font-family:calibri;
+    font-size:12px;
 }
+
 #esq input[type="radio"]
 {
-	position:relative;
-	top:-2px;
+    position:relative;
+    top:-2px;
 }
+
 #esq
 {
-	display:block;
-	float:left;
-	width:200px;
-	position:relative;
+    display:block;
+    float:left;
+    width:200px;
+    position:relative;
 }
 
 #dir
 {
-	display:block;
-	float:right;
-	position:relative;
-	right:25px;
-	width:400px;
-	
+    display:block;
+    float:right;
+    position:relative;
+    right:25px;
+    width:400px;
 }
+
 #dir textarea
 {
-	width:315px;
-	height:90px;
-	margin-left:10px;
+    width:315px;
+    height:90px;
+    margin-left:10px;
 }
+
+#nomeConta
+{
+    top:0px;
+    left:22px;
+}
+
 #dataConta
 {
-	top:0px;
-	left:22px;
+    top:0px;
+    left:22px;
 }
+
 #valorConta
 {
-	top:0px;
-	left:14px;
+    top:0px;
+    left:14px;
 }
+
 #estadoConta
 {
-	top:0px;
-	left:6px;
-	position:relative;
+    top:0px;
+    left:6px;
+    position:relative;
 }
 
 .limpa
 {
-	clear:both;
+    clear:both;
 }
+
 #transacao
 {
-	width:620px;
-	height:135px;
-	display:block;
-	background-color:#CCC;
-	position:relative;
-	top:40px;
-	left:20px;
-	float:left;
+    width:620px;
+    height:135px;
+    display:block;
+    background-color:#CCC;
+    position:relative;
+    top:40px;
+    left:20px;
+    float:left;
 }
+
 #cabecarioTransacao
 {
-	width:620px;
-	background-color:#3994DA;
-	display:block;
-	height:25px;
-	float:left;
-	-moz-border-radius:5px 5px 0px 0px;
+    width:620px;
+    background-color:#3994DA;
+    display:block;
+    height:25px;
+    float:left;
+    -moz-border-radius:5px 5px 0px 0px;
 }
 
 #cabecarioTransacao span
 {
-	display:block;
-	float:left;
-	color:#FFFFFF;
-	font-size:16px;
-	padding-left:20px;
-	padding-top:3px;
+    display:block;
+    float:left;
+    color:#FFFFFF;
+    font-size:16px;
+    padding-left:20px;
+    padding-top:3px;
 }
+
 #corpoTransacao, #corpoTransacao form
 {
-
-	width:620px;
-	height:110px;
-	display:block;
-	float:left;
+    width:620px;
+    height:110px;
+    display:block;
+    float:left;
 }
+
 #corpoTransacao form
 {
-	padding-left:10px;
-	width:610px;
+    padding-left:10px;
+    width:610px;
 }
+
 #corpoTransacao form a
 {
-	width:96px;
-	height:105px;
-	background-image:url(../imagens/PageContasImage/botaoAdicionar.png);
-	background-repeat:no-repeat;
-	float:right;
-	position:relative;
-	top:0px;
-	right:5px;	
-	display:block;
+    width:96px;
+    height:105px;
+    background-image:url(../imagens/PageContasImage/botaoAdicionar.png);
+    background-repeat:no-repeat;
+    float:right;
+    position:relative;
+    top:0px;
+    right:5px;	
+    display:block;
 }
+
 /*#corpoTransacao form input[type="text"],#corpoTransacao form input[type="text"]#corpoTransacao form label
 {
 	float:left;
 }*/
+
 #corpoTransacao form label
 {
-	width:125px;
-	display:block;
-	float:left;
+    width:125px;
+    display:block;
+    float:left;
 }
+
 #descricaoTransacao
 {
-	width:470px;
-	margin-left:10px;
-		display:block;
-	margin-bottom:5px;
+    width:470px;
+    margin-left:10px;
+    display:block;
+    margin-bottom:5px;
 }
+
 #origemTransacao
 {
-	clear:both;
-	margin-left:10px;
-	width:100px;
+    clear:both;
+    margin-left:10px;
+    width:100px;
 }
+
 #valorTransacao
 {
-	position:relative;
-	top:0px;
-	left:10px;
-	width:100px;
+    position:relative;
+    top:0px;
+    left:10px;
+    width:100px;
 }
 
 #tipoTransacao
 {
-	position:relative;
-	top:0px;
-	left:25px;
-	width:100px;
+    position:relative;
+    top:0px;
+    left:25px;
+    width:100px;
 }
 
 #dataTransacao
 {
-	position:relative;
-	top:0px;
-	left:45px;
-	width:100px;
+    position:relative;
+    top:0px;
+    left:45px;
+    width:100px;
 }
-
 
 #listaTransacao
 {
-	width:620px;
-	height:150px;
-	display:block;
-	background-color:#CCC;
-	position:relative;
-	top:50px;
-	left:20px;
-	float:left;
+    width:620px;
+    height:150px;
+    display:block;
+    background-color:#CCC;
+    position:relative;
+    top:50px;
+    left:20px;
+    float:left;
 }
+
 #cabecarioLista
 {
-	width:620px;
-	background-color:#3994DA;
-	display:block;
-	height:25px;
-	float:left;
-	-moz-border-radius:5px 5px 0px 0px;
+    width:620px;
+    background-color:#3994DA;
+    display:block;
+    height:25px;
+    float:left;
+    -moz-border-radius:5px 5px 0px 0px;
 }
 
 #cabecarioLista span
 {
-	display:block;
-	float:left;
-	color:#FFFFFF;
-	font-size:16px;
-		padding-left:20px;
-	padding-top:3px;	
+    display:block;
+    float:left;
+    color:#FFFFFF;
+    font-size:16px;
+    padding-left:20px;
+    padding-top:3px;	
 }
 
 #cabecarioListaCorpo span,#corpoLista span
 {
-	font-size:13px;
-	display:block;
-	float:left;
+    font-size:13px;
+    display:block;
+    float:left;
 }
 
 #listaTransacao span.data,#corpoLista span.data
 {
-	width:65px;
-	
+    width:65px;
 }
+
 #listaTransacao span.descricao,#corpoLista span.descricao
 {
-	width:363px;
-	
+    width:363px;
 }
+
 #listaTransacao span.tipo, #corpoLista span.tipo
 {
-	width:55px;
-	
+    width:55px;
 }
+
 #listaTransacao span.valor,#corpoLista span.valor
 {
-	width:60px;
-	
+    width:60px;
 }
+
 #listaTransacao span.estado,#corpoLista span.estado
 {
-	width:65px;
-	
+    width:65px;
 }
+
 #corpoLista span.data
 {
-	margin:0;
-	padding:0;
-	width:75px;
+    margin:0;
+    padding:0;
+    width:75px;
 }
 
 #corpoLista
 {
-
-	width:618px;
-	height:110px;
-	display:block;
-	float:left;
-	background:#FFFFFF;
-	border:solid;
-	border-width:1px;
-	border-color:#CCC;
-	-moz-border-radius:0px 0px 5px 5px;
+    width:618px;
+    height:110px;
+    display:block;
+    float:left;
+    background:#FFFFFF;
+    border:solid;
+    border-width:1px;
+    border-color:#CCC;
+    -moz-border-radius:0px 0px 5px 5px;
 }
+
 #listaTransacao #corpoLista span.pendente
 {
-	color:#FF0000;
+    color:#FF0000;
 }
+
 #listaTransacao #corpoLista span.ok
 {
-	color:#00FF66;
+    color:#00FF66;
 }
 
 #listaTransacao #corpoLista span.atrasado
 {
-	color:#FF9900;
+    color:#FF9900;
 }
+
 .inserirConta
 {
-	width:125px;
-	height:28px;
-	background-image:url(../imagens/PageContasImage/botaoInserir.png);
-	background-repeat:no-repeat;
-	float:right;
-	position:relative;
-	top:60px;
-	right:30px;	
-	display:block;
-
+    width:125px;
+    height:28px;
+    background-image:url(../imagens/PageContasImage/botaoInserir.png);
+    background-repeat:no-repeat;
+    float:right;
+    position:relative;
+    top:60px;
+    right:30px;
+    display:block;
 }
+
 #tela
 {
-
-	background-color:#3994DA;
-	z-index:9;
-	position:absolute;
-	top:0px;
-	left:0px;
-	opacity: 0.7;
-	filter: alpha(opacity=70);
-	-moz-opacity: 0.70;
-
+    background-color:#3994DA;
+    z-index:9;
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.70;
 }
