@@ -19,7 +19,7 @@ class Transacao(models.Model):
     nome = models.CharField(max_length=100)
     valor = models.FloatField(default=0)
     data_vencimento = models.DateField()
-    data_pagamento = models.DateField()
+    data_pagamento = models.DateField(null=True)
 
     class Meta:
         db_table = 'transacao'

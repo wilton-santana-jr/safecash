@@ -1,10 +1,10 @@
 $(document).ready(
 		function() {
-
+			
 			var idPedido;
 			
 			$('span.requisitante a').click(function(e) {
-
+				
 				var largura = $('body').outerWidth(true);
 				var altura = $('body').outerHeight(true);
 				var alturaJanela = $(window).height();
@@ -19,11 +19,11 @@ $(document).ready(
 					$('#tela').fadeIn(200);
 					idPedido = $(this).attr('id');
 					var tipoRequisicao = $("input[name=" + idPedido + "]:hidden").val();
-					
 					var titulo = $(this).attr("title");
 					
 					if(tipoRequisicao == 'c')
 					{
+							
 							$('#popUpContrato').css({top:alturaJanela/2 -$('#popUpContrato').height()/2,left:largura/2 - $('#popUpContrato').width()/2});
 							$('#nomePopUpContrato').text(titulo);
 							$('#informacoesContrato input:hidden').val(idPedido);
@@ -31,13 +31,18 @@ $(document).ready(
 							var typeVar = 'list';
 							var sourceVar = 'contrato';
 							
-							$.post("requisicao", {
+							$.post("visualizar/", {
 								type : typeVar,
 								source : sourceVar,
 								chave : idPedido
 							}, function(data) {
-								$("#informacoesContrato ul").html(data);
-							});
+								$("#descricaoContrato").text(data.descricao);
+								$("#nomeProjContrato").text(data.nomeProjeto);
+								$("#contratante").text(data.contratante);
+								$("#cnpjCpfContrato").text(data.cpf_cnpj);
+								$("#valorContrato").text(data.valor);
+								$("#obsContrato").text(data.observacao);
+							}, 'json');
 							
 							$('#popUpContrato').fadeIn(200);
 					}
@@ -50,13 +55,13 @@ $(document).ready(
 						var typeVar = 'list';
 						var sourceVar = 'geral';
 						
-						$.post("requisicao", {
+						$.post("visualizar/", {
 							type : typeVar,
 							source : sourceVar,
 							chave : idPedido
 						}, function(data) {
-							$("#informacoesGeral ul").html(data);
-						});
+							$("#descricaoGeral").text(data.descricao);
+						},  'json');
 						
 						$('#popUpGeral').fadeIn(200);
 					}
@@ -83,15 +88,15 @@ $(document).ready(
 				var typeVar = 'alter';
 				var sourceVar = 'geral';
 				var estadoRequisicao = $("#informacoesGeral select").val();
-				
-				$.post("requisicao", {
+				$.post("salvarEstado/", {
 					type : typeVar,
 					source : sourceVar,
 					chave : idPedido,
 					status : estadoRequisicao
 				}, function(data) {
-					$("#informacoes").html(data);
-				});
+					$("#" + data.id + "_estado").text(data.estado);
+					$("#" + data.id + "_estado").attr("class", data.classe);
+				}, 'json');
 				
 				$('#popUpGeral').fadeOut(200);
 				$('#tela').fadeOut(200);
@@ -104,14 +109,15 @@ $(document).ready(
 				var sourceVar = 'contrato';
 				var estadoRequisicao = $("#informacoesContrato select").val();
 				
-				$.post("requisicao", {
+				$.post("salvarEstado/", {
 					type : typeVar,
 					source : sourceVar,
 					chave : idPedido,
 					status : estadoRequisicao
 				}, function(data) {
-					$("#informacoes").html(data);
-				});
+					$("#" + data.id + "_estado").text(data.estado);
+					$("#" + data.id + "_estado").attr("class", data.classe);
+				}, 'json');
 				
 				$('#popUpContrato').fadeOut(200);
 				$('#tela').fadeOut(200);
