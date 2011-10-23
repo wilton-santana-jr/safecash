@@ -88,23 +88,16 @@ $(document).ready(function() {
         }, 'json');
     });
 
-    $('#dataConta').focus(function(){
+    /*$('#dataConta').focus(function(){
         $(this).calendario({
             target:'#dataConta'
         });
         //$(this).attr('disabled', 'disabled');
         //removeAttr('disabled');
-    });
+    });*/
 
     //$('#dataConta').mask("99/99/9999");
-    //$('#dataTransacao').mask("99/99/9999");
     //$('#valorConta').mask("999999999.99");
 
     $('input:text').setMask();
-
-    $('#dataTransacao').focus(function(){
-        $(this).calendario({
-            target:'#dataTransacao'
-        });
-    });
 });
