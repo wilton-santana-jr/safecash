@@ -9,6 +9,7 @@ class Conta(models.Model):
     parcelas = models.IntegerField(default=1)
     tipo = models.IntegerField(default=0)
     livro = models.IntegerField(default=0)
+    data = models.DateField()
 
     class Meta:
         db_table = 'conta'

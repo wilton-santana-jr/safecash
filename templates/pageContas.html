@@ -59,7 +59,7 @@ Contas
                         <br/>
                         <span class="data">{{ conta.data|date:"d/m/Y" }}</span>
                         <span class="descricao">{{ conta.descricao }}</span>
-                        <span class="valor">R$ {{ conta.valor|floatformat:2 }}</span>
+                        <span class="valor">R$ {{ conta.valor_total|floatformat:2 }}</span>
                     {% endfor %}
                 </div>
             </div>
@@ -75,7 +75,7 @@ Contas
                         <br/>
                         <span class="data">{{ conta.data|date:"d/m/Y" }}</span>
                         <span class="descricao">{{ conta.descricao }}</span>
-                        <span class="valor">R$ {{ conta.valor|floatformat:2 }}</span>
+                        <span class="valor">R$ {{ conta.valor_total|floatformat:2 }}</span>
                     {% endfor %}
                 </div>
             </div>
