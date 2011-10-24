@@ -20,6 +20,7 @@
 
 {% block base_content %} 	
 			<form>
+			    <a class="inserirReq" href="#" title="Fa&ccedil;a sua Requisi&ccedil;&atilde;o">Faca Sua Requisi&ccedil;&atilde;o</a>
 				<select name= "mes"onchange="scripting(this.value)">
 					<option value="">M&Ecirc;S</option>
 					<option value="janeiro">Janeiro</option>
@@ -134,6 +135,29 @@
 	<a class="responderGeral" href="#" title="Responder a requisi&ccedil;&atilde;o"></a>
 	<a class="salvarGeral" href="#" title="Salvar altera&ccedil;&otilde;es  na requisi&ccedil;&atilde;o"></a>
 </div>
+
+
+<!-- Novo Pop Up INSERIR  REQUISICAO -->
+<div id="popUpInsertReq" class="esconder">
+    <a class="fecharInsertReq" href="#" title="voltar">X</a>
+        <span id="nomePopUpInsertReq" class="destaque cor">Defina o novo modelo</span>
+        <br/><br/>
+        <form id="formInsertReq" name="formInsertReq" action="#" method="post">
+            <label for="assunto">ASSUNTO</label>
+            <input type="text" name="assunto" id="assunto" size="55" />
+            <label for="descricao">DESCRI&Ccedil;&Atilde;O DO MODELO:</label>
+            <textarea id="descricao" name="descricao" ></textarea>
+           <label for="tipoReq">TIPO DA REQUISI&Ccedil;&Atilde;O:</label>
+            <select id="tipoReq" size="1" name="tipoReq">
+                <option selected value="reqGeral">Requisi&ccedil;&atilde;o</option>
+                <option value="reqContrato">Contrato</option>
+            </select>
+            <label for="valor">VALOR:</label>
+            <input type="text" name="valor" id="valor" size="37"/>
+        </form>
+        <a class="armazenar" href="#" title="Criar Requisi&ccdeil;&atilde;o"></a>
+</div>
+
 
 {% endblock %}
 
