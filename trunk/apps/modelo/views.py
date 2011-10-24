@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
@@ -6,26 +6,24 @@ from apps.modelo.models import Modelo
 
 
 def home(request):
-    todos = [{'id': 10, 'nome': 'meu primeiro modelo'}]
-
+    
+    modelos = Modelo.objects.all()
+	
     return render_to_response(
         "pageModelos.html",
-        { 'modelos': todos },
+        { 'modelos': modelos },
         context_instance=RequestContext(request)
     )
 
 def get_more_info(request):
-    print 'modelo requisitado: ' + request.POST['id']
-    descricao = 'descricao do modelo requisitado'
-    toSend = { 'desc' : descricao }
+    m = get_object_or_404(Modelo.objects.all(), id=request.POST.get('id'))
+    toSend = { 'desc' : m.descricao }
     return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
     
 def remove(request):
-    id = request.POST['id']
-    print 'ENTROU NO REMOVE'
-    # MANDAR DELETAR NO BANCO
-    toSend = { 'code' : 'error' }
-    return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
+    m = get_object_or_404(Modelo.objects.all(), id=request.POST.get('id'))
+    m.delete()
+    return HttpResponseRedirect('/modelos/')
     
 def download(request):
     arquivo = Modelo.filter(id)

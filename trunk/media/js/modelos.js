@@ -8,7 +8,7 @@ $(document).ready(function() {
             var idModelo = $(this).attr('id');
 
             $.post("get_more_info/", { id: idModelo }, function (data) {
-                $('#popUp p').text(data.desc);
+                $("#descricaoModelo").text(data.desc);
             }, 'json');
 
             // $('body').text(id);
@@ -35,8 +35,7 @@ $(document).ready(function() {
     $(".remover").click(function(e) {
         var idModelo =  $('#valor').val();
         $.post("remove/", { id: idModelo}, function (data) {
-            if (data.code == 'error')
-                alert('deu merda!');
+            
         }, 'json');
         
         
@@ -47,9 +46,7 @@ $(document).ready(function() {
 
     $(".download").click(function(e) {
         var idModelo =  $('#valor').val();
-        $.post("download/", { id: idModelo}, function (data) {
-            window.open(data.url);
-        }, 'json' );
+        $.post("download/", { id: idModelo} );
         
         //$('#tudo').html(pagina);
         $('#popUp').fadeOut(200);
