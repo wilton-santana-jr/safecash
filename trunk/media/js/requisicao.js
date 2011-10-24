@@ -3,6 +3,63 @@ $(document).ready(
 			
 			var idPedido;
 			
+// >>>>> ABRIR O POP UP QUE VAI INSERIR A REQUISIÇÃO
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+			$(".inserirReq").click(function(e) {
+			
+			    var largura = $('body').outerWidth(true);
+				var altura = $('body').outerHeight(true);
+				var alturaJanela = $(window).height();
+			
+				$('#tela').fadeIn(200);
+				
+				var titulo = $(this).attr("title");
+				console.log(titulo);
+				
+				$('#popUpInsertReq').css({top:alturaJanela/2 -$('#popUpInsertReq').height()/2,left:largura/2 - $('#popUpInsertReq').width()/2});
+                $('#nomePopUpInsertReq').text(titulo);
+                
+                $('#popUpInsertReq').fadeIn(200);
+                
+
+			});
+			
+// >>>>> AÇÃO DO BOTÃO QUE VAI CRIAR A REQUISIÇÃO
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+			$(".armazenar").click(function(e) {
+			    var date = new Date();
+			    
+        		var usuarioReq = "PASSAR O USUARIO";
+                var assuntoReqs =  $("#assunto").val();
+                var dataReq = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+                var estadoReq = "Pendente";
+                var tipoReq = document.formInsertReq.tipoReq[document.formInsertReq.tipoReq.selectedIndex].text;
+                var valorReq = $("#valor").val();
+                var descricaoReq = $("#popUpInsertReq textarea").val();
+                // $.post("insert/", { nome: nomeModelo,endereco: enderecoModelo,descricao: descricaoModelo} );                
+                
+                if(usuarioReq && assuntoReqs && valorReq){
+                //  $.post("NOME_DA_FUNCAO/", { usuario: usuarioReq,assunto: assuntoReq,descricao: descricaoReq,data: dataReq,status: estadoReq,tipo = tipoReq,valor = valorReq} );
+           
+                  $('#popUpInsertReq').fadeOut(200);
+                  $('#tela').fadeOut(200);
+                } else {
+                    alert('Não foi possível fazer a requisição!');
+                }
+                 // $("#popUpInserir textarea").val(nomeModelo + enderecoModelo+descricaoModelo );
+                 
+                 //$('#tudo').html(pagina);
+             });
+             
+// >>>>> FECHAR POP UP QUE INSERE UMA REQUISICAO
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+             $(".fecharInsertReq").click(function(e) {
+                    $('#popUpInsertReq').fadeOut(200);
+                    $('#tela').fadeOut(200);
+             });
+             
+             
+			
 			$('span.requisitante a').click(function(e) {
 				
 				var largura = $('body').outerWidth(true);
@@ -167,6 +224,8 @@ $(document).ready(
 						});
 
 					});
+					
+			
 
 		});
 
