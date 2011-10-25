@@ -7,6 +7,7 @@
 {% block  head_css_extra %} <link rel="stylesheet" href="{{ STATIC_URL }}css/projetos.css"> {% endblock %}
 
 {% block  head_js_extra %} 
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tools.min.js"></script> 
 <script type="text/javascript" src="{{ STATIC_URL }}js/projetos.js"></script> 
 {% endblock %}
 
@@ -34,7 +35,7 @@
 					<option value="2021">2021</option>
 				</select>
 			</form>
-			<div id="livroConta" class="destaque cor">PROJETOS DO ANO DE 2010</div>
+			<div id="livroConta" class="destaque cor">PROJETOS DE TODOS OS ANOS</div>
 			<div id="separacao">
 			
 			<ul id="flowtabs" class="navi">
@@ -57,9 +58,11 @@
 					<div class="cabecario"><span>JANEIRO</span></div>
 					<div class="corpo">
 						<ul>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO1</a></li>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO2</a></li>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO2</a></li>
+                    {% for projeto in projetos_ano.0 %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
 						</ul>
 					</div>
 				</div>
@@ -67,9 +70,11 @@
 					<div class="cabecario"><span>FEVEREIRO</span></div>
 					<div class="corpo">
 						<ul>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO1</a></li>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO2</a></li>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO2</a></li>
+							{% for projeto in  projetos_ano.1 %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                         {% endfor %}
 						</ul>
 					</div>
 				</div>
@@ -77,9 +82,11 @@
 					<div class="cabecario"><span>MAR&Ccedil;O</span></div>
 					<div class="corpo">
 						<ul>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO1</a></li>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO2</a></li>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO2</a></li>
+							{% for projeto  in projetos_ano.2 %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
 						</ul>
 					</div>
 				</div>
@@ -87,9 +94,11 @@
 					<div class="cabecario"><span>ABRIL</span></div>
 					<div class="corpo">
 						<ul>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO1</a></li>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO2</a></li>
-							<li><a href="#" title="Visualizar Projeto">Nome Projeto PROJETO2</a></li>
+							{% for projeto  in projetos_ano.3  %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
 						</ul>
 					</div>
 				</div>
@@ -99,19 +108,51 @@
 			<div class="meses">
 				<div id="esqUm">
 					<div class="cabecario"><span>MAIO</span></div>
-					<div class="corpo"></div>
+					<div class="corpo">
+                        <ul>
+							{% for projeto  in projetos_ano.4  %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
+						</ul>                    
+                    </div>
 				</div>
 				<div id="dirUm">
 					<div class="cabecario"><span>JUNHO</span></div>
-					<div class="corpo"></div>
+					<div class="corpo">
+                        <ul>
+							{% for projeto  in projetos_ano.5  %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
+						</ul>
+                    </div>
 				</div>
 				<div id="esqDois">
 					<div class="cabecario"><span>JULHO</span></div>
-					<div class="corpo"></div>
+					<div class="corpo">
+                        <ul>
+							{% for projeto in projetos_ano.6  %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
+						</ul>
+                    </div>
 				</div>
 				<div id="dirDois">
 					<div class="cabecario"><span>AGOSTO</span></div>
-					<div class="corpo"></div>
+					<div class="corpo">
+                        <ul>
+							{% for projeto in  projetos_ano.7 %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
+						</ul>                    
+                    </div>
 				</div>
 			</div>
 		<div>
@@ -120,19 +161,51 @@
 			<div class="meses">
 				<div id="esqUm">
 					<div class="cabecario"><span>SETEMBRO</span></div>
-					<div class="corpo"></div>
+					<div class="corpo">
+                        <ul>
+							{% for projeto in projetos_ano.8  %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
+						</ul>
+                    </div>
 				</div>
 				<div id="dirUm">
 					<div class="cabecario"><span>OUTUBRO</span></div>
-					<div class="corpo"></div>
+					<div class="corpo">
+                        <ul>
+							{% for  projeto in projetos_ano.9 %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
+						</ul>
+                    </div>
 				</div>
 				<div id="esqDois">
 					<div class="cabecario"><span>NOVEMBRO</span></div>
-					<div class="corpo"></div>
+					<div class="corpo">
+                        <ul>
+							{% for projeto in projetos_ano.10 %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
+						</ul>
+                    </div>
 				</div>
 				<div id="dirDois">
 					<div class="cabecario"><span>DEZEMBRO</span></div>
-					<div class="corpo"></div>
+					<div class="corpo">
+                        <ul>
+							{% for projeto  in projetos_ano.11 %}
+
+   							<li><a href="#" title="Responsável:{{ projeto.responsavel }}  Valor:{{projeto.valor }}">{{ projeto.nome }}</a></li>
+			    				
+                     {% endfor %}
+						</ul>                    
+                    </div>
 				</div>
 			</div>
 			
@@ -161,11 +234,14 @@
 					<label id="labelDataIniProjeto" for="dataIniProjeto">DATA IN&Iacute;CIO:&nbsp;</label><input type="text" name="dataIniProjeto" id="dataIniProjeto" />
 					<label id="labelDataTerProjeto" for="dataTerProjeto">DATA T&Eacute;RMINO:&nbsp;</label><input type="text" name="dataTerProjeto" id="dataTerProjeto" />
 					<label id="labelResponsavelProjeto" for="responsavelProjeto">RESPONS&Aacute;VEL:&nbsp;</label>
-					<select name="responsavel"  id="responsavelProjeto">
-						<option value="user1">USER1</option>
-						<option value="user2">USER2</option>
-						<option value="user3">USER3</option>
-					</select>
+                    <input name="responsavel"  id="responsavelProjeto" type="text" />
+
+<label id="labelDescricaoProjeto" for="descricaoProjeto">Descri&ccedil;&atilde;o:</label>
+                    <textarea name="descricaoProjeto" id="descricaoProjeto"></textarea>
+                   
+
+
+
 	</form>
 	
 	<span class="separacao">Inserir Conta de Entrada</span>
@@ -178,20 +254,30 @@
 			<div id="esq">
 				<label for="dataConta">DATA:</label><input type="text" name="dataConta" id="dataConta" />
 				<label for="valorConta" class="limpa">VALOR:</label><input type="text" name="valorConta" id="valorConta" />
-				<label for="estadoConta" class="limpa">ESTADO:</label><select name="estadoConta" id="estadoConta">
+                
+                <label for="parcelasContaEntrada"class="limpa">Nº Parcelas: </label>
+                <input type="text" name="parcelasContaEntrada" id="parcelasContaEntrada" />
+<label for="tipoContaEntrada" class="limpa">ESTADO:</label><select name="tipoContaEntrada" id="tipoContaEntrada">
+															<option value="1">Conta Corrente</option>
+															<option value="0">Caixa</option>
+															
+														</select>
+				<!--<label for="estadoConta" class="limpa">ESTADO:</label><select name="estadoConta" id="estadoConta">
 															<option value="pendente">Pendente</option>
 															<option value="ok">OK</option>
 															<option value="atrasado">Atrasado</option>
 														</select>
 														
-				<label class="limpa">TIPO:</label><input type="radio" name="tipoConta" id="tipoSaida" value="saida" /><label for="tipoSaida">SA&Iacute;DA</label><input type="radio" name="tipoConta" value="entrada"  id="tipoEntrada"/><label for="tipoEntrada">ENTRADA</label>
+				<label class="limpa">TIPO:</label><input type="radio" name="tipoConta" id="tipoSaida" value="saida" /><label for="tipoSaida">SA&Iacute;DA</label><input type="radio" name="tipoConta" value="entrada"  id="tipoEntrada"/><label for="tipoEntrada">ENTRADA</label>-->
 			</div>
 			<div id="dir">
 				<label for="descricaoConta">DESCRI&Ccedil;&Atilde;O:</label><textarea name="descricao" id="descricaoConta"></textarea>
 			</div>
 		</form>
 	</div>
-	<div id="transacao" class="arredonda">
+	</div>
+<!--
+<div id="transacao" class="arredonda">
 		<div id="cabecarioTransacao" >
 			<span>TRANSA&Ccedil;&Atilde;O</span>
 		</div>
@@ -231,29 +317,32 @@
 		<span class="data"> 00/00/0000 </span><span class="descricao">DESCRI&Ccedil;&Atilde;O DESCRI&Ccedil;&Atilde;O DESCRI&Ccedil;&Atilde;O</span><span class="valor">R$ 0,00</span><span class="tipo">ENTRADA</span><span class="estado ok">OK</span>
 		<span class="data"> 00/00/0000 </span><span class="descricao">DESCRI&Ccedil;&Atilde;O DESCRI&Ccedil;&Atilde;O DESCRI&Ccedil;&Atilde;O</span><span class="valor">R$ 0,00</span><span class="tipo">ENTRADA</span><span class="estado atrasado">ATRASADO</span>
 		</div>
-		
+	
 	</div>
-	</div>	
+	</div>-->		
 	<span class="separacao" id="separa">Inserir Conta de Sa&iacute;da</span>
 	<div id="ContaSaida"><div id="contaSaida"> 
 		<form action="#" method="post">
 			<div id="esqSaida">
 				<label for="dataContaSaida">DATA:</label><input type="text" name="dataConta" id="dataContaSaida" />
 				<label for="valorContaSaida" class="limpa">VALOR:</label><input type="text" name="valorConta" id="valorContaSaida" />
-				<label for="estadoContaSaida" class="limpa">ESTADO:</label><select name="estadoConta" id="estadoContaSaida">
-															<option value="pendente">Pendente</option>
-															<option value="ok">OK</option>
-															<option value="atrasado">Atrasado</option>
+
+                <label for="parcelasContaSaida"class="limpa">Nº Parcelas:</label>
+                <input type="text" name="parcelasContaSaida" id="parcelasContaSaida" />
+				<label for="tipoContaSaida" class="limpa">ESTADO:</label><select name="tipoContaSaida" id="tipoContaSaida">
+															<option value="1">Conta Corrente</option>
+															<option value="0">Caixa</option>
+															
 														</select>
-														
-				<label class="limpa">TIPO:</label><input type="radio" name="tipoContaSaida" id="tipoSaidaSaida" value="saida" /><label for="tipoSaida">SA&Iacute;DA</label><input type="radio" name="tipoContaSaida" value="entrada"  id="tipoEntradaSaida"/><label for="tipoEntrada">ENTRADA</label>
+									<!--					
+				<label class="limpa">TIPO:</label><input type="radio" name="tipoContaSaida" id="tipoSaidaSaida" value="saida" /><label for="tipoSaida">SA&Iacute;DA</label><input type="radio" name="tipoContaSaida" value="entrada"  id="tipoEntradaSaida"/><label for="tipoEntrada">ENTRADA</label>-->
 			</div>
 			<div id="dirSaida">
 				<label for="descricaoContaSaida">DESCRI&Ccedil;&Atilde;O:</label><textarea name="descricao" id="descricaoContaSaida"></textarea>
 			</div>
 		</form>
 	</div>
-	<div id="transacaoSaida" class="arredonda">
+	<!--<div id="transacaoSaida" class="arredonda">
 		<div id="cabecarioTransacaoSaida" >
 			<span>TRANSA&Ccedil;&Atilde;O</span>
 		</div>
@@ -295,11 +384,11 @@
 		</div>
 		
 	  </div>
+	</div>-->
 		<a href="#" title="Inserir Projeto" class="inserirProjeto"></a>
-	</div>
 		
 		
-</div>
+
 </div>	
 
 	
