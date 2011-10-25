@@ -99,11 +99,14 @@ $(function() {
 
 	$(".inserirProjeto").click(function(e) { // Inserir Projeto
 
+                e.preventDefault();
 				var nomeProjeto = $('#nomeProjeto').val();
 				var valorProjeto = $('#valorProjeto ').val();
 				var dataIniProjeto = $('#dataIniProjeto').val();
-				var dataTerProjeto = $('# dataTerProjeto').val();
+				var dataTerProjeto = $('#dataTerProjeto').val();
 				var responsavelProjeto = $('#responsavelProjeto').val();
+                var descricaoProjeto = $('#descricaoProjeto').val();
+
 
 				var dataEntrada = $('#dataConta').val();
 
@@ -111,8 +114,8 @@ $(function() {
 
 				var estadoEntrada = $('#estadoConta').val();
 
-				var tipoEntrada = $('input[name=tipoConta]:checked').val();
-
+				var tipoEntrada = $('input[name=tipoContaEntrada]:checked').val();
+                var parcelasContaEntrada = $('#parcelasContaEntrada').val()
 				var descricaoEntrada = $('#descricaoConta').val();
 
 				var dataSaida = $('#dataContaSaida').val();
@@ -122,17 +125,37 @@ $(function() {
 				var estadoSaida = $('#estadoContaSaida').val();
 
 				var tipoSaida = $('input[name=tipoContaSaida]:checked').val();
-
+                var parcelasContaSaida = $('#parcelasContaSaida').val();
 				var descricaoSaida = $('#descricaoContaSaida').val();
 
-				$.post("CaminhoPara_A_adicionar_Transacao", {
-					origem : origemTransacao,
-					descricao : descriacoTransacao,
-					estado : estadoTransacao,
-					valor : valorTransacao,
-					data : dataTransacao
+				$.post("cadatro_projeto_ajax", {
+                    nome_projeto: nomeProjeto,
+                    valor_projeto : valorProjeto,
+                    data_inicio_projeto : dataIniProjeto,
+                    data_termino_projeto : dataTerProjeto,
+                    responsavel_projeto : responsavelProjeto,
+                    descricao_projeto : descricaoProjeto,
+                    
+                    data_entrada :  dataEntrada,
+                    valor_entrada : valorEntrada,
+                    estado_entrada : estadoEntrada,
+                    parcelas_conta_entrada : parcelasContaEntrada,
+                    descricao_entrada : descricaoEntrada,
+                    tipo_entrada : tipoEntrada,
+
+                    data_saida : dataSaida,
+                    valor_saida : valorSaida,
+                    estado_saida : estadoSaida,
+                    parcelas_conta_saida : parcelasContaSaida,
+                    descricao_saida : descricaoSaida,
+                    tipo_saida : tipoSaida   
+					
 				}, function(data) {
-					//
+					    
+                       /* var jSon = jQuery.parseJSON(data)
+                        if(jSon.salvo)
+                            alert("cadastrado com sucesso")*/
+                        document.location.reload();
 				});
 			});
 
