@@ -9,8 +9,6 @@ def home(request):
     entradas = Conta.objects.filter(tipo=0).order_by('data')
     saidas = Conta.objects.filter(tipo=1).order_by('data')
 
-    print entradas[0].valor_total
-
     return render_to_response(
         "pageContas.html",
         { 'entradas': entradas, 'saidas': saidas },
