@@ -114,7 +114,7 @@ $(function() {
 
 				var estadoEntrada = $('#estadoConta').val();
 
-				var tipoEntrada = $('input[name=tipoContaEntrada]:checked').val();
+				var tipoEntrada = $('select[name=tipoContaEntrada]').val();
                 var parcelasContaEntrada = $('#parcelasContaEntrada').val()
 				var descricaoEntrada = $('#descricaoConta').val();
 
@@ -124,7 +124,7 @@ $(function() {
 
 				var estadoSaida = $('#estadoContaSaida').val();
 
-				var tipoSaida = $('input[name=tipoContaSaida]:checked').val();
+				var tipoSaida = $('select[name=tipoContaSaida]').val();
                 var parcelasContaSaida = $('#parcelasContaSaida').val();
 				var descricaoSaida = $('#descricaoContaSaida').val();
 

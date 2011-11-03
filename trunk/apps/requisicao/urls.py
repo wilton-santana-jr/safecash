@@ -8,4 +8,6 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('apps.requisicao.views',
     (r'^$', 'home'),
 	(r'^visualizar/', 'visualizar'),
-	(r'^salvarEstado/', 'salvarEstado'))
+	(r'^salvarEstado/', 'salvarEstado'),
+	(r'^inserirReq/', 'inserirReq'),
+	)

@@ -3,9 +3,12 @@ from django.template import RequestContext
 from apps.requisicao.models import *
 from django.utils import simplejson
 from django.http import HttpResponse
+import datetime
+
 
 def home(request):
   requisicoes = Requisicao.objects.all()
+  print requisicoes
   return render_to_response("pageRequisicao.html", {"requisicoes": requisicoes}, context_instance=RequestContext(request))
   
 
@@ -38,3 +41,33 @@ def salvarEstado(request):
 	toSend = { 'id' : requisicao.id, 'estado' : "PRONTO",  'classe' : "estado pronto" }
   requisicao.save()
   return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
+  
+def inserirReq(request):
+    print request.POST
+    if request.method == 'POST':
+       # user = User()
+        #user.name = "teste"
+        #user.save()
+        user =  User.objects.get(username="teste")
+        print user.id
+        assunto = request.POST.get('assunto',"")
+        descricao = request.POST.get('descricao',"")
+        data = request.POST.get('data',"")
+        valor = float(request.POST.get('valor',0.0))
+        tipo = int(request.POST.get('tipo',0))
+        status = request.POST.get('status',"")
+               
+        requisicao = Requisicao()
+        requisicao.usuario = user
+        requisicao.assunto = assunto
+        requisicao.descricao = descricao
+        requisicao.data =  datetime.datetime.strptime(data, "%d/%m/%Y")
+        requisicao.status = status
+        requisicao.tipo = tipo
+        requisicao.valor = valor
+        
+        requisicao.save()
+        print requisicao.id
+   
+    return HttpResponse()
+    

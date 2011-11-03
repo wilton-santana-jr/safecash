@@ -4,8 +4,9 @@ from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
 from apps.projeto.models import Projeto
-from apps.conta.models import Conta
-import datetime
+from apps.conta.models import *
+from datetime import datetime, timedelta
+
 
 
 #toSend = { 'desc' : descricao }
@@ -50,9 +51,9 @@ def cadatro_projeto_ajax(request):
         descricao_projeto = request.POST.get('descricao_projeto',"")
       
         #if data_termino != "" and data_termino != None:
-        data_termino = datetime.datetime.strptime(data_termino, "%d/%m/%Y")
+        data_termino = datetime.strptime(data_termino, "%d/%m/%Y")
         #if data_inicio !="" and data_inicio != None:
-        data_inicio = datetime.datetime.strptime(data_inicio, "%d/%m/%Y")
+        data_inicio = datetime.strptime(data_inicio, "%d/%m/%Y")
         
         projeto = Projeto()
         projeto.nome = nome
@@ -80,7 +81,7 @@ def cadatro_projeto_ajax(request):
             transacao = Transacao()
             transacao.conta = conta_saida
             transacao.nome = conta_saida.nome + ': Parcela %s' % i
-            transacao.valor = conta_saida.valor_total/conta.parcelas
+            transacao.valor = conta_saida.valor_total/conta_saida.parcelas
             transacao.data_vencimento = conta_saida.data + timedelta(i*365/12)
             transacao.save()
     
@@ -99,12 +100,12 @@ def cadatro_projeto_ajax(request):
             transacao = Transacao()
             transacao.conta = conta_entrada
             transacao.nome = conta_entrada.nome + ': Parcela %s' % i
-            transacao.valor = conta_entrada.valor_total/conta.parcelas
+            transacao.valor = conta_entrada.valor_total/conta_entrada.parcelas
             transacao.data_vencimento = conta_entrada.data + timedelta(i*365/12)
             transacao.save()
 
         toSend = { 'salvo' : True }
-        return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
+        return HttpResponse()
     else:
         return HttpResponse() 
 
