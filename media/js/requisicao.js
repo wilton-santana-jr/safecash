@@ -29,17 +29,33 @@ $(document).ready(
 			$(".armazenar").click(function(e) {
 			    var date = new Date();
 			    
-        		var usuarioReq = "PASSAR O USUARIO";
-                var assuntoReqs =  $("#assunto").val();
+        		var usuarioReq = 1;
+                var assuntoReq =  $("#assunto").val();
                 var dataReq = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
                 var estadoReq = "Pendente";
-                var tipoReq = document.formInsertReq.tipoReq[document.formInsertReq.tipoReq.selectedIndex].text;
+                var tipoReq = $("select[name=tipoReq]:checked").val();
                 var valorReq = $("#valor").val();
                 var descricaoReq = $("#popUpInsertReq textarea").val();
-                // $.post("insert/", { nome: nomeModelo,endereco: enderecoModelo,descricao: descricaoModelo} );                
+               
                 
-                if(usuarioReq && assuntoReqs && valorReq){
-                //  $.post("NOME_DA_FUNCAO/", { usuario: usuarioReq,assunto: assuntoReq,descricao: descricaoReq,data: dataReq,status: estadoReq,tipo = tipoReq,valor = valorReq} );
+                if(usuarioReq && assuntoReq && valorReq){
+                  $.post("inserirReq/", { 
+                  usuario: usuarioReq,
+                  assunto: assuntoReq,
+                  descricao: descricaoReq,
+                  data: dataReq,
+                  status: estadoReq,
+                  tipo : tipoReq,
+                  valor : valorReq},
+                  
+                  function(data) {
+					    
+                        /*var jSon = jQuery.parseJSON(data)
+                        if(jSon.salvo)
+                            alert("cadastrado com sucesso")*/
+                        document.location.reload();
+                        
+				}); 
            
                   $('#popUpInsertReq').fadeOut(200);
                   $('#tela').fadeOut(200);
