@@ -10,7 +10,8 @@ class Conta(models.Model):
     tipo = models.IntegerField(default=0)
     livro = models.IntegerField(default=0)
     data = models.DateField()
-
+    #tipo => 0 = entrada , 1 = saida
+    #livro => 0 = caixa da empresa , 1 = conta bancaria
     class Meta:
         db_table = 'conta'
 
@@ -21,7 +22,8 @@ class Transacao(models.Model):
     valor = models.FloatField(default=0)
     data_vencimento = models.DateField()
     data_pagamento = models.DateField(null=True)
-
+    pago = models.IntegerField(default=0)
+    #pago => 0 = pendente, 1 = paga
     class Meta:
         db_table = 'transacao'
 
