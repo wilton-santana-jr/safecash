@@ -5,5 +5,7 @@ from django.conf.urls.defaults import *
 # admin.autodiscover()
 
 # RELATORIO
-urlpatterns = patterns('apps.relatorio.views',
-    (r'^$', 'home'))
+urlpatterns = patterns('apps.relatorio.views', 
+
+(r'^$', 'home'),
+(r'^relatorio_especifico', 'relatorio'))
