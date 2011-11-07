@@ -17,12 +17,45 @@ Relat&oacute;rios
 
 
 {% block base_content %} 
-			<div  class="destaque cor">Escolha o relat&oacute;rio &agrave; ser gerado</div>
-			<div class="relatorio"><a class="figura" href="#" title="Gerar Relat&oacute;rio"></a><span>Relat&oacute;rios de todas as transa&ccedil;&otilde;es</span></div>
-			<div class="relatorio"><a class="figura" href="#" title="Gerar Relat&oacute;rio"></a><span>Relat&oacute;rios de todas as contas</span></div>
-			<div class="relatorio"><a class="figura" href="#" title="Gerar Relat&oacute;rio"></a><span>Relat&oacute;rios de todos os projetos</span></div>
+<div  class="destaque cor">Escolha o relat&oacute;rio &agrave; ser gerado</div>
+<div id="definicoes">
+<form method="get" action="relatorio_especifico">
+
+<span>Tipo do relatório:</span>
+    <select name="tipo_relatorio">
+        <option value="0">Faturamento </option>
+<option value="1">Despesas </option>
+<option value="2">Lucro </option>
+</select>
+<br/>
+<span>Período do relatório:</span>
+ <select name="periodo">
+        <option value="0">Ano Completo</option>
+<option value="1">Primeiro Semestre</option>
+<option value="2">Segundo Semestre</option>
+</select>
+<br/>
+<span>relativo ao(s) ano(s):</span>
+<br/>
+{% for ano in anos%}
+<input type="checkbox" name="anos" value="{{ ano }}" id="{{ ano }}"/><label for="{{ ano }}">{{ ano }}</label>
+<br/>
+{% endfor %}
+<br/>
+<span>Tipo de gráfico:</span>
+<input type="radio" name="tipo_grafico" value="0" id="linhas"/><label for="linhas">Linhas</label>
+<input type="radio" name="tipo_grafico" value="1" id="barras"/><label for="barras">Barras</label>
+<br/>
+<input type="submit" value="Gerar Relatório"/>
+
+</form>
+</div>	
+<!--
+			<div class="relatorio"><a class="figura" target="_blanck" href="relatorio_especifico" title="Gerar Relat&oacute;rio"></a><span>Relat&oacute;rios de Faturamento</span></div>
+			<div class="relatorio"><a class="figura" href="#" title="Gerar Relat&oacute;rio"></a><span>Relat&oacute;rios de Gastos</span></div>
+			<div class="relatorio"><a class="figura" href="#" title="Gerar Relat&oacute;rio"></a><span>Relat&oacute;rios de Lucro</span></div>
 			<div class="relatorio"><a class="figura" href="#" title="Gerar Relat&oacute;rio"></a><span>Relat&oacute;rios de todas as requisi&ccedil;&otilde;es</span></div>
-			 		
+			 -->		
 		
 {% endblock%}
 

@@ -30,9 +30,11 @@
 	background-position:left bottom;
 	float:left;
 	padding-left:30px;
-	position:relative;
+    padding-top:20px;
+    margin-left:5px;
+	/*position:relative;
 	top:20px;
-	left:5px;
+	left:5px;*/
 	/*text-align:left;
 	padding-bottom:10px;
 	padding-left:30px;*/
@@ -44,7 +46,7 @@ a.figura
 	display:block;
 	width:48px;
 	height:48px;
-	background-image:url(../imagens/PageRelatoriosImages/pdf_1.png);
+	background-image:url(../imagens/PageRelatoriosImages/report_icon.jpg);
 	background-repeat:no-repeat;
 	float:left;
 }
@@ -58,6 +60,21 @@ a.figura
 	left:30px;
 	clear:both;
 }
+
+#definicoes
+{
+    display:block;
+	width:100%;
+	clear:both;
+    padding:15px;
+    line-height: 50px;
+}
+
+#definicoes span,#definicoes input[type=submit]
+{
+margin-left:20px;
+}
+
 
 .relatorio span
 {
