@@ -70,7 +70,7 @@ a.figura
     line-height: 50px;
 }
 
-#definicoes span,#definicoes input[type=submit]
+#definicoes span,#definicoes input[type=submit],#definicoes input[type=checkbox]
 {
 margin-left:20px;
 }
