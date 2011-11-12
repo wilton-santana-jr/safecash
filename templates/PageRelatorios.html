@@ -38,12 +38,12 @@ Relat&oacute;rios
 <span>relativo ao(s) ano(s):</span>
 <br/>
 {% for ano in anos%}
-<input type="checkbox" name="anos" value="{{ ano }}" id="{{ ano }}"/><label for="{{ ano }}">{{ ano }}</label>
+<input type="checkbox" name="anos" value="{{ ano }}" id="{{ ano }}" checked="checked"/><label for="{{ ano }}">{{ ano }}</label>
 <br/>
 {% endfor %}
-<br/>
+
 <span>Tipo de gráfico:</span>
-<input type="radio" name="tipo_grafico" value="0" id="linhas"/><label for="linhas">Linhas</label>
+<input type="radio" name="tipo_grafico" value="0" id="linhas"  checked="checked"/><label for="linhas">Linhas</label>
 <input type="radio" name="tipo_grafico" value="1" id="barras"/><label for="barras">Barras</label>
 <br/>
 <input type="submit" value="Gerar Relatório"/>

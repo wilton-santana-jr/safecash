@@ -155,7 +155,7 @@ $(function() {
                        /* var jSon = jQuery.parseJSON(data)
                         if(jSon.salvo)
                             alert("cadastrado com sucesso")*/
-                        document.location.reload();
+                        document.location.reload();/*trocar pela substituição dinâmica*/
 				});
 			});
 
