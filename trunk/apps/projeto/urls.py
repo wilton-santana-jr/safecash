@@ -6,12 +6,6 @@ from django.conf.urls.defaults import *
 
 # PROJETO
 urlpatterns = patterns('apps.projeto.views',
-   (r'^$', 'projeto'),
- (r'^cadatro_projeto_ajax', 'cadatro_projeto_ajax')
+    (r'^$', 'projeto'),
+    (r'^cadatro_projeto_ajax', 'cadatro_projeto_ajax')
 )
-
-
-
-#urlpatterns = patterns("",
- #   url(r"^$", "projeto.views.projeto", name="projeto"),
- #   )
