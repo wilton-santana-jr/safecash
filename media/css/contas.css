@@ -80,7 +80,7 @@
     background-image:url(../imagens/PageContasImage/botaoInserirConta.png);
 }
 
-#popUp
+#popUp ,#popUpEditar
 {
 	width:675px;
 	height:539px;
@@ -91,7 +91,7 @@
 	text-align:left;
 }
 
-#nomePopUp
+.nomePopUp
 {
 	position:relative;
 	top:5px;
@@ -149,17 +149,17 @@
     left:25px;
 }
 
-#esq input[type="text"], #dir input[type="text"]
+.esq input[type="text"], #dir input[type="text"]
 {
     display:block;
     padding-left:5px;
-    position:relative;
+   
     margin-bottom:10px;
     height:12px;
     width:100px;
 }
 
-#esq label, #dir label,#esq input[type="radio"], #esq select
+.esq label, #dir label,.esq input[type="radio"], .esq select
 {
     display:block;
     float:left;
@@ -168,13 +168,13 @@
     font-size:12px;
 }
 
-#esq input[type="radio"]
+.esq input[type="radio"]
 {
     position:relative;
     top:-2px;
 }
 
-#esq
+.esq
 {
     display:block;
     float:left;
@@ -372,24 +372,25 @@
 
 #cabecarioListaCorpo span,#corpoLista span
 {
-    font-size:13px;
+    font-size:11px;
     display:block;
     float:left;
+    text-align: center;
 }
 
 #listaTransacao span.data,#corpoLista span.data
 {
-    width:65px;
+    width:60px;
 }
 
 #listaTransacao span.descricao,#corpoLista span.descricao
 {
-    width:363px;
+    width:330px;
 }
 
 #listaTransacao span.tipo, #corpoLista span.tipo
 {
-    width:55px;
+    width:75px;
 }
 
 #listaTransacao span.valor,#corpoLista span.valor
@@ -408,11 +409,16 @@
     padding:0;
     width:75px;
 }
+#corpoLista span.tipo a
+{
+    color:#0000cc;
+}
 
 #corpoLista
 {
     width:618px;
-    height:110px;
+    height:150px;
+    overflow:auto;
     display:block;
     float:left;
     background:#FFFFFF;
@@ -437,7 +443,7 @@
     color:#FF9900;
 }
 
-.inserirConta
+.inserirConta, .inserirContaEd
 {
     width:125px;
     height:28px;
@@ -445,7 +451,7 @@
     background-repeat:no-repeat;
     float:right;
     position:relative;
-    top:60px;
+    top:110px;
     right:30px;
     display:block;
 }
@@ -461,3 +467,23 @@
     filter: alpha(opacity=70);
     -moz-opacity: 0.70;
 }
+
+.esq label
+{
+    width: 75px;
+}
+
+.esq label.opcoes
+{
+    width: 50px;
+}
+.esq label.limpa
+{
+    width: 45px;
+}
+.linha
+{
+margin-top: 5px;
+}
+
+
