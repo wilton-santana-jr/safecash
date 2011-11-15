@@ -89,7 +89,7 @@ height:31px;
 }
 #menu ul a:hover span#projetos
 {
-	background-image:url(../imagens/projetos_sobre.PNG);/*mudar a imagem aki!!!*/
+	background-image:url(../imagens/projetos_sobre.png);/*mudar a imagem aki!!!*/
 }
 
 
@@ -101,7 +101,7 @@ height:31px;
 
 #menu ul a:hover span#requisicao
 {
-	background-image:url(../imagens/requisicao_sobre.PNG);/*mudar a imagem aki!!!*/
+	background-image:url(../imagens/requisicao_sobre.png);/*mudar a imagem aki!!!*/
 }
 #menu ul span#relatorios
 {

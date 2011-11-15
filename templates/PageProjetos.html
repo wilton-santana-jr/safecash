@@ -6,11 +6,13 @@ Projetos
 
 {% block  head_css_extra %} 
 <link rel="stylesheet" href="{{ STATIC_URL }}css/projetos.css"> 
+<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.click-calendario-1.0.css" />
 {% endblock %}
 
 {% block  head_js_extra %} 
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tools.min.js"></script> 
 <script type="text/javascript" src="{{ STATIC_URL }}js/projetos.js"></script> 
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.click-calendario-1.0-min.js"></script>
 {% endblock %}
 
 {% block name_user %}Bruno Medeiros{% endblock %}
@@ -18,15 +20,15 @@ Projetos
 {% block base_content %} 
 <a href="#" id="botao" title="Adicionar Conta"></a>
 <form>
-    <select name= "ano"onchange="scripting(this.value)">
-        <option value="">ANO</option>
+    <select name= "ano" id="ano_combo">
+        <option value="default">ANO</option>
         {% for ano in anos %}
-        <option value="{{ ano }}">{{ ano }}</option>
+        <option value="{{ ano }}" {% ifequal ano_filtro ano %} selected="selected" {% endifequal %}>{{ ano }}</option>
         {% endfor %}
     </select>
 </form>
 
-<div id="livroConta" class="destaque cor">PROJETOS DE TODOS OS ANOS</div>
+<div id="livroConta" class="destaque cor">PROJETOS DE {% if ano_filtro = -1 %} TODOS OS ANOS {% else %} {{ ano_filtro }} {% endif %}</div>
 
 <div id="separacao">
     <ul id="flowtabs" class="navi">
@@ -59,7 +61,14 @@ Projetos
                     <div class="corpo">
                         <ul>
                         {% for proj in mes.projetos %}
-                            <li><a href="#" title="Responsável: {{ proj.responsavel }} / Valor: {{ proj.valor }}">{{ proj.nome }}</a></li>
+                            <li>
+                                <a href="javascript:void(0)" rel="{{ proj.id }}" class="editarProjeto" title="Mostrar Detalhes">
+                                   {{ proj.nome }}
+                                </a>&nbsp;
+                                <a href="{% url apps.projeto.views.remover proj.id %}" title="Excluir">
+                                    <img src="{{ STATIC_URL }}imagens/x.png" />
+                                </a>
+                            </li>
                         {% endfor %}
                         </ul>
                     </div>
@@ -76,7 +85,17 @@ Projetos
 
 
 {%block base_popup%} 
-<div id="popUp"   class="esconder">
+
+<div id="popUpEditar" class="esconder">
+    <a class="fechar" href="#" title="voltar"></a>
+    <span id="nomePopUpEd" class="destaque cor">Detalhes do projeto</span>
+
+    <div id="conteudoPopup">  </div>
+    
+    <a href="#" title="Salvar altera&ccedil;&otilde;es" class="alterarProjeto"></a>
+</div>
+
+<div id="popUp" class="esconder">
 	<a class="fechar" href="#" title="voltar"></a>
 	<span id="nomePopUp" class="cor">Inserir Projeto</span>
 	
@@ -138,7 +157,7 @@ Projetos
 		</form>
 	</div>
     <a href="#" title="Inserir Projeto" class="inserirProjeto"></a>
-</div>	
-
+</div>
 </div> 
+
 {% endblock %}

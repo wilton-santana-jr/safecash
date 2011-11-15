@@ -1,11 +1,11 @@
 from django.conf.urls.defaults import *
-#from projeto.models import Projeto
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
 
 # PROJETO
 urlpatterns = patterns('apps.projeto.views',
-    (r'^$', 'projeto'),
-    (r'^cadatro_projeto_ajax', 'cadatro_projeto_ajax')
+    (r'^$', 'home'),
+    (r'^(?P<ano_filtro>[\d]+)', 'home'),
+    (r'^cadatro_projeto_ajax', 'cadatro_projeto_ajax'),
+    (r'^detalhes', 'detalhes'),
+    (r'^editar', 'editar'),
+    (r'^remover/(?P<id_projeto>[\d]+)', 'remover')
 )
