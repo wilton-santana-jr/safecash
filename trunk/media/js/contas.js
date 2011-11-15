@@ -17,24 +17,28 @@ $(document).ready(function() {
         $('#popUpEditar').fadeOut(200);
         $('#tela').fadeOut(200);
     });
-
-    $('a.edicao').click(function(e){
-        e.preventDefault();
-      
-        var id = $(this).attr('rel');        
-        
-        $.post("editarConta/", {
-            id : id
-
-        }, function(data) {
-
-            $("#popUpCorpo").html(data);
+    
+    atribuirAcaoLista();
+    function atribuirAcaoLista()
+    { 
+        $('a.edicao').click(function(e){
+            e.preventDefault();
+          
+            var id = $(this).attr('rel');        
             
-            mostrarPopup("#popUpEditar");
-            acoesPopUp()
-        });
+            $.post("editarConta/", {
+                id : id
 
-    });
+            }, function(data) {
+
+                $("#popUpCorpo").html(data);
+                
+                mostrarPopup("#popUpEditar");
+                acoesPopUp()
+            });
+
+        });
+    }
     function acoesPopUp()
     {
          $('a.inserirContaEd').click(function(){ 
@@ -58,14 +62,14 @@ $(document).ready(function() {
         });
 
         var transacoesApagadas = new Array();
-        $('input[name=transacaoApagadas]').each(function(){
+        $('input[name=transacaoApagada]').each(function(){
             transacoesApagadas[index] = $(this).val();
             index = index + 1;
         });    
         $('input[name=transacaoPaga]').remove();
-        $('input[name=transacaoApagadas]').remove();
+        $('input[name=transacaoApagada]').remove();
 
-         $.post("alterarConta/", {
+        $.post("alterarConta/", {
                 nome: nomeConta,
                 data: dataConta,
                 valor: valorConta,
@@ -77,6 +81,7 @@ $(document).ready(function() {
                 transacoesPagas : transacoesPagas,
                 transacoesApagadas : transacoesApagadas
             }, function(data) {
+                atualizarLista(false);
                 $('#popUpEditar').fadeOut(200);
                 $('#tela').fadeOut(200);
 
@@ -91,15 +96,48 @@ $(document).ready(function() {
                 if( r)
                 {
                      link.remove();
-                     var span = "#" + id;
-                     $(span).html("OK");
-                     $(span).removeClass('pendente');   
-                     $(span).addClass('ok');
-                     $('body').append('<input name="transacaoPaga" value="'+id+'"/>');
+                      $('body').append('<input name="transacaoPaga" value="'+id+'"/>');
                      
                 }
             });
         });
+
+        $('.tipo a.acaoApagar').click(function(e){
+            e.preventDefault();
+           
+            var link = $(this)
+            var id = $(this).attr('href')    
+            jConfirm('Quer mesmo apagar essa transação?', 'Confirmação de Exclusão', function(r) {
+                if( r)
+                {
+                     link.parent().parent().remove();
+                     var span = "#" + id;
+                     $(span).html("OK");
+                     $(span).removeClass('pendente');   
+                     $(span).addClass('ok');
+                     $('body').append('<input name="transacaoApagada" value="'+id+'"/>');
+                     
+                }
+            });
+        });
+    }
+    
+    function atualizarLista(filtrar)
+    {
+        
+
+         $.post("lista_dinamica/", {
+                filtro : filtrar,
+                mes: $('#mes').val(), 
+                ano:$('#ano').val()
+            }, function(data) {
+                console.log(data)
+                $('#informacoes').html(data);
+                atribuirAcaoLista();
+            });
+        
+
+        
     }
     function mostrarPopup(popup)
     {
@@ -120,26 +158,7 @@ $(document).ready(function() {
             $(popup).fadeIn(200);
         
     }
-    /*$(".adicionar").click(function(e) {
-        var origemTransacao = $("#origemTransacao").val();
-        var descriacoTransacao = $("#descricaoTransacao").val();
-        var tipoTransacao = $("#tipoTransacao").val();
-        var valorTransacao = $("#valorTransacao").val();
-        var dataTransacao = $("#dataTransacao").val();
-        var actionVar = 'trans';
-
-        $.post("contas", {
-            origem: origemTransacao,
-            descricao: descriacoTransacao,
-            tipo: tipoTransacao,
-            valor: valorTransacao,
-            data: dataTransacao,
-            action: actionVar
-        }, function(data) {
-            $("#corpoLista").html(data);
-        });
-    });*/
-
+   
     $(".inserirConta").click(function(e) {
         var nomeConta = $("#nomeConta").val();
         var dataConta = $("#dataConta").val();
@@ -158,9 +177,9 @@ $(document).ready(function() {
             livro: livro,
             descricao: descricaoConta,
         }, function(data) {
+            atualizarLista(false);
             $('#popUp').fadeOut(200);
             $('#tela').fadeOut(200);
-
             $('#popUp').find(':input').each(function() {
                 switch (this.type) {
                     case 'password':
@@ -176,7 +195,19 @@ $(document).ready(function() {
             });
         }, 'json');
     });
+    
+    /*Filtro da lista*/
+    $('#mes').change(function(){
+        
+        if($(this).val() != '' && $('#ano').val() != '')
+            atualizarLista(true);
+    });
 
+    $('#ano').change(function(){
+        if($(this).val() != '' && $('#mes').val() != '')
+            atualizarLista(true);
+    });
+    
     $('#dataConta').focus(function(){
         $(this).calendario({
             target:'#dataConta'

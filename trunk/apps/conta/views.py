@@ -15,18 +15,6 @@ def home(request):
         else:
             saidas.append(transacao)    
 
-    #entradas = Conta.objects.filter(tipo=0).order_by('data')
-    #saidas = Conta.objects.filter(tipo=1).order_by('data')
-    #transacoes_entrada = [("",[])]#([],[])
-    #transacoes_saida = ([],[])
-    #for entrada in entradas:
-     #   transacoes_entrada.append(( entrada.nome, Transacao.objects.filter(pago = 0,conta = entrada)))
-        
-    #for saida in saidas:
-    #    transacoes_saida[1].append(Transacao.objects.filter(pago = 0,conta = saida))
-    #    transacoes_saida[0].append(saida.nome)    
-    #print transacoes_entrada
-    #print entradas
     return render_to_response(
         "pageContas.html",
         { 'entradas': entradas, 'saidas': saidas },
@@ -35,9 +23,10 @@ def home(request):
 
 def insert(request):
     conta = Conta()
+    valor = request.POST.get('valor','0.0')
     conta.nome = request.POST['nome']
     conta.data = datetime.strptime(request.POST['data'], '%d/%m/%Y')
-    conta.valor_total = float(request.POST['valor'])
+    conta.valor_total = float(valor.replace(",","."))
     conta.parcelas = int(request.POST['parcelas'])
 
     if request.POST['tipo'] == 'saida':
@@ -72,8 +61,10 @@ def editarConta(request):
     );
 
 def alterarConta(request):
+    
     print request.POST
     lista_transacoes_pagas = request.POST.getlist('transacoesPagas[]')
+    lista_transacoes_apagadas = request.POST.getlist('transacoesApagadas[]')
         
     id_conta = request.POST['id']
     conta_query = Conta.objects.filter(id = id_conta) 
@@ -99,17 +90,42 @@ def alterarConta(request):
     i = 0
     for transacao in Transacoes:
  
-
-            
+         
         transacao.nome = conta.nome + ': Parcela %s' % (i +1)
         transacao.valor = float(conta.valor_total)/float(conta.parcelas)
         transacao.data_vencimento = conta.data + timedelta(i*365/12)
-        print transacao.id
-        print type(lista_transacoes_pagas)
-        print str(transacao.id) in lista_transacoes_pagas 
         if str(transacao.id) in lista_transacoes_pagas:
             transacao.pago = 1        
-
+                 
         transacao.save()
+        
+        if str(transacao.id) in lista_transacoes_apagadas:
+            conta.valor_total =  float(conta.valor_total) - float(transacao.valor)
+            conta.parcelas = int(conta.parcelas) - 1
+            conta.save()
+            transacao.delete()
+            if conta.parcelas == 0:
+                conta.delete()            
+            #Transacao.objects.filter(id = transacao.id).exclude()
         i = i + 1;
     return HttpResponse()
+
+def lista_dinamica(request):
+    transacoes = []
+    if request.POST.get('filtro',False) == 'true':
+        print "oi"
+    else:  
+        transacoes = Transacao.objects.filter(pago = 0).order_by('data_vencimento')
+    entradas = []
+    saidas = []
+    for transacao in transacoes:
+        if transacao.conta.tipo == 0:
+            entradas.append(transacao)
+        else:
+            saidas.append(transacao)    
+
+    return render_to_response(
+        "contaListaDinamica.html",
+        { 'entradas': entradas, 'saidas': saidas },
+        context_instance=RequestContext(request)
+    );

@@ -9,4 +9,5 @@ urlpatterns = patterns('apps.conta.views',
     (r'^$', 'home'),
     (r'^insert/$', 'insert'),
     (r'^editarConta/$', 'editarConta'),
-    (r'^alterarConta/$', 'alterarConta'))
+    (r'^alterarConta/$', 'alterarConta'),
+(r'^lista_dinamica/$', 'lista_dinamica'))

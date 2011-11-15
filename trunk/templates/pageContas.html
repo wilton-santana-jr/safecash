@@ -30,7 +30,7 @@ Contas
 {% block base_content %}
         <a href="#" id="botao" title="Adicionar Conta"></a>
         <form action="#" method="post">
-            <select name= "mes" onchange="scripting(this.value)">
+            <select name= "mes" id="mes">
                 <option value="">M&Ecirc;S</option>
                 <option value="janeiro">Janeiro</option>
                 <option value="fevereiro">Fevereiro</option>
@@ -46,7 +46,7 @@ Contas
                 <option value="dezembro">Dezembro</option>
             </select>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <select name= "ano" onchange="scripting(this.value)">
+            <select name= "ano"  id="ano">
                 <option value="">ANO</option>
                 <option value="2011">2011</option>
                 <option value="2012">2012</option>
