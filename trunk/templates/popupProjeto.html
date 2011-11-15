@@ -1,0 +1,66 @@
+
+<form action="#" method="post">
+    <input type="hidden" name="id_projeto" id="id_projeto" value="{{ projeto.id }}" />
+    <label for="nomeProjetoEd">NOME:&nbsp;</label>
+    <input type="text" name="nomeProjeto" id="nomeProjetoEd" value="{{ projeto.nome }}" />
+    <label for="valorProjetoEd" class="limpa">VALOR:&nbsp;</label>
+    <input type="text" name="valorProjeto" id="valorProjetoEd" size="41" value="{{ projeto.valor|floatformat:2 }}"  />
+    <label id="labelDataIniProjetoEd" for="dataIniProjetoEd">DATA IN&Iacute;CIO:&nbsp;</label>
+    <input type="text" name="dataIniProjeto" id="dataIniProjetoEd" value="{{ projeto.data_inicio|date:"d/m/Y" }}" />
+    <label id="labelDataTerProjetoEd" for="dataTerProjetoEd">DATA T&Eacute;RMINO:&nbsp;</label>
+    <input type="text" name="dataTerProjeto" id="dataTerProjetoEd" value="{{ projeto.data_fim|date:"d/m/Y" }}" />
+    <label for="responsavelProjetoEd">RESPONS&Aacute;VEL:&nbsp;</label>
+    <input name="responsavel"  id="responsavelProjetoEd" type="text" value="{{ projeto.responsavel }}" />
+    <label id="labelDescricaoProjetoEd" for="descricaoProjetoEd">Descri&ccedil;&atilde;o:</label>
+    <textarea name="descricaoProjeto" id="descricaoProjetoEd">{{ projeto.descricao }}</textarea>
+</form>
+
+<span class="separacao">Detalhes da Conta de Entrada</span>
+<div id="ContaEntradaEd">
+    <div id="contaEd"> 
+        <form action="#" method="post">
+            <div id="esqEd">
+                <label for="dataContaEd">DATA:</label>
+                <input type="text" name="dataConta" id="dataContaEd" disabled="disabled" value="{{ conta_entrada.data|date:"d/m/Y" }}"/>
+                <label for="valorContaEd" class="limpa">VALOR:</label>
+                <input type="text" name="valorConta" id="valorContaEd" disabled="disabled" value="{{ conta_entrada.valor_total }}"/>
+                <label for="parcelasContaEntradaEd"class="limpa">Nº Parcelas: </label>
+                <input type="text" name="parcelasContaEntrada" id="parcelasContaEntradaEd" disabled="disabled" value="{{ conta_entrada.parcelas }}"/>
+                <label for="tipoContaEntradaEd" class="limpa">ESTADO:</label>
+                <select name="tipoContaEntrada" id="tipoContaEntradaEd" disabled="disabled">
+                    <option value="0" {% if conta_entrada.livro = 0 %} selected="selected" {% endif %}>Caixa</option>
+                    <option value="1" {% if conta_entrada.livro = 1 %} selected="selected" {% endif %}>Conta Corrente</option>
+                </select>
+            </div>
+            <div id="dirEd">
+                <label for="descricaoContaEd">DESCRI&Ccedil;&Atilde;O:</label>
+                <textarea name="descricao" id="descricaoContaEd" disabled="disabled">{{ conta_entrada.descricao }}</textarea>
+            </div>
+        </form>
+    </div>
+</div>
+
+<span class="separacao">Detalhes da Conta de Sa&iacute;da</span>
+<div id="ContaSaidaEd">
+    <div id="contaSaidaEd"> 
+        <form action="#" method="post">
+            <div id="esqSaidaEd">
+                <label for="dataContaSaidaEd">DATA:</label>
+                <input type="text" name="dataContaSaida" id="dataContaSaidaEd" disabled="disabled" value="{{ conta_saida.data|date:"d/m/Y" }}"/>
+                <label for="valorContaSaidaEd" class="limpa">VALOR:</label>
+                <input type="text" name="valorContaSaida" id="valorContaSaidaEd" disabled="disabled" value="{{ conta_saida.valor_total }}"/>
+                <label for="parcelasContaSaidaEd"class="limpa">Nº Parcelas: </label>
+                <input type="text" name="parcelasContaSaida" id="parcelasContaSaidaEd" disabled="disabled" value="{{ conta_saida.parcelas }}"/>
+                <label for="tipoContaSaidaEd" class="limpa">ESTADO:</label>
+                <select name="tipoContaSaida" id="tipoContaSaidaEd" disabled="disabled">
+                    <option value="0" {% if conta_saida.livro = 0 %} selected="selected" {% endif %}>Caixa</option>
+                    <option value="1" {% if conta_saida.livro = 1 %} selected="selected" {% endif %}>Conta Corrente</option>
+                </select>
+            </div>
+            <div id="dirSaidaEd">
+                <label for="descricaoContaSaidaEd">DESCRI&Ccedil;&Atilde;O:</label>
+                <textarea name="descricao" id="descricaoContaSaidaEd" disabled="disabled">{{ conta_saida.descricao }}</textarea>
+            </div>
+        </form>
+    </div>
+</div>

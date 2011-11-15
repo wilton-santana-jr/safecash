@@ -66,10 +66,9 @@
 
 #botao:hover
 {
-background-image:url(../imagens/PageProjetosImages/botaoInserir.png);
-
-
+    background-image:url(../imagens/PageProjetosImages/botaoInserir.png);
 }
+
 #separacao
 {
 	position:relative;
@@ -282,7 +281,7 @@ background-image:url(../imagens/PageProjetosImages/botaoInserir.png);
 		
 	}
 
-#popUp
+#popUp, #popUpEditar
 {
 	width:680px;
 	height: 830px;/*1372px;*/
@@ -291,6 +290,7 @@ background-image:url(../imagens/PageProjetosImages/botaoInserir.png);
 	z-index:10;
 	position:absolute;
 }
+
 .fechar
 {
 	width:13px;
@@ -304,25 +304,25 @@ background-image:url(../imagens/PageProjetosImages/botaoInserir.png);
 	z-index:12;
 }
 
-#nomePopUp
+#nomePopUp, #nomePopUpEd
 {
 	background-image:url("../imagens/reta.png");
-background-position:left bottom;
-background-repeat:repeat-x;
-display:block;
-float:left;
-font-size:24px;
-font-weight:bold;
-height:35px;
-left:9px;
-padding-left:30px;
-position:relative;
-text-align:left;
-top:20px;
-width:630px;
+    background-position:left bottom;
+    background-repeat:repeat-x;
+    display:block;
+    float:left;
+    font-size:24px;
+    font-weight:bold;
+    height:35px;
+    left:9px;
+    padding-left:30px;
+    position:relative;
+    text-align:left;
+    top:20px;
+    width:630px;
 }
 
-#popUp form
+#popUp form, #popUpEditar form
 {
 	text-align: left;
 	position: relative;
@@ -332,6 +332,7 @@ width:630px;
 	width:680px;
 	height:100px;
 }
+
 label
 {
 	
@@ -351,33 +352,31 @@ input,select
 
 }
 
-#nomeProjeto
+#nomeProjeto,#nomeProjetoEd
 {
-	
 	width:540px;
 	height:15px;
-	
 }
-#valorProjeto,#dataTerProjeto,#dataIniProjeto
+#valorProjeto,#dataTerProjeto,#dataIniProjeto,#valorProjetoEd,#dataTerProjetoEd,#dataIniProjetoEd
 {
 	width:100px;
 	height:15px;
 }
-#valorProjeto
+#valorProjeto,#valorProjetoEd
 {
 	margin-left:30px;
 }
-#nomeProjeto
+#nomeProjeto,#nomeProjetoEd
 {
 	margin-left:30px;
 }
-#labelDataTerProjeto,#labelDataIniProjeto
+#labelDataTerProjeto,#labelDataIniProjeto,#labelDataTerProjetoEd,#labelDataIniProjetoEd
 {
 	width:113px;
 	height:15px;
 	text-align:right;
 }
-#responsavelProjetos
+#responsavelProjetos,#responsavelProjetosEd
 {
 	width:100px;
 }
@@ -415,11 +414,11 @@ span.separacao
 
 }
 
-#labelDescricaoProjeto
+#labelDescricaoProjeto,#labelDescricaoProjetoEd
 {
     clear:both;
 }
-#descricaoProjeto
+#descricaoProjeto,#descricaoProjetoEd
 {
     clear:both;
     float:left;
@@ -431,7 +430,7 @@ label, input, textarea
     margin-top: 10px;
 }
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
-#contaEntrada ,#contaEntradaSaida
+#contaEntrada ,#contaEntradaSaida,#contaEntradaEd ,#contaEntradaSaidaEd
 {
 	width:675px;
 	height:539px;
@@ -440,7 +439,6 @@ label, input, textarea
 	text-align:left;
 	float:left;
 }
-
 
 .fechar
 {
@@ -466,11 +464,9 @@ label, input, textarea
 	background-position:left bottom;
 	float:left;
 	padding-left:30px
-	
-	
 }
 
-#conta, #conta form , #contaSaida, #contaSaida form
+#conta, #conta form , #contaSaida, #contaSaida form,#contaEd, #contaEd form , #contaSaidaEd, #contaSaidaEd form
 {
 	display:block;
 	width:630px;
@@ -482,33 +478,13 @@ label, input, textarea
 	height:215px;
 }
 
-#conta, #contaSaida
+#conta, #contaSaida,#contaEd, #contaSaidaEd
 {
 	top:100px;
 	left:30px;
 }
-/*#formEditar input[type="text"], #formCadastrar input[type="text"],#formEditar input[type="password"], #formCadastrar input[type="password"]
-{
-	display:block;
-	padding-left:5px;
-	position:relative;
-	top:-1px;
-	margin-bottom:10px;
-	height:15px;
-	width:265px;
-}
-#formEditar label, #formCadastrar label,#formEditar input[type="radio"], #formCadastrar input[type="radio"]
-{
-	display:block;
-	float:left;
-	margin-bottom:10px;
-	font-family:calibri;
-	font-size:13px;
-}
-*/
 
-
-#esq input[type="text"], #dir input[type="text"],#esqSaida input[type="text"], #dirSaida input[type="text"]
+#esq input[type="text"], #dir input[type="text"],#esqSaida input[type="text"], #dirSaida input[type="text"],#esqEd input[type="text"], #dirEd input[type="text"],#esqSaidaEd input[type="text"], #dirSaidaEd input[type="text"]
 {
 	display:block;
 	padding-left:5px;
@@ -518,7 +494,7 @@ label, input, textarea
 	height:12px;
 	width:100px;
 }
-#esq label, #dir label,#esq input[type="radio"], #esq select,#esqSaida label, #dirSaida label,#esqSaida input[type="radio"], #esqSaida select
+#esq label, #dir label,#esq input[type="radio"], #esq select,#esqSaida label, #dirSaida label,#esqSaida input[type="radio"], #esqSaida select, #esqEd label, #dirEd label, #esqEd input[type="radio"], #esqEd select, #esqSaidaEd label, #dirSaidaEd label, #esqSaidaEd input[type="radio"], #esqSaidaEd select
 {
 	display:block;
 	float:left;
@@ -527,12 +503,12 @@ label, input, textarea
 	font-size:12px;
 	text-align:left;
 }
-#esq input[type="radio"], #esqSaida input[type="radio"]
+#esq input[type="radio"], #esqSaida input[type="radio"],#esqEd input[type="radio"], #esqSaidaEd input[type="radio"]
 {
 	position:relative;
 	top:-2px;
 }
-#esq, #esqSaida
+#esq, #esqSaida,#esqEd, #esqSaidaEd
 {
 	display:block;
 	float:left;
@@ -540,7 +516,7 @@ label, input, textarea
 	position:relative;
 }
 
-#dir, #dirSaida
+#dir, #dirSaida,#dirEd, #dirSaidaEd
 {
 	display:block;
 	float:left;
@@ -551,32 +527,32 @@ label, input, textarea
 	width:350;*/
 	
 }
-#ContaEntrada label
+#ContaEntrada label, #ContaEntradaEd label
 {
     width: 120px;
 }
-#ContaSaida label
+#ContaSaida label,#ContaSaidaEd label
 {
     width: 120px;
 }
 
-#dir textarea,#dirSaida textarea
+#dir textarea,#dirSaida textarea,#dirEd textarea,#dirSaidaEd textarea
 {
 	width:315px;
 	height:90px;
 	margin-left:10px;
 }
-#dataConta,#dataContaSaida
+#dataConta,#dataContaSaida,#dataContaEd,#dataContaSaidaEd
 {
 	top:0px;
 	left:22px;
 }
-#valorConta,#valorContaSaida
+#valorConta,#valorContaSaida,#valorContaEd,#valorContaSaidaEd
 {
 	top:0px;
 	left:14px;
 }
-#estadoConta,#estadoContaSaida
+#estadoConta,#estadoContaSaida,#estadoContaEd,#estadoContaSaidaEd
 {
 	top:0px;
 	left:6px;
@@ -678,7 +654,7 @@ label, input, textarea
 
 }
 
-#tipoTransacao,#tipoTransacaoSaida
+#tipoTransacao,#tipoTransacaoSaida,
 {
 	position:relative;
 	top:0px;
@@ -792,7 +768,7 @@ label, input, textarea
 {
 	color:#FF9900;
 }
-.inserirProjeto
+.inserirProjeto, .alterarProjeto
 {
 	width:125px;
 	height:28px;

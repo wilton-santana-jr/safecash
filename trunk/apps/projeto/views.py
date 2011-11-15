@@ -1,5 +1,5 @@
  # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
@@ -11,8 +11,13 @@ meses = [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
           'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' 
 ]
 
-def projeto(request):
-    projetos = Projeto.objects.order_by('data_inicio');
+def home(request, ano_filtro=-1):
+    if ano_filtro == -1:
+        projetos = Projeto.objects.all()
+    else:
+        projetos = Projeto.objects.filter(data_inicio__year=int(ano_filtro))
+
+    projetos.order_by('data_inicio')
     
     ano = [{'mes': meses[i], 'projetos': []} for i in xrange(12)]
     for projeto in projetos:
@@ -23,7 +28,8 @@ def projeto(request):
 
     return render_to_response('PageProjetos.html', {
         'server_data': agrupado, 
-        'anos': anos }, 
+        'anos': anos,
+        'ano_filtro': int(ano_filtro) }, 
         context_instance=RequestContext(request)
     );
 
@@ -44,7 +50,7 @@ def cadatro_projeto_ajax(request):
         projeto.data_fim = data_termino
         projeto.save()
 
-        conta_saida = Conta(tipo=1)
+        conta_saida = Conta(projeto=projeto, tipo=1)
         conta_saida.nome = 'Projeto: ' + nome + ' (Conta Saida)'
         conta_saida.data = datetime.strptime(request.POST['data_saida'], '%d/%m/%Y')
         conta_saida.valor_total = float(request.POST['valor_saida'])
@@ -60,7 +66,7 @@ def cadatro_projeto_ajax(request):
             transacao.data_vencimento = conta_saida.data + timedelta(i*365/12)
             transacao.save()
     
-        conta_entrada = Conta(tipo=0)
+        conta_entrada = Conta(projeto=projeto, tipo=0)
         conta_saida.nome = 'Projeto: ' + nome + ' (Conta Entrada)'
         conta_entrada.data = datetime.strptime(request.POST['data_entrada'], '%d/%m/%Y')
         conta_entrada.valor_total = float(request.POST['valor_entrada'])
@@ -81,3 +87,49 @@ def cadatro_projeto_ajax(request):
     else:
         return HttpResponse() 
 
+def detalhes(request):
+    if request.method == 'POST':
+        id = request.POST.get('id', '')
+
+        print 'detalhes: %s' %id 
+
+        projeto = Projeto.objects.filter(id=id)[0]
+        conta_entrada = projeto.contas.filter(tipo=0)[0]
+        conta_saida = projeto.contas.filter(tipo=1)[0]
+        
+        return render_to_response(
+            "popupProjeto.html", { 
+                'projeto': projeto, 
+                'conta_entrada': conta_entrada, 
+                'conta_saida': conta_saida },
+            context_instance=RequestContext(request)
+        );
+    else:
+        return HttpResponse('Projetos (detalhes()): Acesso via GET')
+        
+def editar(request):
+    if request.method == 'POST':
+        id = request.POST.get('id', '')
+        data_inicio = request.POST.get('data_inicio')
+        data_termino = request.POST.get('data_termino')
+        
+        projeto = Projeto.objects.filter(id=id)[0]
+        projeto.nome = request.POST.get('nome', '')
+        projeto.valor = float(request.POST.get('valor', 0.0))
+        projeto.responsavel = request.POST.get('responsavel', '')
+        projeto.descricao = request.POST.get('descricao', '')
+        projeto.data_inicio = datetime.strptime(data_inicio, '%d/%m/%Y')
+        projeto.data_fim = datetime.strptime(data_termino, '%d/%m/%Y')
+        projeto.save()
+        
+    return HttpResponse('Projetos (editar()): OK')
+
+def remover(request, id_projeto):
+    projetos = Projeto.objects.filter(id=id_projeto)
+
+    if projetos.count() == 1:
+        projeto = projetos[0]
+        projeto.contas.all().delete()
+        projeto.delete()
+
+    return redirect('apps.projeto.views.home') 
