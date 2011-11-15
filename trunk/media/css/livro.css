@@ -33,7 +33,7 @@
 	font-size:24px;
 	font-weight:bold;
 	display:block;
-	width:464px;
+	width:364px;
 	height:40px;
 	background-image:url(../imagens/reta.png);
 	background-repeat:repeat-x;
@@ -111,25 +111,23 @@ height:270px;
 	display:block;
 	float:left;
 }
-#botao
+
+#bt_filtrar
 {
-background-image:url(../imagens/PageLivroImages/botaoInserirTransacao.png);
+background-image:url(../imagens/PageLoginImages/button_ok.png);
 background-repeat:no-repeat;
 display:block;
 width:180px;
 height:29px;
 float:right;
 position:relative;
-right:22px;
-top:15px;
-
+right:-20px;
+top:0px;
 }
 
 #botao:hover
 {
 background-image:url(../imagens/PageLivroImages/botaoInserirTransacao.png);
-
-
 }
 
 
