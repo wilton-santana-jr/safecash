@@ -23,9 +23,9 @@ Livro
 {% block base_content %}
 
 
-			<a href="#" id="botao" title="Adicionar Conta"></a>
-			<form>
-				<select name= "mes"onchange="scripting(this.value)">
+      </br>
+			<form method="post">
+				<select name= "mes">
 					<option value="">M&Ecirc;S</option>
 					<option value="janeiro">Janeiro</option>
 					<option value="fevereiro">Fevereiro</option>
@@ -41,7 +41,7 @@ Livro
 					<option value="dezembro">Dezembro</option>
 				</select>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<select name= "ano"onchange="scripting(this.value)">
+				<select name= "ano">
 					<option value="">ANO</option>
 					<option value="2010">2010</option>
 					<option value="2011">2011</option>
@@ -56,7 +56,10 @@ Livro
 					<option value="2020">2020</option>
 					<option value="2021">2021</option>
 				</select>
+
+        <input type="submit" id="bt_filtrar" ></input>
 			</form>
+      <br/>
 			<div id="livroConta" class="destaque cor">Livro Conta</div>
 			
 			<!--<form>
@@ -71,35 +74,35 @@ Livro
 					<div class="cabecario">
 						<span class ="data">DATA</span>
 						<span class ="descricao">DESCRI&Ccedil;&Atilde;O</span>
-						<span class="valor">VALOR</span>					</div>
+						<span class="valor">VALOR</span>					
+          </div>
 				<div class="corpo">
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;ODESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;ODESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
+          {% if transacoes_conta_entrada %}
+					  {% for transacao in transacoes_conta_entrada %}
+              <span class ="data">{{ transacao.data_vencimento|date:"d/m/Y" }}</span>
+					    <span class ="descricao">{{ transacao.nome }}</span>					
+              <span class="valor">{{ transacao.valor }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
 			</div>
 			
 			<div id="receber">
 				<div class="cabecario">
 					<span class ="data">DATA</span>
 					<span class ="descricao">DESCRI&Ccedil;&Atilde;O</span>
-					<span class="valor">VALOR</span>				</div>
+					<span class="valor">VALOR</span>				
+        </div>
 				<div class="corpo">
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
-			</div>
+          {% if transacoes_conta_saida %}
+					  {% for transacao in transacoes_conta_saida %}
+              <span class ="data">{{ transacao.data_vencimento|date:"d/m/Y" }}</span>
+					    <span class ="descricao">{{ transacao.nome }}</span>					
+              <span class="valor">{{ transacao.valor }}</span>
+			      {% endfor %}
+          {% endif %}
+        </div>
+      </div>
 			
  	<!--------------------------------------------------------------------------------------------->
 	
@@ -112,17 +115,17 @@ Livro
 					<div class="cabecario">
 						<span class ="data">DATA</span>
 						<span class ="descricao">DESCRI&Ccedil;&Atilde;O</span>
-						<span class="valor">VALOR</span>					</div>
+						<span class="valor">VALOR</span>					
+          </div>
 				<div class="corpo">
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;ODESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;ODESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
+					{% if transacoes_caixa_entrada %}
+					  {% for transacao in transacoes_caixa_entrada %}
+              <span class ="data">{{ transacao.data_vencimento|date:"d/m/Y" }}</span>
+					    <span class ="descricao">{{ transacao.nome }}</span>					
+              <span class="valor">{{ transacao.valor }}</span>
+			      {% endfor %}
+          {% endif %}
+        </div>
 			</div>
 			
 			<div id="receberCaixa">
@@ -131,18 +134,15 @@ Livro
 					<span class ="descricao">DESCRI&Ccedil;&Atilde;O</span>
 					<span class="valor">VALOR</span>				</div>
 				<div class="corpo">
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>				</div>
+					{% if transacoes_caixa_saida %}
+					  {% for transacao in transacoes_caixa_saida %}
+              <span class ="data">{{ transacao.data_vencimento|date:"d/m/Y" }}</span>
+					    <span class ="descricao">{{ transacao.nome }}</span>					
+              <span class="valor">{{ transacao.valor }}</span>
+			      {% endfor %}
+          {% endif %}
+        </div>
 			</div>
-	
-	
 		</div>
 	</div>
 
@@ -150,13 +150,14 @@ Livro
 
 {%endblock%}
 
+{% comment %}
+
 {%block base_popup%}
 <div id="popUp" class="esconder">
 	<a class="fechar" href="#" title="voltar"></a>
 	<span id="nomePopUp" class="destaque cor">Defina a nova transa&ccedil;&atilde;o</span>
 	
-	<form action="
-	#" method="post">
+	<form action="#" method="post">
 	<label for="descricao" class="titulo">DESCRI&Ccedil;&Atilde;O:</label><br/>
 	<input id="descricao" type="text" name="descricao" size="55"/><br/>
 	<label for="valor" class="titulo">VALOR:</label><br/>
@@ -173,6 +174,8 @@ Livro
 	
 	</form>
 	<a class="inserir" href="#"></a>
+</div>
 
 {%endblock%}
 
+{% endcomment %}
