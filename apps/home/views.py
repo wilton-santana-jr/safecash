@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from apps.home.models import *
 from apps.conta.models import *
+from apps.requisicao.models import *
 
 from django.contrib.auth.models import User
 
@@ -25,6 +26,15 @@ def index (request):
 
 def login_usr (request):
     # Listas de retorno
+    req = Requisicao.objects.all().order_by('data')
+    requisicoes = []
+    if len(req) > 3:
+        requisicoes.append(req[0])
+        requisicoes.append(req[1])
+        requisicoes.append(req[2])
+    else:
+        requisicoes = req
+            
     transacoes = Transacao.objects.filter(pago = 0).order_by('data_vencimento')
     entradas = []
     saidas = []
@@ -34,7 +44,7 @@ def login_usr (request):
         else:
             saidas.append(transacao)
     
-    contexto = { 'usuarios': User.objects.all(), 'entradas': entradas, 'saidas': saidas }
+    contexto = { 'usuarios': User.objects.all(), 'entradas': entradas, 'saidas': saidas, 'requisicoes': requisicoes }
     
     # Sistema de autenticação
     if request.user.is_authenticated():
