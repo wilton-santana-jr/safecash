@@ -8,6 +8,8 @@ from django.utils import simplejson
 from django.contrib.auth import authenticate, login, logout
 
 from apps.home.models import *
+from apps.conta.models import *
+
 from django.contrib.auth.models import User
 
 def index (request):
@@ -22,10 +24,23 @@ def index (request):
 
 
 def login_usr (request):
+    # Listas de retorno
+    transacoes = Transacao.objects.filter(pago = 0).order_by('data_vencimento')
+    entradas = []
+    saidas = []
+    for transacao in transacoes:
+        if transacao.conta.tipo == 0:
+            entradas.append(transacao)
+        else:
+            saidas.append(transacao)
+    
+    contexto = { 'usuarios': User.objects.all(), 'entradas': entradas, 'saidas': saidas }
+    
+    # Sistema de autenticação
     if request.user.is_authenticated():
         return render_to_response(
             "pageAdmin.html",
-            { 'usuarios': User.objects.all() },
+            contexto,
             context_instance=RequestContext(request)
         );
     else:
@@ -39,7 +54,7 @@ def login_usr (request):
                 login(request, user)
                 return render_to_response(
                     "pageAdmin.html",
-                    { 'usuarios': User.objects.all() },
+                    contexto,
                     context_instance=RequestContext(request)
                 );
             else:
