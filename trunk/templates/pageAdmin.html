@@ -76,10 +76,12 @@ Home
 				</div>
 				<a href="#" title="ver todas as contas"> <span id="esq">&gt;&gt; &nbsp;&nbsp;VER TODAS AS CONTAS</span></a>
 			</div>
+			{% if user.is_staff %}
 			<div id="verTodos">
 				
 				<a href="#" id="botao" title="Gerenciar usu&aacute;rios"></a>
 			</div>
+			{% endif %}
 		</div>
 	{%endblock%}
 

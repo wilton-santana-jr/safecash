@@ -11,6 +11,9 @@ from apps.home.models import *
 from django.contrib.auth.models import User
 
 def index (request):
+    if request.user.is_authenticated():
+        return redirect('/home/')
+        
     return render_to_response(
         "login.html",
         {},
@@ -19,20 +22,30 @@ def index (request):
 
 
 def login_usr (request):
-    usr = request.POST['login']
-    pw = request.POST['senha']
-    
-    user = authenticate(username=usr, password=pw)
-    
-    if user is not None:
-        login(request, user)
+    if request.user.is_authenticated():
         return render_to_response(
             "pageAdmin.html",
             { 'usuarios': User.objects.all() },
             context_instance=RequestContext(request)
         );
     else:
-        return redirect('/')
+        if request.POST:
+            usr = request.POST['login']
+            pw = request.POST['senha']
+            
+            user = authenticate(username=usr, password=pw)
+            
+            if user is not None:
+                login(request, user)
+                return render_to_response(
+                    "pageAdmin.html",
+                    { 'usuarios': User.objects.all() },
+                    context_instance=RequestContext(request)
+                );
+            else:
+                return redirect('/')
+        else:
+            return redirect('/')
 
 def logout_usr (request):
     logout(request)
@@ -40,6 +53,9 @@ def logout_usr (request):
     return redirect('/')
 
 def add_usr(request):
+    if not request.user.is_authenticated():
+        return redirect('/')
+        
     error = False
     msg = ''
     
@@ -62,6 +78,9 @@ def add_usr(request):
     return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
 
 def remove_usr(request):
+    if not request.user.is_authenticated():
+        return redirect('/')
+
     error = False
     msg = ''
     
@@ -78,6 +97,9 @@ def remove_usr(request):
     return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
     
 def edit_usr(request):
+    if not request.user.is_authenticated():
+        return redirect('/')
+
     error = False
     msg = ''
     
