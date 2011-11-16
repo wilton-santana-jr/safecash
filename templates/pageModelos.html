@@ -19,7 +19,7 @@ Modelos
         <a class="botao" href="#" title="armazenar"></a>
     </form>
 
-    <span class="mostrar informativo">Texto para informar o usu&aacute;rio</span>
+    <!--<span class="mostrar informativo">Texto para informar o usu&aacute;rio</span>-->
     <div id="livroConta" class="destaque cor">Modelos Armazenados no Sistema</div>
         <div id="lista">
             <ul>
@@ -38,13 +38,14 @@ Modelos
         <br/><br/>
         <h3>Descri&ccedil;&atilde;o:</h3>
         <input id="valor" type="hidden" name="idModelo" value="teste" />
+        <input id="staticPath" type="hidden" name="path" value="{{ STATIC_URL }}arquivos/" />
 
         <div>
             <p><span id="descricaoModelo"></span></p>
         </div>
 	
         <a class="remover" href="#" title="Excluir Modelo"></a>
-        <a class="download" href="#" title="Download do Modelo"></a>
+        <a class="download" id="down" title="Download do Modelo"></a>
     </div>
 
     <div id="popUpInserir" class="esconder">
