@@ -5,6 +5,9 @@ from django.utils import simplejson
 from datetime import datetime, timedelta
 from apps.conta.models import *
 
+
+#from django.contrib.auth.models import User
+
 def home(request):
     transacoes = Transacao.objects.filter(pago = 0).order_by('data_vencimento')
     entradas = []
@@ -15,6 +18,12 @@ def home(request):
         else:
             saidas.append(transacao)    
 
+
+    
+    #user = User.objects.create(username='bmo', first_name='bmo')
+    #user.set_password('bmo')
+    #user.is_staff = True  
+    #user.save()
     return render_to_response(
         "pageContas.html",
         { 'entradas': entradas, 'saidas': saidas },
@@ -113,7 +122,7 @@ def alterarConta(request):
 def lista_dinamica(request):
     transacoes = []
     if request.POST.get('filtro',False) == 'true':
-        print "oi"
+        transacoes = Transacao.objects.filter(pago = 0,data_vencimento__month = request.POST['mes'], data_vencimento__year = request.POST['ano']).order_by('data_vencimento')
     else:  
         transacoes = Transacao.objects.filter(pago = 0).order_by('data_vencimento')
     entradas = []
