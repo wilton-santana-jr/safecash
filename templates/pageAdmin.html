@@ -12,7 +12,7 @@ Home
 <script type="text/javascript" src="{{ STATIC_URL }}js/admin.js"></script>
 {% endblock %}
 
-{% block name_user %}Bruno Medeiros {% endblock %}
+{% block name_user %} {{ user.first_name }} {% endblock %}
 
 
 {% block base_content %}

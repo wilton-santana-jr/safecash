@@ -6,8 +6,9 @@ from django.conf.urls.defaults import *
 
 # HOME
 urlpatterns = patterns('apps.home.views',
-    (r'^login/$', 'login'),
-    (r'^home/$', 'home'),
+    (r'^$', 'index'),
+    (r'^logout/$', 'logout_usr'),
+    (r'^home/$', 'login_usr'),
     (r'^home/remove_usr/$', 'remove_usr'),
     (r'^home/edit_usr/$', 'edit_usr'),
     (r'^home/add_usr/$', 'add_usr'))
