@@ -33,26 +33,18 @@ Home
 			</div>
 			<div id="requisicoes">
 				<ul>
-					<li><h4>NOME USU&Aacute;RIO</h4>
-						capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o
+				    {% for requisicao in requisicoes %}
+				    <li>
+				    <h4>{{ requisicao.usuario.first_name }}</h4>
+						{{ requisicao.descricao }}
 						<br/>
-						<span class="cor">R$ 0,00</span>					</li>
-						<li><h4>NOME USU&Aacute;RIO</h4>
-						capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o
-						<br/>
-						<span class="cor">R$ 0,00</span>					</li>
+						<span class="cor">R$ {{ requisicao.valor|floatformat:2 }}</span>
 					</li>
-						<li><h4>NOME USU&Aacute;RIO</h4>
-						capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o
-						<br/>
-						<span class="cor">R$ 0,00</span>					</li>
-					</li>
-						<!--*<li><h4>NOME USU&Aacute;RIO</h4>
-						capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o capacita&ccedil;&atilde;o
-						<br/>
-						<span class="cor">R$ 0,00</span>					</li>-->
+				    {% endfor %}
 				</ul>
-				<a href="#" title="ver todas as contas dos usu&aacute;rios"> <span id="dir"> &gt;&gt; &nbsp;&nbsp;VER TODAS AS REQUISI&Ccedil;&Otilde;ES</span></a>
+				{% if requisicoes %}
+				<a href="../requisicao/" title="ver todas as requisi&ccedil;&otilde;es dos usu&aacute;rios"> <span id="dir"> &gt;&gt; &nbsp;&nbsp;VER TODAS AS REQUISI&Ccedil;&Otilde;ES</span></a>
+				{% endif %}
 			</div>
 			<div id="receber">
 				<div class="cabecario">
