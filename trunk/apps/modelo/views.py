@@ -1,12 +1,11 @@
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.utils import simplejson
 from apps.modelo.models import Modelo
-
+import uuid
 
 def home(request):
-    
     modelos = Modelo.objects.all()
 	
     return render_to_response(
@@ -17,49 +16,36 @@ def home(request):
 
 def get_more_info(request):
     m = get_object_or_404(Modelo.objects.all(), id=request.POST.get('id'))
-    toSend = { 'desc' : m.descricao }
+    toSend = { 'desc' : m.descricao, 'filename': m.arquivo }
     return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
     
 def remove(request):
     m = get_object_or_404(Modelo.objects.all(), id=request.POST.get('id'))
     m.delete()
-    return HttpResponseRedirect('/modelos/')
-    
-def download(request):
-    arquivo = Modelo.filter(id)
-    url = "http://www.google.com"
-    print 'ENTROU NO DOWNLOAD'
-    toSend = { 'url' : url }
-    return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
-    
-    
-# FEITO 
+
+    return redirect('apps.modelo.views.home') 
+
+def get_filename(filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return filename
+
 def insert(request):
-    #print 'NOME: ' + request.POST['nome']    
-    #print 'ENDERECO DO ARQUIVO: ' + request.POST['endereco']   
-    #print 'DESCRICAO: ' + request.POST['descricao'] 
     arquivo = request.FILES['endereco']
-    path = 'media/arquivos/' + arquivo.name
+    filename = get_filename(arquivo.name)
+    path = 'media/arquivos/' + filename 
     
     destination = open(path, 'wb+')
+
     for chunk in arquivo.chunks():
         destination.write(chunk)
+
     destination.close()
     
-    
     modelo = Modelo()
-
     modelo.nome = request.POST['nome']
     modelo.descricao = request.POST['descricao']
-    modelo.arquivo = path
+    modelo.arquivo = filename 
     modelo.save()
 
-    return HttpResponseRedirect('/modelos/')
-    
-
-    
-    
-    
-    
-    
-    
+    return redirect('apps.modelo.views.home') 
