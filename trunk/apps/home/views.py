@@ -11,7 +11,11 @@ from apps.home.models import *
 from django.contrib.auth.models import User
 
 def login (request):
-    return render_to_response("login.html")
+    return render_to_response(
+        "login.html",
+        {},
+        context_instance=RequestContext(request)
+    );
     
 #def check_login (request):
 #    return render_to_response("login.html")
