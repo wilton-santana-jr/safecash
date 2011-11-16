@@ -35,8 +35,10 @@ def home(request):
     mes = request.POST.get("mes")
     ano = request.POST.get("ano")
     
-    mes_atual = meses[mes]
-    ano_atual = ano
+    if mes != '' and ano != '':
+      mes_atual = meses[mes]
+      ano_atual = ano
+   
   
   #livro_conta_entrada = Conta(nome="Conta Entrada", data=datetime.datetime.now(), livro=0, tipo=0)#Conta.objects.filter(tipo=0, livro=0)
   #livro_conta_entrada.save()
