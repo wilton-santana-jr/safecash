@@ -23,15 +23,12 @@ Home
 					<span class="valor">VALOR</span>
 				</div>
 				<div class="corpo">
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
+				    {% for conta in saidas %}
+                    <br/>
+                     <span class="data">{{ conta.data_vencimento|date:"d/m/Y" }}</span>
+                    <span class="descricao">{{ conta.nome }}</span>
+                    <span class="valor">R$ {{ conta.valor|floatformat:2 }}</span>
+                    {% endfor %}
 				</div>
 			</div>
 			<div id="requisicoes">
@@ -64,17 +61,14 @@ Home
 					<span class="valor">VALOR</span>
 				</div>
 				<div class="corpo">
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
-					<br/>
-					<span class ="data">DD/MM/AAAA</span>
-					<span class ="descricao">DESCRI&Ccedil;&Atilde;O DA REQUISI&Ccedil;&Atilde;O</span>					<span class="valor">R$ 0,00</span>
+				    {% for conta in entradas %}
+                    <br/>
+                    <span class="data">{{ conta.data_vencimento|date:"d/m/Y" }}</span>
+                    <span class="descricao">{{ conta.nome }}</span>
+                    <span class="valor">R$ {{ conta.valor|floatformat:2 }}</span>
+                    {% endfor %}
 				</div>
-				<a href="#" title="ver todas as contas"> <span id="esq">&gt;&gt; &nbsp;&nbsp;VER TODAS AS CONTAS</span></a>
+				<a href="../contas/" title="ver todas as contas"> <span id="esq">&gt;&gt; &nbsp;&nbsp;VER TODAS AS CONTAS</span></a>
 			</div>
 			{% if user.is_staff %}
 			<div id="verTodos">
