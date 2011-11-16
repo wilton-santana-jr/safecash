@@ -96,6 +96,10 @@ $(document).ready(function() {
                 if( r)
                 {
                      link.remove();
+                    var span = "#" + id;
+                     $(span).html("OK");
+                     $(span).removeClass('pendente');   
+                     $(span).addClass('ok');
                       $('body').append('<input name="transacaoPaga" value="'+id+'"/>');
                      
                 }
@@ -111,10 +115,7 @@ $(document).ready(function() {
                 if( r)
                 {
                      link.parent().parent().remove();
-                     var span = "#" + id;
-                     $(span).html("OK");
-                     $(span).removeClass('pendente');   
-                     $(span).addClass('ok');
+                    var span = "#" + id;
                      $('body').append('<input name="transacaoApagada" value="'+id+'"/>');
                      
                 }
