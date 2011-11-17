@@ -6,6 +6,9 @@ from apps.modelo.models import Modelo
 import uuid
 
 def home(request):
+    if not request.user.is_authenticated(): 
+        return redirect('/')
+
     modelos = Modelo.objects.all()
 	
     return render_to_response(
@@ -15,11 +18,17 @@ def home(request):
     )
 
 def get_more_info(request):
+    if not request.user.is_authenticated(): 
+        return redirect('/')
+
     m = get_object_or_404(Modelo.objects.all(), id=request.POST.get('id'))
     toSend = { 'desc' : m.descricao, 'filename': m.arquivo }
     return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
     
 def remove(request):
+    if not request.user.is_authenticated(): 
+        return redirect('/')
+
     m = get_object_or_404(Modelo.objects.all(), id=request.POST.get('id'))
     m.delete()
 
@@ -31,6 +40,9 @@ def get_filename(filename):
     return filename
 
 def insert(request):
+    if not request.user.is_authenticated(): 
+        return redirect('/')
+
     arquivo = request.FILES['endereco']
     filename = get_filename(arquivo.name)
     path = 'media/arquivos/' + filename 

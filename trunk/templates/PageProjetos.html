@@ -15,7 +15,7 @@ Projetos
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.click-calendario-1.0-min.js"></script>
 {% endblock %}
 
-{% block name_user %}Bruno Medeiros{% endblock %}
+{% block name_user %}{{ user.first_name }}{% endblock %}
 
 {% block base_content %} 
 <a href="#" id="botao" title="Adicionar Conta"></a>

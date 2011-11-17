@@ -25,13 +25,13 @@
 	<div id="corpo">
 		<div id="menu">
 			<ul>
-				<li><a href="/home" title="P&aacute;gina Inicial"><span id="inicio"></span></a></li>
+				{% if user.is_staff %}<li><a href="/home" title="P&aacute;gina Inicial"><span id="inicio"></span></a></li>{% endif %}
 				<li><a href="/livro" title="Livro do Caixa"><span id="livro"></span></a></li>
-				<li><a href="/contas" title="Contas"><span id="contas"></span></a></li>
+				{% if user.is_staff %}<li><a href="/contas" title="Contas"><span id="contas"></span></a></li>{% endif %}
 				<li><a href="/projetos" title="Projetos"><span id="projetos"></span></a></li>
 				<li><a href="/requisicao" title="Requisi&ccedil;&atilde;o"><span id="requisicao"></span></a></li>
-				<li><a href="/relatorios" title="Relat&oacute;rios"><span id="relatorios"></span></a></li>
-				<li><a href="/modelos" title="Modelos de documentos"><span id="modelos"></span></a></li>
+				{% if user.is_staff %}<li><a href="/relatorios" title="Relat&oacute;rios"><span id="relatorios"></span></a></li>{% endif %}
+				{% if user.is_staff %}<li><a href="/modelos" title="Modelos de documentos"><span id="modelos"></span></a></li>{% endif %}
 				<li><span id="linha"></span></li>
 			</ul>
 		</div>
