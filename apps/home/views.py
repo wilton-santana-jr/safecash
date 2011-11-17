@@ -90,6 +90,9 @@ def logout_usr (request):
 def add_usr(request):
     if not request.user.is_authenticated():
         return redirect('/')
+    
+    if not request.user.is_staff:
+        return redirect('/livro/')
         
     error = False
     msg = ''
@@ -116,6 +119,9 @@ def remove_usr(request):
     if not request.user.is_authenticated():
         return redirect('/')
 
+    if not request.user.is_staff:
+        return redirect('/livro/')
+
     error = False
     msg = ''
     
@@ -134,6 +140,9 @@ def remove_usr(request):
 def edit_usr(request):
     if not request.user.is_authenticated():
         return redirect('/')
+
+    if not request.user.is_staff:
+        return redirect('/livro/')
 
     error = False
     msg = ''
