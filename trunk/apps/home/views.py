@@ -15,7 +15,10 @@ from django.contrib.auth.models import User
 
 def index (request):
     if request.user.is_authenticated():
-        return redirect('/home/')
+        if request.user.is_staff:
+            return redirect('/home/')
+        else:
+            return redirect('/livro/')
         
     return render_to_response(
         "login.html",
@@ -48,11 +51,14 @@ def login_usr (request):
     
     # Sistema de autenticação
     if request.user.is_authenticated():
-        return render_to_response(
-            "pageAdmin.html",
-            contexto,
-            context_instance=RequestContext(request)
-        );
+        if request.user.is_staff:
+            return render_to_response(
+                "pageAdmin.html",
+                contexto,
+                context_instance=RequestContext(request)
+            );
+        else:
+            return redirect('/livro/')
     else:
         if request.POST:
             usr = request.POST['login']
@@ -62,11 +68,15 @@ def login_usr (request):
             
             if user is not None:
                 login(request, user)
-                return render_to_response(
-                    "pageAdmin.html",
-                    contexto,
-                    context_instance=RequestContext(request)
-                );
+                
+                if user.is_staff:
+                    return render_to_response(
+                        "pageAdmin.html",
+                        contexto,
+                        context_instance=RequestContext(request)
+                    );
+                else:
+                    return redirect('/livro/')
             else:
                 return redirect('/')
         else:
