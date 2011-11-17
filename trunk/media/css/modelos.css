@@ -233,6 +233,18 @@ text-align:left;
 	display:block;
 	
 }
+#popUpInserir input
+{
+    width:350px;
+}
+
+#popUpInserir input[type=file]
+{
+    width:180px;
+    margin:0;
+    padding:0;
+}
+
 #popUpInserir textarea
 {
 	width:350px;

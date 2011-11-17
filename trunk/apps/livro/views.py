@@ -34,31 +34,54 @@ def home(request):
   if request.method == "POST":    
     mes = request.POST.get("mes")
     ano = request.POST.get("ano")
-    
+
     if mes != '' and ano != '':
       mes_atual = meses[mes]
       ano_atual = ano
-   
   
-  #livro_conta_entrada = Conta(nome="Conta Entrada", data=datetime.datetime.now(), livro=0, tipo=0)#Conta.objects.filter(tipo=0, livro=0)
-  #livro_conta_entrada.save()
+  ##############
+  
   livro_conta_entrada = Conta.objects.filter(livro=0, tipo=0)
-  transacoes_conta_entrada = Transacao.objects.filter(conta=livro_conta_entrada, data_vencimento__month=mes_atual, data_vencimento__year=ano_atual, pago=1).order_by('data_vencimento')
+  transacoes_conta_entrada = []
 
-  #livro_conta_saida = Conta(nome="Conta Saida", data=datetime.datetime.now(), livro=0, tipo=1)#Conta.objects.filter(tipo = 0, livro=1)
-  #livro_conta_saida.save()
+  for conta in livro_conta_entrada:
+    transacoes = Transacao.objects.filter(conta=conta, data_vencimento__month=mes_atual, data_vencimento__year=ano_atual, pago=1).order_by('data_vencimento')
+
+    for transacao in transacoes:     
+      transacoes_conta_entrada += [transacao]
+
+  ##############
+
   livro_conta_saida = Conta.objects.filter(livro=0, tipo=1)
-  transacoes_conta_saida = Transacao.objects.filter(conta=livro_conta_saida, data_vencimento__month=mes_atual, data_vencimento__year=ano_atual, pago=1).order_by('data_vencimento')
-
-  #livro_caixa_entrada = Conta(nome="Caixa Entrada", data=datetime.datetime.now(), livro=1, tipo=0)#Conta.objects.filter(tipo=1, livro=0)
-  #livro_caixa_entrada.save()
-  livro_caixa_entrada = Conta.objects.filter(livro=1, tipo=0)
-  transacoes_caixa_entrada = Transacao.objects.filter(conta=livro_caixa_entrada, data_vencimento__month=mes_atual, data_vencimento__year=ano_atual, pago=1).order_by('data_vencimento')
+  transacoes_conta_saida = []
   
-  #livro_caixa_saida = Conta(nome="Caixa Saida", data=datetime.datetime.now(), livro=1, tipo=1)#Conta.objects.filter(tipo=1, livro=1) 
-  #livro_caixa_saida.save()
+  for conta in livro_conta_saida:
+    transacoes = Transacao.objects.filter(conta=conta, data_vencimento__month=mes_atual, data_vencimento__year=ano_atual, pago=1).order_by('data_vencimento')
+    
+    for transacao in transacoes:
+      transacoes_conta_saida += [transacao]
+
+  ##############
+
+  livro_caixa_entrada = Conta.objects.filter(livro=1, tipo=0)
+  transacoes_caixa_entrada = []
+  
+  for conta in livro_caixa_entrada:
+    transacoes = Transacao.objects.filter(conta=conta, data_vencimento__month=mes_atual, data_vencimento__year=ano_atual, pago=1).order_by('data_vencimento')
+    
+    for transacao in transacoes:
+      transacoes_caixa_entrada += [transacao]
+
+  ##############
+
   livro_caixa_saida = Conta.objects.filter(livro=1, tipo=1)
-  transacoes_caixa_saida = Transacao.objects.filter(conta=livro_caixa_saida, data_vencimento__month=mes_atual, data_vencimento__year=ano_atual, pago=1).order_by('data_vencimento')
+  transacoes_caixa_saida = []
+  
+  for conta in livro_caixa_saida:
+    transacoes = Transacao.objects.filter(conta=conta, data_vencimento__month=mes_atual, data_vencimento__year=ano_atual, pago=1).order_by('data_vencimento')
+    
+    for transacao in transacoes:
+      transacoes_caixa_saida += [transacao]
 
   return render_to_response(
       "PageLivro.html", 
@@ -67,28 +90,3 @@ def home(request):
        "transacoes_caixa_entrada": transacoes_caixa_entrada, 
        "transacoes_caixa_saida": transacoes_caixa_saida}, 
       context_instance=RequestContext(request));
-
-def povoar_banco(request):
-  a = Conta.objects.get(livro=0, tipo=0)
-  t = Transacao(nome='Transacao Conta Entrada', valor=10.00, conta=a, data_vencimento=datetime.datetime.now(), pago=1)
-  t1 = Transacao(nome='Conta Entrada', valor=25.00, conta=a, data_vencimento=datetime.datetime.now(), pago=1)
-  t.save()
-  t1.save()
-  
-  b = Conta.objects.get(livro=0, tipo=1)
-  t = Transacao(nome='Transacao Conta Saida', valor=10.00, conta=b, data_vencimento=datetime.datetime.now(), pago=1)
-  t1 = Transacao(nome='Conta Saida', valor=33.90, conta=b, data_vencimento=datetime.datetime.now(), pago=1)
-  t.save()
-  t1.save()
-  
-  c = Conta.objects.get(livro=1, tipo=0)
-  t = Transacao(nome='Transacao Caixa Entrada', valor=10.00, conta=c, data_vencimento=datetime.datetime.now(), pago=1)
-  t1 = Transacao(nome='Caixa Entrada', valor=58.00, conta=c, data_vencimento=datetime.datetime.now(), pago=1)
-  t.save()
-  t1.save()
-
-  d = Conta.objects.get(livro=1, tipo=1)
-  t = Transacao(nome='Transacao Caixa Saida', valor=10.00, conta=d, data_vencimento=datetime.datetime.now(), pago=1)
-  t1 = Transacao(nome='Caixa Saida', valor=190.00, conta=d, data_vencimento=datetime.datetime.now(), pago=1)
-  t.save()
-  t1.save()

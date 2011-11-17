@@ -81,7 +81,7 @@ Livro
 					  {% for transacao in transacoes_conta_entrada %}
               <span class ="data">{{ transacao.data_vencimento|date:"d/m/Y" }}</span>
 					    <span class ="descricao">{{ transacao.nome }}</span>					
-              <span class="valor">{{ transacao.valor }}</span>
+              <span class="valor">{{ transacao.valor|floatformat:2 }}</span>
             {% endfor %}
           {% endif %}
         </div>
@@ -98,7 +98,7 @@ Livro
 					  {% for transacao in transacoes_conta_saida %}
               <span class ="data">{{ transacao.data_vencimento|date:"d/m/Y" }}</span>
 					    <span class ="descricao">{{ transacao.nome }}</span>					
-              <span class="valor">{{ transacao.valor }}</span>
+              <span class="valor">{{ transacao.valor|floatformat:2 }}</span>
 			      {% endfor %}
           {% endif %}
         </div>
@@ -122,7 +122,7 @@ Livro
 					  {% for transacao in transacoes_caixa_entrada %}
               <span class ="data">{{ transacao.data_vencimento|date:"d/m/Y" }}</span>
 					    <span class ="descricao">{{ transacao.nome }}</span>					
-              <span class="valor">{{ transacao.valor }}</span>
+              <span class="valor">{{ transacao.valor|floatformat:2 }}</span>
 			      {% endfor %}
           {% endif %}
         </div>
@@ -138,7 +138,7 @@ Livro
 					  {% for transacao in transacoes_caixa_saida %}
               <span class ="data">{{ transacao.data_vencimento|date:"d/m/Y" }}</span>
 					    <span class ="descricao">{{ transacao.nome }}</span>					
-              <span class="valor">{{ transacao.valor }}</span>
+              <span class="valor">{{ transacao.valor|floatformat:2 }}</span>
 			      {% endfor %}
           {% endif %}
         </div>

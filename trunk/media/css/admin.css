@@ -28,6 +28,10 @@ float:left;
 position:relative;
 top: 65px;
 left: 26px;
+overflow: auto;
+border:#999999;
+	border-style:solid;
+	border-width:1px;
 }
 
 #receber
@@ -36,6 +40,10 @@ float:left;
 position:relative;
 top: 135px;
 left: 26px;
+overflow: auto;
+border:#999999;
+	border-style:solid;
+	border-width:1px;
 }
 
 #requisicoes
@@ -88,14 +96,15 @@ text-decoration:none;
 .cabecario
 {
 padding-left:1px;
+background-color: #999999;
+width:100px;
+height:15px;
 
 }
 .corpo
 {
-	border:#999999;
-	border-style:solid;
-	border-width:1px;
-	width:445px;
+	
+	width:430px;
 	height:100%;
 	display:block;
 	
@@ -128,7 +137,7 @@ span#esq
 {
 float:left;
 text-align:right;
-width:470px;
+width:100%;
 color:#7CC7C7;
 background-color:transparent;
 position:relative;
@@ -156,7 +165,7 @@ font-family:Calibri;
 .data
 {
 	padding-left:10px;
-	width:85px;
+	width:75px;
 }
 .descricao
 {
@@ -164,7 +173,7 @@ font-family:Calibri;
 }
 .valor
 {
-	width:95px;
+	width:90px;
 }
 
 #botao
