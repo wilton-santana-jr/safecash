@@ -41,11 +41,18 @@ def login_usr (request):
     transacoes = Transacao.objects.filter(pago = 0).order_by('data_vencimento')
     entradas = []
     saidas = []
+    
+    c1 = 0
+    c2 = 0
     for transacao in transacoes:
         if transacao.conta.tipo == 0:
-            entradas.append(transacao)
+            if c1 < 6:
+                entradas.append(transacao)
+                c1 = c1 + 1
         else:
-            saidas.append(transacao)
+            if c2 < 6:
+                saidas.append(transacao)
+                c2 = c2 + 1
     
     contexto = { 'usuarios': User.objects.all(), 'entradas': entradas, 'saidas': saidas, 'requisicoes': requisicoes }
     
