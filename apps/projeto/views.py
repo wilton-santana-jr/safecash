@@ -12,6 +12,9 @@ meses = [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
 ]
 
 def home(request, ano_filtro=-1):
+    if not request.user.is_authenticated(): 
+        return redirect('/')
+
     if ano_filtro == -1:
         projetos = Projeto.objects.all()
     else:
@@ -33,7 +36,10 @@ def home(request, ano_filtro=-1):
         context_instance=RequestContext(request)
     );
 
-def cadatro_projeto_ajax(request):    
+def cadatro_projeto_ajax(request):
+    if not request.user.is_authenticated(): 
+        return redirect('/')
+
     if request.method == 'POST':
         nome = request.POST.get('nome_projeto', '')
         valor = float(request.POST.get('valor_projeto', 0.0))
@@ -88,6 +94,9 @@ def cadatro_projeto_ajax(request):
         return HttpResponse() 
 
 def detalhes(request):
+    if not request.user.is_authenticated(): 
+        return redirect('/')
+
     if request.method == 'POST':
         id = request.POST.get('id', '')
 
@@ -108,6 +117,9 @@ def detalhes(request):
         return HttpResponse('Projetos (detalhes()): Acesso via GET')
         
 def editar(request):
+    if not request.user.is_authenticated(): 
+        return redirect('/')
+
     if request.method == 'POST':
         id = request.POST.get('id', '')
         data_inicio = request.POST.get('data_inicio')
@@ -125,6 +137,9 @@ def editar(request):
     return HttpResponse('Projetos (editar()): OK')
 
 def remover(request, id_projeto):
+    if not request.user.is_authenticated(): 
+        return redirect('/')
+
     projetos = Projeto.objects.filter(id=id_projeto)
 
     if projetos.count() == 1:
