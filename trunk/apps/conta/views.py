@@ -9,6 +9,8 @@ from apps.conta.models import *
 #from django.contrib.auth.models import User
 
 def home(request):
+    if  not request.user.is_authenticated(): 
+        return redirect('/')
     transacoes = Transacao.objects.filter(pago = 0).order_by('data_vencimento')
     entradas = []
     saidas = []

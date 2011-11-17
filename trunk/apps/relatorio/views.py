@@ -5,6 +5,8 @@ from apps.conta.models import *
 import datetime
 
 def home(request):
+    if  not request.user.is_authenticated(): 
+        return redirect('/')
     transacoes = Transacao.objects.filter(pago = 0)#mudar para 1 depois
     lista_anos = []
     for transacao in transacoes:

@@ -187,8 +187,6 @@ list-style-image:url(../imagens/PageAdminImages/ponto.jpg);
 	float:right;
 }
 
-// [][][][][][][][][][][]
-
 #popUpInsertReq
 {
 	width:409px;
@@ -208,10 +206,14 @@ list-style-image:url(../imagens/PageAdminImages/ponto.jpg);
 	display:block;
 	
 }
+#popUpInsertReq input
+{
+width:350px;
+}
 #popUpInsertReq textarea
 {
 	width:350px;
-	height:130px;
+	height:80px;
 }
 #popUpInsertReq form
 {
@@ -222,13 +224,13 @@ list-style-image:url(../imagens/PageAdminImages/ponto.jpg);
 
 #nomePopUpInsertReq
 {
-position:relative;
-top:0px;
-left:4px;
-width:385px;
-text-align:left;
-padding-left:15px;
-text-align:left;
+    position:relative;
+    top:0px;
+    left:4px;
+    width:385px;
+    text-align:left;
+    padding-left:15px;
+    text-align:left;
 }
 .armazenar
 {
@@ -242,7 +244,6 @@ text-align:left;
 	right:35px;
 
 }
-// [][][][][][][][][][][]
 
 #nomePopUpGeral
 {
@@ -282,7 +283,7 @@ text-align:left;
 	padding-bottom:10px;
 	padding-left:30px;*/
 }
-.fecharGeral, .fecharContrato
+.fecharGeral, .fecharContrato, .fecharInsertReq
 {
 	width:13px;
 	height:13px;

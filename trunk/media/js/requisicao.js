@@ -7,22 +7,33 @@ $(document).ready(
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 			$(".inserirReq").click(function(e) {
 			
-			    var largura = $('body').outerWidth(true);
-				var altura = $('body').outerHeight(true);
-				var alturaJanela = $(window).height();
-			
-				$('#tela').fadeIn(200);
-				
-				var titulo = $(this).attr("title");
-				console.log(titulo);
-				
-				$('#popUpInsertReq').css({top:alturaJanela/2 -$('#popUpInsertReq').height()/2,left:largura/2 - $('#popUpInsertReq').width()/2});
-                $('#nomePopUpInsertReq').text(titulo);
-                
-                $('#popUpInsertReq').fadeIn(200);
-                
+
+
+                mostrarPopup('#popUpInsertReq');
 
 			});
+
+
+
+function mostrarPopup(popup)
+    {
+        
+        var largura = $('body').outerWidth(true);
+            var altura = $('body').outerHeight(true);
+            var alturaJanela = $(window).height();
+            
+            $('#tela').css({
+                width: largura,
+                height: altura
+            });
+            $('#tela').fadeIn(200);
+            $(popup).css({
+                top: alturaJanela / 2 - $(popup).height() / 2,
+                left: largura / 2 - $(popup).width() / 2
+            });
+            $(popup).fadeIn(200);
+        
+    }
 			
 // >>>>> AÇÃO DO BOTÃO QUE VAI CRIAR A REQUISIÇÃO
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
