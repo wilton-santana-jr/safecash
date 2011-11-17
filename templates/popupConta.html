@@ -64,10 +64,12 @@
                 <span class="valor">R$ {{ transacao.valor|floatformat:2 }}</span>
                 {% if transacao.pago = 0 %}
                 <span class="estado pendente" id="{{transacao.id}}">PENDENTE</span>
+                <span class="tipo"><a href="{{transacao.id}}" class="acaoApagar" >Apagar</a> <a href="{{transacao.id}}" class="acaoPagar">Pagar</a></span>                
                 {% else %}
                 <span class="estado ok">OK</span>
+                <span class="tipo"><a href="{{transacao.id}}" class="acaoApagar" >Apagar</a></span>                
                 {% endif %}
-                <span class="tipo"><a href="{{transacao.id}}" class="acaoApagar" >Apagar</a> <a href="{{transacao.id}}" class="acaoPagar">Pagar</a></span>
+                
 
         </div>
         {% endfor %}
