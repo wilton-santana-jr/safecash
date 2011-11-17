@@ -55,6 +55,7 @@ def salvarEstado(request):
 def remove(request):
     if not request.user.is_authenticated(): 
         return redirect('/')
+
     print 'remover'
     print request.POST.get('chave')
     m = get_object_or_404(Requisicao.objects.all(), id=request.POST.get('chave'))
@@ -62,8 +63,6 @@ def remove(request):
     m.delete()
 
     return redirect('apps.requisicao.views.home') 
-  
-  
   
 def inserirReq(request):
     if  not request.user.is_authenticated():

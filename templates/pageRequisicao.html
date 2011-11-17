@@ -46,10 +46,13 @@
 								<span id="{{ requisicao.id }}_estado" class="estado pendente">PENDENTE</span>
 							{% endif %}
 						{% endif %}
-						{% if requisicao.tipo == 0 %} {% comment %}geral{% endcomment %}
-								<span class="requisitante">{{ requisicao.usuario.first_name }}<a id="{{ requisicao.id }}" href="#">&gt;&gt;VISUALIZAR</a><input type="hidden" name="{{ requisicao.id }}" value="c" /></span>	
+
+						
+                        {% if requisicao.tipo == 0 %} {% comment %}geral{% endcomment %}
+								<span class="requisitante">{{ requisicao.usuario.first_name }}<a id="{{ requisicao.id }}" href="#">{% if user.is_staff %}&gt;&gt;VISUALIZAR{% endif %}</a><input type="hidden" name="{{ requisicao.id }}" value="c" /></span>	
+	                    
 						{% else %}  {% comment %}contrato{% endcomment %}
-								<span class="requisitante">{{ requisicao.usuario.first_name }}<a id="{{ requisicao.id }}" href="#">&gt;&gt;VISUALIZAR</a><input type="hidden" name="{{ requisicao.id }}" value="g" /></span>	
+								<span class="requisitante">{{ requisicao.usuario.first_name }}<a id="{{ requisicao.id }}" href="#">{% if user.is_staff %}&gt;&gt;VISUALIZAR{% endif %}</a><input type="hidden" name="{{ requisicao.id }}" value="g" /></span>	
 						{% endif %}
 					
 					{% endfor %}
@@ -96,8 +99,10 @@
 		<ul>
 			<li><span class="titulo">Descri&ccedil;&atilde;o:</span><br/><span id="descricaoGeral"></span>
 			</li>
+        	{% if user.is_staff %}
 			<li><span class="titulo">Estado: &nbsp;</span><select name="estado" ><option>Pendente</option> <option >Pronto</option> <option>OK</option></select>
 			</li>	
+	        {% endif %}
 		</ul>
 		<input type="hidden" name="id"  />
 	</div>
