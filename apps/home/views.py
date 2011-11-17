@@ -88,11 +88,8 @@ def logout_usr (request):
     return redirect('/')
 
 def add_usr(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated() or not request.user.is_staff:
         return redirect('/')
-    
-    if not request.user.is_staff:
-        return redirect('/livro/')
         
     error = False
     msg = ''
@@ -116,11 +113,8 @@ def add_usr(request):
     return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
 
 def remove_usr(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated() or not request.user.is_staff:
         return redirect('/')
-
-    if not request.user.is_staff:
-        return redirect('/livro/')
 
     error = False
     msg = ''
@@ -138,11 +132,8 @@ def remove_usr(request):
     return HttpResponse(simplejson.dumps(toSend), mimetype='application/javascript')
     
 def edit_usr(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated()  or not request.user.is_staff:
         return redirect('/')
-
-    if not request.user.is_staff:
-        return redirect('/livro/')
 
     error = False
     msg = ''
