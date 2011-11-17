@@ -15,43 +15,14 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/requisicao.js"></script>
 {% endblock %}
 
-
+{% block name_user %}{{ user.first_name }} {% endblock %}
 
 
 {% block base_content %} 	
 			<form>
+			{% if not user.is_staff %}
 			    <a class="inserirReq" href="#" title="Fa&ccedil;a sua Requisi&ccedil;&atilde;o">Faca Sua Requisi&ccedil;&atilde;o</a>
-				<select name= "mes"onchange="scripting(this.value)">
-					<option value="">M&Ecirc;S</option>
-					<option value="janeiro">Janeiro</option>
-					<option value="fevereiro">Fevereiro</option>
-					<option value="marco">Mar&ccedil;o</option>
-					<option value="abril">Abril</option>
-					<option value="maio">Maio</option>
-					<option value="junho">Junho</option>
-					<option value="julho">Julho</option>
-					<option value="agosto">Agosto</option>
-					<option value="setembro">Setembro</option>
-					<option value="outubro">Outubro</option>
-					<option value="novembro">Novembro</option>
-					<option value="dezembro">Dezembro</option>
-				</select>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<select name= "ano"onchange="scripting(this.value)">
-					<option value="">ANO</option>
-					<option value="2010">2010</option>
-					<option value="2011">2011</option>
-					<option value="2012">2012</option>
-					<option value="2013">2013</option>
-					<option value="2014">2014</option>
-					<option value="2015">2015</option>
-					<option value="2016">2016</option>
-					<option value="2017">2017</option>
-					<option value="2018">2018</option>
-					<option value="2019">2019</option>
-					<option value="2020">2020</option>
-					<option value="2021">2021</option>
-				</select>
+			{% endif %}
 			</form>
 			<div id="titulo" class="arredonda">REQUISI&Ccedil;&Otilde;ES DO M&EcircS DE JUNHO</div>
 				<div id="informacoes">
@@ -115,9 +86,7 @@
 		</ul>
 		<input type="hidden" name="id"  />
 	</div>
-	<a class="responderContrato" href="#" title="Responder a requisi&ccedil;&atilde;o"></a>
 	<a class="salvarContrato" href="#" title="Salvar altera&ccedil;&otilde;es  na requisi&ccedil;&atilde;o"></a>
-	<a class="baixarContrato" href="#" title="Baixar Proposta"></a>
 </div>
 
 <div id="popUpGeral" class="esconder">
@@ -132,8 +101,10 @@
 		</ul>
 		<input type="hidden" name="id"  />
 	</div>
-	<a class="responderGeral" href="#" title="Responder a requisi&ccedil;&atilde;o"></a>
+	{% if user.is_staff %}
 	<a class="salvarGeral" href="#" title="Salvar altera&ccedil;&otilde;es  na requisi&ccedil;&atilde;o"></a>
+	<a class="remover" href="#" title="Excluir Requisição"></a>
+	{% endif %}
 </div>
 
 
@@ -149,7 +120,7 @@
             <textarea id="descricao" name="descricao" ></textarea>
            <label for="tipoReq">TIPO DA REQUISI&Ccedil;&Atilde;O:</label>
             <select id="tipoReq" size="1" name="tipoReq">
-                <option selected value="0">Requisi&ccedil;&atilde;o</option>
+                <option selected value="0">Reembolso</option>
                 <option value="1">Contrato</option>
             </select>
             <label for="valor">VALOR:</label>
