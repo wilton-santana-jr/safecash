@@ -105,51 +105,26 @@ function mostrarPopup(popup)
 					var tipoRequisicao = $("input[name=" + idPedido + "]:hidden").val();
 					var titulo = $(this).attr("title");
 					
-					if(tipoRequisicao == 'c')
-					{
-							
-							$('#popUpContrato').css({top:alturaJanela/2 -$('#popUpContrato').height()/2,left:largura/2 - $('#popUpContrato').width()/2});
-							$('#nomePopUpContrato').text(titulo);
-							$('#informacoesContrato input:hidden').val(idPedido);
-							
-							var typeVar = 'list';
-							var sourceVar = 'contrato';
-							
-							$.post("visualizar/", {
-								type : typeVar,
-								source : sourceVar,
-								chave : idPedido
-							}, function(data) {
-								$("#descricaoContrato").text(data.descricao);
-								$("#nomeProjContrato").text(data.nomeProjeto);
-								$("#contratante").text(data.contratante);
-								$("#cnpjCpfContrato").text(data.cpf_cnpj);
-								$("#valorContrato").text(data.valor);
-								$("#obsContrato").text(data.observacao);
-							}, 'json');
-							
-							$('#popUpContrato').fadeIn(200);
-					}
-					else if(tipoRequisicao == 'g')
-					{
-						$('#popUpGeral').css({top:alturaJanela/2 -$('#popUpGeral').height()/2,left:largura/2 - $('#popUpGeral').width()/2});							
-						$('#nomePopUpGeral').text(titulo);
-						$('#informacoesGeral input:hidden').val(idPedido);
-						
-						var typeVar = 'list';
-						var sourceVar = 'geral';
-						
-						$.post("visualizar/", {
-							type : typeVar,
-							source : sourceVar,
-							chave : idPedido
-						}, function(data) {
-							$("#descricaoGeral").text(data.descricao);
-						},  'json');
-						
-						$('#popUpGeral').fadeIn(200);
-					}
+					
+					$('#popUpGeral').css({top:alturaJanela/2 -$('#popUpGeral').height()/2,left:largura/2 - $('#popUpGeral').width()/2});							
+					$('#nomePopUpGeral').text(titulo);
+					$('#informacoesGeral input:hidden').val(idPedido);
+					
+					var typeVar = 'list';
+					var sourceVar = 'geral';
+					
+					$.post("visualizar/", {
+						type : typeVar,
+						source : sourceVar,
+						chave : idPedido
+					}, function(data) {
+						$("#descricaoGeral").text(data.descricao);
+					},  'json');
+					
+					$('#popUpGeral').fadeIn(200);
+					
 
+					
 					$('.informativo').hide();
 
 				});
@@ -221,6 +196,13 @@ function mostrarPopup(popup)
 				$('#tela').fadeOut(200);
 
 			});
+			
+			$(".remover").click(function(e) {
+				$.post("remove/", { chave : idPedido });
+
+				// trocar para remover o item dinamicamente
+				document.location.reload(); 
+			});
 			$(".responderContrato").click(
 					function(e) {
 
@@ -237,23 +219,6 @@ function mostrarPopup(popup)
 						$('#tela').fadeOut(200);
 
 					});
-
-			$(".baixarContrato").click(
-					function(e) {
-
-						var idRequisicao = $(
-								'#informacoesContrato input:hidden').val();
-						var estadoRequisicao = $("#informacoesGeral select")
-								.val();
-						var pagina = $.post("nomedomapeamento", {
-							id : idRequisicao,
-							estado : estadoRequisicao
-						});
-
-					});
-					
-			
-
 		});
 
 // JavaScript Document

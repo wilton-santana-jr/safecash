@@ -97,6 +97,18 @@ text-align:left;
 	width:100px;
 }
 
+.remover
+{
+	width:141px;
+	height:28px;
+	background-image:url(../imagens/PageModelosImages/botaoRemoverModelo.png);
+	background-repeat:no-repeat;
+	float:right;
+	position:relative;
+	right:30px;
+
+}
+
 .corpo span a
 {
 	color:#3994DA;
