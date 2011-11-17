@@ -10,4 +10,5 @@ urlpatterns = patterns('apps.requisicao.views',
 	(r'^visualizar/', 'visualizar'),
 	(r'^salvarEstado/', 'salvarEstado'),
 	(r'^inserirReq/', 'inserirReq'),
+	(r'^remove/', 'remove'),
 	)

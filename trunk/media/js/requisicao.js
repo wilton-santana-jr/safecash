@@ -198,10 +198,9 @@ function mostrarPopup(popup)
 			});
 			
 			$(".remover").click(function(e) {
-				$.post("remove/", { chave : idPedido });
-
-				// trocar para remover o item dinamicamente
-				document.location.reload(); 
+				$.post("remove/", { chave : idPedido }, function (data) {
+				    document.location.reload(); 
+                });
 			});
 			$(".responderContrato").click(
 					function(e) {
