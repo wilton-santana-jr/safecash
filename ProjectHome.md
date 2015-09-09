@@ -1,0 +1,1 @@
+projeto de desenvolvimento do gerenciador financeiro SafeCash.
